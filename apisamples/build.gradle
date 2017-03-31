@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+def keystoreProperties = new Properties()
+if (project.hasProperty('keyStorePropertiesFile')) {
+    def keystorePropertiesFile = project.getProperty('keyStorePropertiesFile')
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    keystoreProperties['storeFile'] = project.getProperty('keyStoreFile')
+}
+
+def buildNumber = project.hasProperty('buildNumber') ? project.getProperty('buildNumber') : 'dev'
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "com.eegeo.sdkexamples"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "0.0." + buildNumber
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    if (project.hasProperty('keyStorePropertiesFile')) {
+        signingConfigs {
+            release {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (project.hasProperty('keyStorePropertiesFile')) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
+}
+
+// latest release is https://bintray.com/eegeo/maven/android-sdk/_latestVersion
+def sdkVersion = project.hasProperty('sdkVersion') ? project.getProperty('sdkVersion') : '+'
+def sdkArtifactName = 'com.wrld:android-sdk:0.0.' + sdkVersion + '@aar'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    if (rootProject.getProperty('useLocalSdkBuild').toBoolean()) {
+        debugCompile project(path: ':sdk', configuration: 'debug')
+        releaseCompile project(path: ':sdk', configuration: 'release')
+    } else {
+        compile(sdkArtifactName) {
+            transitive = true
+        }
+    }
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0'
+}

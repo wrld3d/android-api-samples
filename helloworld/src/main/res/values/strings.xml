@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">eeGeo Android API HelloWorld</string>
+    <string name="app_short_name">eeGeo HelloWorld</string>
+    <string name="eegeo_api_key">obtain an api key by signing up at eegeo.com and insert here</string>
+</resources>
