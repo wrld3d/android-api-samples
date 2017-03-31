@@ -38,5 +38,14 @@ See our [API docs](https://docs.eegeo.com/android/latest/docs/api/) for detailed
 
 Questions, comments, or problems? All feedback is welcome -- just [create an issue](https://github.com/eegeo/android-api-samples/issues).
 
+## eeGeo Android SDK package
+These samples make use of the eeGeo Android SDK, available as a Maven package via [Bintray](https://bintray.com/eegeo/maven/android-sdk). 
+
+[ ![Download](https://api.bintray.com/packages/eegeo/maven/android-sdk/images/download.svg) ](https://bintray.com/eegeo/maven/android-sdk/_latestVersion)
+
+The gradle scripts included in this samples repo mean that the package is downloaded automatically by Android Studio, via JCenter.
+
+The source for the SDK is available at https://github.com/eegeo/android-api
+
 ## License
 These examples are released under the Simplified BSD License. See the [LICENSE.md](https://github.com/eegeo/android-api-samples/blob/master/LICENSE.md) file for details.
