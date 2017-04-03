@@ -45,8 +45,7 @@ android {
 }
 
 // latest release is https://bintray.com/eegeo/maven/android-sdk/_latestVersion
-def sdkVersion = project.hasProperty('sdkVersion') ? project.getProperty('sdkVersion') : '+'
-def sdkArtifactName = 'com.wrld:android-sdk:0.0.' + sdkVersion + '@aar'
+def sdkArtifactName = 'com.wrld:android-sdk:' + sdkVersion + '@aar'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
