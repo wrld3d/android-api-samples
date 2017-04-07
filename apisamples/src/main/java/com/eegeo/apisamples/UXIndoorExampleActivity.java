@@ -1,5 +1,8 @@
 package com.eegeo.apisamples;
 
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
@@ -19,6 +22,8 @@ public class UXIndoorExampleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
+
+        setLockedOrientation();
 
         setContentView(R.layout.ux_indoor_example_activity);
         m_mapView = (MapView) findViewById(R.id.ux_indoor_mapview);
@@ -49,5 +54,14 @@ public class UXIndoorExampleActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         m_mapView.onDestroy();
+    }
+
+    private void setLockedOrientation() {
+        if (getResources().getBoolean(R.bool.is_large_device)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        } else {
+            // force portrait on phone
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 }
