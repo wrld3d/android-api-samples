@@ -27,8 +27,9 @@ public class AnimateCameraActivity extends AppCompatActivity {
             @Override
             public void onMapReady(final EegeoMap map) {
                 CameraPosition position = new CameraPosition.Builder()
-                        .target(37.7952, -122.4028)
-                        .zoom(19)
+                        .target(37.802, -122.4058)
+                        .zoom(18)
+                        .bearing(270)
                         .build();
                 map.animateCamera(CameraUpdateFactory.newCameraPosition(position), 5000);
             }
