@@ -39,9 +39,9 @@ See our [API docs](https://docs.wrld3d.com/android/latest/docs/api/) for detaile
 Questions, comments, or problems? All feedback is welcome -- just [create an issue](https://github.com/wrld3d/android-api-samples/issues).
 
 ## WRLD Android SDK package
-These samples make use of the WRLD Android SDK, available as a Maven package via [Bintray](https://bintray.com/wrld/maven/android-sdk). 
+These samples make use of the WRLD Android SDK, available as a Maven package via [Bintray](https://bintray.com/wrld/maven/wrld-android-sdk). 
 
-[ ![Download](https://api.bintray.com/packages/wrld/maven/android-sdk/images/download.svg) ](https://bintray.com/wrld/maven/android-sdk/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/wrld/maven/wrld-android-sdk/images/download.svg) ](https://bintray.com/wrld/maven/wrld-android-sdk/_latestVersion)
 
 The gradle scripts included in this samples repo mean that the package is downloaded automatically by Android Studio, via JCenter.
 
