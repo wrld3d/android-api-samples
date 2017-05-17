@@ -13,13 +13,16 @@ import com.eegeo.mapapi.markers.Marker;
 import com.eegeo.mapapi.markers.MarkerOptions;
 import com.eegeo.indoors.IndoorMapView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddIndoorMarkerActivity extends AppCompatActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
     private IndoorMapView m_indoorMapView = null;
 
-    private Marker m_marker;
+    private List<Marker> m_markers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +41,14 @@ public class AddIndoorMarkerActivity extends AppCompatActivity {
                 RelativeLayout uiContainer = (RelativeLayout) findViewById(R.id.eegeo_ui_container);
                 m_indoorMapView = new IndoorMapView(m_mapView, uiContainer, m_eegeoMap);
 
-                m_marker = m_eegeoMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(56.4599662, -2.9781313))
-                        .indoor("westport_house", 0)
-                        .labelText("Marker on ground floor"));
+                final int numberOfFloors = 7;
+                for (int floorId = 0; floorId < numberOfFloors; ++floorId) {
+                    Marker marker = m_eegeoMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(56.459948, -2.978094))
+                            .indoor("westport_house", floorId)
+                            .labelText("Marker on floor " + floorId));
+                    m_markers.add(marker);
+                }
 
             }
         });
@@ -66,7 +73,9 @@ public class AddIndoorMarkerActivity extends AppCompatActivity {
         super.onDestroy();
 
         if (m_eegeoMap != null) {
-            m_eegeoMap.removeMarker(m_marker);
+            for (Marker marker : m_markers) {
+                m_eegeoMap.removeMarker(marker);
+            }
         }
 
         m_mapView.onDestroy();
