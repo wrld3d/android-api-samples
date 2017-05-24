@@ -29,24 +29,15 @@ public class QueryCameraActivity extends AppCompatActivity {
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
-
-
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        final CameraPosition cameraPosition = map.getCameraPosition();
-                        double latitude = (cameraPosition.target != null) ? cameraPosition.target.latitude : 0.0;
-                        double longitude = (cameraPosition.target != null) ? cameraPosition.target.longitude : 0.0;
-                        new AlertDialog.Builder(QueryCameraActivity.this)
-                                .setTitle("Camera Position")
-                                .setMessage(String.format(Locale.getDefault(), "LatLng: %.2f, %.2f Zoom: %d",
-                                        latitude, longitude, (int) cameraPosition.zoom))
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
-                    }
-                }, 500);
-
+            final CameraPosition cameraPosition = map.getCameraPosition();
+            double latitude = (cameraPosition.target != null) ? cameraPosition.target.latitude : 0.0;
+            double longitude = (cameraPosition.target != null) ? cameraPosition.target.longitude : 0.0;
+            new AlertDialog.Builder(QueryCameraActivity.this)
+                    .setTitle("Camera Position")
+                    .setMessage(String.format(Locale.getDefault(), "LatLng: %.2f, %.2f Zoom: %d",
+                            latitude, longitude, (int) cameraPosition.zoom))
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
             }
         });
     }

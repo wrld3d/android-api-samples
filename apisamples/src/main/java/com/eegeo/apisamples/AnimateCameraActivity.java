@@ -8,6 +8,7 @@ import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.camera.CameraPosition;
 import com.eegeo.mapapi.camera.CameraUpdateFactory;
+import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
 public class AnimateCameraActivity extends AppCompatActivity {
@@ -26,12 +27,17 @@ public class AnimateCameraActivity extends AppCompatActivity {
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
-                CameraPosition position = new CameraPosition.Builder()
-                        .target(37.802, -122.4058)
-                        .zoom(18)
-                        .bearing(270)
-                        .build();
-                map.animateCamera(CameraUpdateFactory.newCameraPosition(position), 5000);
+                map.addInitialStreamingCompleteListener(new OnInitialStreamingCompleteListener() {
+                    @Override
+                    public void onInitialStreamingComplete() {
+                        CameraPosition position = new CameraPosition.Builder()
+                                .target(37.802, -122.4058)
+                                .zoom(18)
+                                .bearing(270)
+                                .build();
+                        map.animateCamera(CameraUpdateFactory.newCameraPosition(position), 5000);
+                    }
+                });
             }
         });
     }

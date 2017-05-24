@@ -9,6 +9,7 @@ import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.camera.CameraUpdateFactory;
 import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.geometry.LatLngBounds;
+import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
 public class FrameCameraActivity extends AppCompatActivity {
@@ -27,12 +28,17 @@ public class FrameCameraActivity extends AppCompatActivity {
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
-                map.moveCamera(CameraUpdateFactory.newLatLngBounds(
-                        new LatLngBounds.Builder()
-                                .include(new LatLng(37.798886, -122.395116))
-                                .include(new LatLng(37.786647, -122.407015))
-                                .build()
-                        , 0));
+            map.addInitialStreamingCompleteListener(new OnInitialStreamingCompleteListener() {
+                @Override
+                public void onInitialStreamingComplete() {
+                    map.moveCamera(CameraUpdateFactory.newLatLngBounds(
+                            new LatLngBounds.Builder()
+                                    .include(new LatLng(37.798886, -122.395116))
+                                    .include(new LatLng(37.786647, -122.407015))
+                                    .build()
+                            , 0));
+                }
+            });
             }
         });
     }
