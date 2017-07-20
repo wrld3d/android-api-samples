@@ -38,7 +38,7 @@ public class MarkerChangeLocationActivity extends AppCompatActivity {
                 final LatLng locationB = new LatLng(37.783372, -122.400834);
 
                 m_marker = m_eegeoMap.addMarker(new MarkerOptions()
-                        .position(locationA));
+                        .position(locationA).labelText("This is a moving marker"));
 
                 m_timerHandler.postDelayed(new Runnable() {
                     @Override
