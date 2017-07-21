@@ -2,6 +2,7 @@ package com.eegeo.apisamples;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -61,6 +62,9 @@ public class PickingCameraActivity extends AppCompatActivity {
             m_eegeoMap.addMarker(new MarkerOptions()
                     .position(point.toLatLng())
                     .labelText("Picked"));
+
+            Toast.makeText(PickingCameraActivity.this, String.format("LatLng [%f, %f]; altitude %f m",
+                    point.latitude, point.longitude, point.altitude), Toast.LENGTH_LONG).show();
         }
     }
 }
