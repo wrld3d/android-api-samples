@@ -63,12 +63,25 @@ public final class ExamplesList {
             new ExampleContainer(R.string.marker_change_draw_order_example_label,
                     R.string.marker_change_draw_order_example_description,
                     MarkerChangeDrawOrderActivity.class),
+            new ExampleContainer(R.string.bluesphere_change_location_example_label,
+                    R.string.bluesphere_change_location_example_description,
+                    BlueSphereChangeLocationActivity.class),
+            new ExampleContainer(R.string.bluesphere_change_direction_example_label,
+                    R.string.bluesphere_change_direction_example_description,
+                    BlueSphereChangeDirectionActivity.class),
+            new ExampleContainer(R.string.bluesphere_change_elevation_example_label,
+                    R.string.bluesphere_change_elevation_example_description,
+                    BlueSphereChangeElevationActivity.class),
+            new ExampleContainer(R.string.bluesphere_indoors_example_label,
+                    R.string.bluesphere_indoors_example_description,
+                    BlueSphereIndoorsActivity.class),
             new ExampleContainer(R.string.streaming_complete_notification_example_label,
                     R.string.streaming_complete_notification_example_description,
                     StreamingCompleteNotificationActivity.class),
+
             new ExampleContainer(R.string.map_options_example_label,
                     R.string.map_options_example_description,
-                    EegeoMapOptionsActivity.class),
+                    EegeoMapOptionsActivity.class)
 
     };
 

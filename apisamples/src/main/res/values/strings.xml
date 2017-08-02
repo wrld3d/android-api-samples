@@ -44,6 +44,14 @@
     <string name="streaming_complete_notification_example_description">Receive notification that the loading of map resources for the initial scene has completed</string>
     <string name="map_options_example_label">Create a map view programmatically</string>
     <string name="map_options_example_description">Add a 3d map view configured with options in a dynamically created layout</string>
+    <string name="bluesphere_change_location_example_label">Change the location of a blue sphere</string>
+    <string name="bluesphere_change_location_example_description">Move the blue sphere to a different point on the map</string>
+    <string name="bluesphere_change_direction_example_label">Change the direction of a blue sphere</string>
+    <string name="bluesphere_change_direction_example_description">Alter the direction the blue sphere is facing</string>
+    <string name="bluesphere_change_elevation_example_label">Change the elevation of a blue sphere</string>
+    <string name="bluesphere_change_elevation_example_description">Display a blue sphere on the map at a height above the ground</string>
+    <string name="bluesphere_indoors_example_label">Move the blue sphere indoors</string>
+    <string name="bluesphere_indoors_example_description">Display a blue sphere inside an indoor map</string>
 
     <string name="exit_button_label">Exit</string>
     <string name="moveup_button_label">Move Up</string>
@@ -54,6 +62,10 @@
     <string name="default_start_lat">37.7858</string>
     <string name="default_start_lon">-122.401</string>
     <string name="default_start_zoom">16</string>
+
+    <string name="blue_sphere_start_lat">56.459721</string>
+    <string name="blue_sphere_start_lon">-2.977541</string>
+    <string name="blue_sphere_start_zoom">18</string>
 
     <string name="indoor_start_lat">37.781871</string>
     <string name="indoor_start_lon">-122.404812</string>
