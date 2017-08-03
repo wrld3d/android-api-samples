@@ -9,10 +9,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.eegeo.apisamples.BlueSphereChangeDirectionActivity">
+    tools:context="com.eegeo.apisamples.BlueSphereChangeBearingActivity">
 
     <com.eegeo.mapapi.MapView
-        android:id="@+id/bluesphere_change_direction_mapview"
+        android:id="@+id/bluesphere_change_bearing_mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         eegeo:camera_target_latitude="@string/blue_sphere_start_lat"

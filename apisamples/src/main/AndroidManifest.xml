@@ -185,9 +185,9 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
-            android:name="com.eegeo.apisamples.BlueSphereChangeDirectionActivity"
+            android:name="com.eegeo.apisamples.BlueSphereChangeBearingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/bluesphere_change_direction_example_label">
+            android:label="@string/bluesphere_change_bearing_example_label">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>

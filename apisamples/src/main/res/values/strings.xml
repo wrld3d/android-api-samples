@@ -46,8 +46,8 @@
     <string name="map_options_example_description">Add a 3d map view configured with options in a dynamically created layout</string>
     <string name="bluesphere_change_location_example_label">Change the location of a blue sphere</string>
     <string name="bluesphere_change_location_example_description">Move the blue sphere to a different point on the map</string>
-    <string name="bluesphere_change_direction_example_label">Change the direction of a blue sphere</string>
-    <string name="bluesphere_change_direction_example_description">Alter the direction the blue sphere is facing</string>
+    <string name="bluesphere_change_bearing_example_label">Change the bearing of a blue sphere</string>
+    <string name="bluesphere_change_bearing_example_description">Alter the bearing the blue sphere is facing</string>
     <string name="bluesphere_change_elevation_example_label">Change the elevation of a blue sphere</string>
     <string name="bluesphere_change_elevation_example_description">Display a blue sphere on the map at a height above the ground</string>
     <string name="bluesphere_indoors_example_label">Move the blue sphere indoors</string>

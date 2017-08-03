@@ -11,7 +11,7 @@ import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.bluesphere.BlueSphere;
 
-public class BlueSphereChangeDirectionActivity extends AppCompatActivity {
+public class BlueSphereChangeBearingActivity extends AppCompatActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -23,8 +23,8 @@ public class BlueSphereChangeDirectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
 
-        setContentView(R.layout.bluesphere_change_direction_activity);
-        m_mapView = (MapView) findViewById(R.id.bluesphere_change_direction_mapview);
+        setContentView(R.layout.bluesphere_change_bearing_activity);
+        m_mapView = (MapView) findViewById(R.id.bluesphere_change_bearing_mapview);
         m_mapView.onCreate(savedInstanceState);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
@@ -36,13 +36,13 @@ public class BlueSphereChangeDirectionActivity extends AppCompatActivity {
                 m_bluesphere = m_eegeoMap.getBlueSphere();
                 m_bluesphere.setEnabled(true);
                 m_bluesphere.setPosition(startPosition);
-                m_bluesphere.setDirection(0);
+                m_bluesphere.setBearing(0);
 
                 m_timerHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if (m_eegeoMap != null) {
-                            m_bluesphere.setDirection(m_bluesphere.getDirection() + 45);
+                            m_bluesphere.setBearing(m_bluesphere.getBearing() + 45);
                             m_timerHandler.postDelayed(this, 2000);
                         }
                     }
