@@ -177,6 +177,54 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
+            android:name="com.eegeo.apisamples.AddPolygonActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_polygon_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.AddPolygonIndoorsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_polygon_indoors_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.AddPolygonWithHolesActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_polygon_with_holes_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.AddPolygonWithElevationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_polygon_with_elevation_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.AddPolylineActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_polyline_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.AddPolylineIndoorsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_polyline_indoors_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
             android:name="com.eegeo.apisamples.BlueSphereChangeLocationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/bluesphere_change_location_example_label">

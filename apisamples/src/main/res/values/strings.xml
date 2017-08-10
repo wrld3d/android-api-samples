@@ -44,6 +44,18 @@
     <string name="streaming_complete_notification_example_description">Receive notification that the loading of map resources for the initial scene has completed</string>
     <string name="map_options_example_label">Create a map view programmatically</string>
     <string name="map_options_example_description">Add a 3d map view configured with options in a dynamically created layout</string>
+    <string name="add_polygon_example_label">Add a polygon</string>
+    <string name="add_polygon_example_description">Display a polygon on the map</string>
+    <string name="add_polygon_indoors_example_label">Add a polygon to an indoor map</string>
+    <string name="add_polygon_indoors_example_description">Display a polygon inside an indoor map</string>
+    <string name="add_polygon_with_holes_example_label">Add a polygon with holes</string>
+    <string name="add_polygon_with_holes_example_description">Display a polygon with holes on the map</string>
+    <string name="add_polygon_with_elevation_example_label">Add a polygon with elevation</string>
+    <string name="add_polygon_with_elevation_example_description">Display a polygon on the map at a height above the ground</string>
+    <string name="add_polyline_example_label">Add a polyline</string>
+    <string name="add_polyline_example_description">Display a polyline on the map</string>
+    <string name="add_polyline_indoors_example_label">Add a polyline to an indoor map</string>
+    <string name="add_polyline_indoors_example_description">Display a polyline inside an indoor map</string>
     <string name="bluesphere_change_location_example_label">Change the location of a blue sphere</string>
     <string name="bluesphere_change_location_example_description">Move the blue sphere to a different point on the map</string>
     <string name="bluesphere_change_bearing_example_label">Change the bearing of a blue sphere</string>
@@ -70,5 +82,8 @@
 
     <string name="indoor_start_lat">37.781871</string>
     <string name="indoor_start_lon">-122.404812</string>
+
+    <string name="polyline_start_lat">37.7900</string>
+    <string name="polyline_start_lon">-122.401</string>
 
 </resources>
