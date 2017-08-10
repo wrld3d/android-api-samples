@@ -16,6 +16,7 @@ public class ExitIndoorExampleActivity extends AppCompatActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
+    private boolean m_indoors = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +27,16 @@ public class ExitIndoorExampleActivity extends AppCompatActivity {
         m_mapView = (MapView) findViewById(R.id.exit_indoor_mapview);
         m_mapView.onCreate(savedInstanceState);
 
-        final Button exitButton = (Button) findViewById(R.id.exit_indoor_button);
+        final Button button = (Button) findViewById(R.id.exit_indoor_button);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
-                IndoorEventListener listener = new IndoorEventListener(exitButton);
+                IndoorEventListener listener = new IndoorEventListener(button);
                 map.addOnIndoorEnteredListener(listener);
                 map.addOnIndoorExitedListener(listener);
                 m_eegeoMap = map;
+                button.setEnabled(true);
             }
         });
     }
@@ -57,8 +59,13 @@ public class ExitIndoorExampleActivity extends AppCompatActivity {
         m_mapView.onDestroy();
     }
 
-    public void onExit(View view) {
-        m_eegeoMap.onExitIndoorClicked();
+    public void onClick(View view) {
+        if(m_indoors)
+        {
+            m_eegeoMap.exitIndoorMap();
+        } else {
+            m_eegeoMap.enterIndoorMap("intercontinental_hotel_8628");
+        }
     }
 
     public class IndoorEventListener implements OnIndoorEnteredListener, OnIndoorExitedListener {
@@ -70,12 +77,14 @@ public class ExitIndoorExampleActivity extends AppCompatActivity {
 
         @Override
         public void onIndoorEntered() {
-            m_button.setEnabled(true);
+            m_button.setText("Exit");
+            m_indoors = true;
         }
 
         @Override
         public void onIndoorExited() {
-            m_button.setEnabled(false);
+            m_button.setText("Enter");
+            m_indoors = false;
         }
     }
 }

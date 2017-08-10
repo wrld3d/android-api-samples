@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">eeGeo Android API Samples</string>
     <string name="app_short_name">eeGeo Samples</string>
-    <string name="eegeo_api_key">obtain an api key by signing up at eegeo.com and insert here</string>
+    <string name="eegeo_api_key">f764d94ad504441084dd80f65203f629</string>
     <string name="basic_example_label">Embed a 3D map</string>
     <string name="basic_example_description">How to embed a 3D map view in an Android App</string>
     <string name="move_camera_example_label">Move the camera</string>
@@ -14,8 +14,8 @@
     <string name="query_camera_example_description">Obtain the current camera location and zoom level</string>
     <string name="picking_camera_example_label">Pick a point on the map</string>
     <string name="picking_camera_example_description">Obtain the position coordinates of a point on the map that is tapped by the user</string>
-    <string name="exit_indoor_example_label">Exit an indoor map</string>
-    <string name="exit_indoor_example_description">Exiting an indoor map</string>
+    <string name="exit_indoor_example_label">Enter and exit an indoor map</string>
+    <string name="exit_indoor_example_description">Entering and exiting an indoor map</string>
     <string name="name_indoor_example_label">Query the name of an indoor map</string>
     <string name="name_indoor_example_description">Display the name of an indoor map</string>
     <string name="move_floor_indoor_example_label">Control indoor map floors</string>
@@ -54,6 +54,7 @@
     <string name="bluesphere_indoors_example_description">Display a blue sphere inside an indoor map</string>
 
     <string name="exit_button_label">Exit</string>
+    <string name="enter_button_label">Enter</string>
     <string name="moveup_button_label">Move Up</string>
     <string name="movedown_button_label">Move Down</string>
     <string name="topfloor_button_label">Top Floor</string>

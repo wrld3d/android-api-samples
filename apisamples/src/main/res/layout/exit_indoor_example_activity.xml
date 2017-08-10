@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:onClick="onExit"
-        android:text="@string/exit_button_label"/>
+        android:onClick="onClick"
+        android:text="@string/enter_button_label"/>
 
 </RelativeLayout>
