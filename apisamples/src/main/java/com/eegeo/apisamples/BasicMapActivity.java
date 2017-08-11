@@ -30,7 +30,7 @@ public class BasicMapActivity extends AppCompatActivity {
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
-                Toast.makeText(BasicMapActivity.this, "Welcome to Eegeo Maps", Toast.LENGTH_LONG).show();
+                Toast.makeText(BasicMapActivity.this, "Welcome to WRLD Maps", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -42,7 +42,7 @@ public class EegeoMapOptionsActivity extends AppCompatActivity {
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
-                Toast.makeText(EegeoMapOptionsActivity.this, "EegeoMap start position configured", Toast.LENGTH_LONG).show();
+                Toast.makeText(EegeoMapOptionsActivity.this, "WRLD start position configured", Toast.LENGTH_LONG).show();
             }
         });
 
