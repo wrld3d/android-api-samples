@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
+import com.eegeo.mapapi.geometry.ElevationMode;
 import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.markers.Marker;
@@ -38,7 +39,7 @@ public class MarkerWithAbsoluteAltitudeActivity extends AppCompatActivity {
     private Marker createAndAddMarker() {
         return m_eegeoMap.addMarker(new MarkerOptions()
                 .position(new LatLng(37.802617, -122.405783))
-                .elevationMode(MarkerOptions.MarkerElevationMode.HeightAboveSeaLevel)
+                .elevationMode(ElevationMode.HeightAboveSeaLevel)
                 .elevation(80.7)
                 .labelText("Telegraph Hill"));
     }
