@@ -4,7 +4,7 @@ task injectApiKey() {
     def apiKey = project.getProperty('apiKey')
     def stringResources = file("apisamples/src/main/res/values/strings.xml")
     def stringResText = stringResources.getText()
-    def pattern = "obtain an api key by signing up at eegeo.com and insert here"
+    def pattern = "obtain an api key by signing up at wrld3d.com and insert here"
     def updatedText = stringResText.replaceFirst(pattern, apiKey)
     stringResources.write(updatedText)
 }
