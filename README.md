@@ -8,7 +8,7 @@ Samples demonstrating how to use the [WRLD Android Java Api](https://docs.wrld3d
 
 ### Setup
 * Clone or downloaded snapshot of this repo.
-* Obtain an [WRLD API key](https://www.wrld3d.com/developers/apikeys/). Sign up [here](https://www.wrld3d.com/register/) for a free account and create an API key for your example apps. The API key is a string consisting of 32 alphanumeric characters. You will need to cut and paste the key into a resource file in order to authenticate your app. This is described in the ['Set you WRLD API key'](#_setApiKey1) step below.
+* Obtain a [WRLD API key](https://www.wrld3d.com/developers/apikeys/). Sign up [here](https://www.wrld3d.com/register/) for a free account and create an API key for your example apps. The API key is a string consisting of 32 alphanumeric characters. You will need to cut and paste the key into a resource file in order to authenticate your app. This is described in the ['Set your WRLD API key'](#_setApiKey1) step below.
 * In Android Studio, select "Open..." and then select the top level android-api-samples folder.  If Android Studio is missing supporting libraries or components, you may be prompted to install these. Otherwise, Android Studio will download prerequisites automatically from JCenter.
 
 You should now see two modules in the project: [helloworld](https://github.com/wrld3d/android-api-samples/tree/master/helloworld) and [apisamples](https://github.com/wrld3d/android-api-samples/tree/master/apisamples).
@@ -27,7 +27,7 @@ For a step-by-step instructions which show how to create a basic app from scratc
 ### ApiSamples
 The [apisamples](https://github.com/wrld3d/android-api-samples/tree/master/apisamples) app contains a collection of Activities, each illustrating an individual API feature.
 
-#### Set you WRLD API key
+#### Set your WRLD API key
 Edit the [```strings.xml```](https://github.com/wrld3d/android-api-samples/blob/master/apisamples/src/main/res/values/strings.xml#L4) file in the apisamples module and paste in your 32 character API key as the value for the ```eegeo_api_key``` resource.
 
 #### Build and run
