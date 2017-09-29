@@ -64,6 +64,17 @@
     <string name="bluesphere_change_elevation_example_description">Display a blue sphere on the map at a height above the ground</string>
     <string name="bluesphere_indoors_example_label">Move the blue sphere indoors</string>
     <string name="bluesphere_indoors_example_description">Display a blue sphere inside an indoor map</string>
+    <string name="add_building_highlight_example_label">Add a building highlight</string>
+    <string name="add_building_highlight_example_description">Add a highlight for a building</string>
+    <string name="remove_building_highlight_example_label">Remove a building highlight</string>
+    <string name="remove_building_highlight_example_description">Remove a building highlight that was previously added to the map</string>
+    <string name="place_objects_on_buildings_example_label">Place objects on buildings</string>
+    <string name="place_objects_on_buildings_example_description">Query the altitude of a building in order to position a marker</string>
+    <string name="picking_buildings_example_label">Picking buildings</string>
+    <string name="picking_buildings_example_description">Highlight buildings by tapping on them</string>
+    <string name="query_building_information_example_label">Query building information</string>
+    <string name="query_building_information_example_description">Obtain information about a building at a location and place a marker above its centroid</string>
+
 
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>

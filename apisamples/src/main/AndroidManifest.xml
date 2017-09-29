@@ -257,6 +257,47 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
+            android:name="com.eegeo.apisamples.AddBuildingHighlightActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_building_highlight_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.RemoveBuildingHighlightActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/remove_building_highlight_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.PlaceObjectsOnBuildingsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/place_objects_on_buildings_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.PickingBuildingsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/picking_buildings_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.QueryBuildingInformationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/query_building_information_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
             android:name="com.eegeo.apisamples.StreamingCompleteNotificationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/streaming_complete_notification_example_label">
