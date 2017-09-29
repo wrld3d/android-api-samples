@@ -43,7 +43,6 @@ public class QueryBuildingInformationActivity extends AppCompatActivity {
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
                 new Handler().postDelayed(
-                        // todo_buildings_api - delay to workaround platform BuildingFootprintService failing if coverage tree manifest not yet loaded
                         new Runnable() {
                             @Override
                             public void run() {
@@ -60,7 +59,6 @@ public class QueryBuildingInformationActivity extends AppCompatActivity {
                                                 }
 
                                                 Toast.makeText(QueryBuildingInformationActivity.this, buildingInformation.buildingId, Toast.LENGTH_LONG).show();
-                                                //todo - tojson + logging
 
                                                 BuildingDimensions buildingDimensions = buildingInformation.buildingDimensions;
                                                 double buildingHeight = buildingDimensions.topAltitude - buildingDimensions.baseAltitude;
