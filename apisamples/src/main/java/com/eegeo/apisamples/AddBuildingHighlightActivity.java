@@ -11,9 +11,10 @@ import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.buildings.BuildingHighlightOptions;
 import com.eegeo.mapapi.geometry.LatLng;
+import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class AddBuildingHighlightActivity extends AppCompatActivity {
+public class AddBuildingHighlightActivity extends AppCompatActivity implements OnInitialStreamingCompleteListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -31,21 +32,17 @@ public class AddBuildingHighlightActivity extends AppCompatActivity {
             @Override
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
-                new Handler().postDelayed(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                m_eegeoMap.addBuildingHighlight(new BuildingHighlightOptions()
-                                        .highlightBuildingAtLocation(new LatLng(37.795189, -122.402777))
-                                        .color(ColorUtils.setAlphaComponent(Color.YELLOW, 128))
-                                );
-                            }
-                        },
-                        4000
-                );
-
+                m_eegeoMap.addInitialStreamingCompleteListener(AddBuildingHighlightActivity.this);
             }
         });
+    }
+
+
+    @Override
+    public void onInitialStreamingComplete() {
+        m_eegeoMap.addBuildingHighlight(new BuildingHighlightOptions()
+                .highlightBuildingAtLocation(new LatLng(37.795189, -122.402777))
+                .color(ColorUtils.setAlphaComponent(Color.YELLOW, 128)));
     }
 
     @Override

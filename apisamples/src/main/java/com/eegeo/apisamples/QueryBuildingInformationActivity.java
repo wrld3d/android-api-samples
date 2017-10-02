@@ -42,52 +42,44 @@ public class QueryBuildingInformationActivity extends AppCompatActivity {
             @Override
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
-                new Handler().postDelayed(
-                        new Runnable() {
+                m_highlight = m_eegeoMap.addBuildingHighlight(new BuildingHighlightOptions()
+                        .highlightBuildingAtLocation(new LatLng(37.784079, -122.396762))
+                        .informationOnly()
+                        .buildingInformationReceivedListener(new OnBuildingInformationReceivedListener() {
                             @Override
-                            public void run() {
-                                m_highlight = m_eegeoMap.addBuildingHighlight(new BuildingHighlightOptions()
-                                        .highlightBuildingAtLocation(new LatLng(37.784079, -122.396762))
-                                        .informationOnly()
-                                        .buildingInformationReceivedListener(new OnBuildingInformationReceivedListener() {
-                                            @Override
-                                            public void onBuildingInformationReceived(BuildingHighlight buildingHighlight) {
-                                                BuildingInformation buildingInformation = buildingHighlight.getBuildingInformation();
-                                                if (buildingInformation == null) {
-                                                    Toast.makeText(QueryBuildingInformationActivity.this, String.format("No building information was received for building highlight"), Toast.LENGTH_LONG).show();
-                                                    return;
-                                                }
+                            public void onBuildingInformationReceived(BuildingHighlight buildingHighlight) {
+                                BuildingInformation buildingInformation = buildingHighlight.getBuildingInformation();
+                                if (buildingInformation == null) {
+                                    Toast.makeText(QueryBuildingInformationActivity.this, String.format("No building information was received for building highlight"), Toast.LENGTH_LONG).show();
+                                    return;
+                                }
 
-                                                Toast.makeText(QueryBuildingInformationActivity.this, buildingInformation.buildingId, Toast.LENGTH_LONG).show();
+                                Toast.makeText(QueryBuildingInformationActivity.this, buildingInformation.buildingId, Toast.LENGTH_LONG).show();
 
-                                                BuildingDimensions buildingDimensions = buildingInformation.buildingDimensions;
-                                                double buildingHeight = buildingDimensions.topAltitude - buildingDimensions.baseAltitude;
-                                                String title = String.format("Height: %1$.2f m", buildingHeight);
-                                                m_eegeoMap.addMarker(new MarkerOptions()
-                                                        .labelText(title)
-                                                        .position(buildingDimensions.centroid)
-                                                        .elevation(buildingDimensions.topAltitude)
-                                                        .elevationMode(ElevationMode.HeightAboveSeaLevel)
-                                                );
-
-                                                for (BuildingContour contour : buildingInformation.contours)
-                                                {
-                                                    m_eegeoMap.addPolyline(new PolylineOptions()
-                                                            .add(contour.points)
-                                                            .add(contour.points[0])
-                                                            .elevationMode(ElevationMode.HeightAboveSeaLevel)
-                                                            .elevation(contour.topAltitude)
-                                                            .color(Color.BLUE)
-                                                    );
-
-                                                }
-                                            }
-                                        })
-
+                                BuildingDimensions buildingDimensions = buildingInformation.buildingDimensions;
+                                double buildingHeight = buildingDimensions.topAltitude - buildingDimensions.baseAltitude;
+                                String title = String.format("Height: %1$.2f m", buildingHeight);
+                                m_eegeoMap.addMarker(new MarkerOptions()
+                                        .labelText(title)
+                                        .position(buildingDimensions.centroid)
+                                        .elevation(buildingDimensions.topAltitude)
+                                        .elevationMode(ElevationMode.HeightAboveSeaLevel)
                                 );
+
+                                for (BuildingContour contour : buildingInformation.contours)
+                                {
+                                    m_eegeoMap.addPolyline(new PolylineOptions()
+                                            .add(contour.points)
+                                            .add(contour.points[0])
+                                            .elevationMode(ElevationMode.HeightAboveSeaLevel)
+                                            .elevation(contour.topAltitude)
+                                            .color(Color.BLUE)
+                                    );
+
+                                }
                             }
-                        },
-                        5000
+                        })
+
                 );
 
             }

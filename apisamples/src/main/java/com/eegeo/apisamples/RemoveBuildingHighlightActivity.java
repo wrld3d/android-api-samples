@@ -12,9 +12,10 @@ import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.buildings.BuildingHighlight;
 import com.eegeo.mapapi.buildings.BuildingHighlightOptions;
 import com.eegeo.mapapi.geometry.LatLng;
+import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class RemoveBuildingHighlightActivity extends AppCompatActivity {
+public class RemoveBuildingHighlightActivity extends AppCompatActivity implements OnInitialStreamingCompleteListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -34,29 +35,32 @@ public class RemoveBuildingHighlightActivity extends AppCompatActivity {
             @Override
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
-                m_timerHandler.postDelayed(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                if (m_highlight == null) {
-                                    m_highlight = m_eegeoMap.addBuildingHighlight(new BuildingHighlightOptions()
-                                            .highlightBuildingAtLocation(new LatLng(37.795189, -122.402777))
-                                            .color(ColorUtils.setAlphaComponent(Color.YELLOW, 128))
-                                    );
-                                }
-                                else {
-                                    m_eegeoMap.removeBuildingHighlight(m_highlight);
-                                    m_highlight = null;
-                                }
-
-                                m_timerHandler.postDelayed(this, 2000);
-                            }
-                        },
-                        4000
-                );
-
+                m_eegeoMap.addInitialStreamingCompleteListener(RemoveBuildingHighlightActivity.this);
             }
         });
+    }
+
+    Runnable m_looping = new Runnable() {
+        @Override
+        public void run() {
+            if (m_highlight == null) {
+                m_highlight = m_eegeoMap.addBuildingHighlight(new BuildingHighlightOptions()
+                        .highlightBuildingAtLocation(new LatLng(37.795189, -122.402777))
+                        .color(ColorUtils.setAlphaComponent(Color.YELLOW, 128))
+                );
+            }
+            else {
+                m_eegeoMap.removeBuildingHighlight(m_highlight);
+                m_highlight = null;
+            }
+
+            m_timerHandler.postDelayed(m_looping, 2000);
+        }
+    };
+
+    @Override
+    public void onInitialStreamingComplete() {
+        m_looping.run();
     }
 
     @Override
@@ -74,6 +78,8 @@ public class RemoveBuildingHighlightActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        m_timerHandler.removeCallbacks(m_looping);
 
         if (m_eegeoMap != null && m_highlight != null) {
             m_eegeoMap.removeBuildingHighlight(m_highlight);

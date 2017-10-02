@@ -1,5 +1,6 @@
 package com.eegeo.apisamples;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.UiThread;
@@ -10,12 +11,13 @@ import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.geometry.ElevationMode;
 import com.eegeo.mapapi.geometry.LatLng;
+import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.markers.MarkerOptions;
 import com.eegeo.mapapi.picking.PickResult;
 import com.eegeo.mapapi.util.Ready;
 
-public class PlaceObjectsOnBuildingsActivity extends AppCompatActivity {
+public class PlaceObjectsOnBuildingsActivity extends AppCompatActivity implements OnInitialStreamingCompleteListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -33,19 +35,15 @@ public class PlaceObjectsOnBuildingsActivity extends AppCompatActivity {
             @Override
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
-                new Handler().postDelayed(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                addMarkerAboveBuilding(new LatLng(37.795159, -122.404336), "Point A");
-                                addMarkerAboveBuilding(new LatLng(37.794817, -122.403543), "Point B");
-                            }
-                        },
-                        4000
-                );
-
+                m_eegeoMap.addInitialStreamingCompleteListener(PlaceObjectsOnBuildingsActivity.this);
             }
         });
+    }
+
+    @Override
+    public void onInitialStreamingComplete() {
+        addMarkerAboveBuilding(new LatLng(37.795159, -122.404336), "Point A");
+        addMarkerAboveBuilding(new LatLng(37.794817, -122.403543), "Point B");
     }
 
     private void addMarkerAboveBuilding(final LatLng latLng, final String title) {
@@ -62,6 +60,7 @@ public class PlaceObjectsOnBuildingsActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
     @Override
     protected void onResume() {
