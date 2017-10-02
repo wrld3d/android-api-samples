@@ -1,5 +1,6 @@
 package com.eegeo.apisamples;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,8 @@ public class BlueSphereIndoorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
+
+        setLockedOrientation();
 
         setContentView(R.layout.bluesphere_change_location_activity);
         m_mapView = (MapView) findViewById(R.id.bluesphere_change_location_mapview);
@@ -84,6 +87,15 @@ public class BlueSphereIndoorsActivity extends AppCompatActivity {
         }
 
         m_mapView.onDestroy();
+    }
+
+    private void setLockedOrientation() {
+        if (getResources().getBoolean(R.bool.is_large_device)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        } else {
+            // force portrait on phone
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 
 }

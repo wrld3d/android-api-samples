@@ -1,5 +1,6 @@
 package com.eegeo.apisamples;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.graphics.ColorUtils;
@@ -29,6 +30,8 @@ public class AddPolygonIndoorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
+
+        setLockedOrientation();
 
         setContentView(R.layout.add_polygon_indoors_activity);
         m_mapView = (MapView) findViewById(R.id.add_polygon_indoors_mapview);
@@ -84,6 +87,15 @@ public class AddPolygonIndoorsActivity extends AppCompatActivity {
         }
 
         m_mapView.onDestroy();
+    }
+
+    private void setLockedOrientation() {
+        if (getResources().getBoolean(R.bool.is_large_device)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        } else {
+            // force portrait on phone
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 
 }

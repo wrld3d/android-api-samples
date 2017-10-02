@@ -1,5 +1,6 @@
 package com.eegeo.apisamples;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
@@ -28,6 +29,8 @@ public class AddIndoorMarkerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
+
+        setLockedOrientation();
 
         setContentView(R.layout.add_indoor_marker_activity);
         m_mapView = (MapView) findViewById(R.id.add_indoor_marker_mapview);
@@ -79,6 +82,15 @@ public class AddIndoorMarkerActivity extends AppCompatActivity {
         }
 
         m_mapView.onDestroy();
+    }
+
+    private void setLockedOrientation() {
+        if (getResources().getBoolean(R.bool.is_large_device)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        } else {
+            // force portrait on phone
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 
 }
