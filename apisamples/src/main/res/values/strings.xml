@@ -74,6 +74,8 @@
     <string name="picking_buildings_example_description">Highlight buildings by tapping on them</string>
     <string name="query_building_information_example_label">Query building information</string>
     <string name="query_building_information_example_description">Obtain information about a building at a location and place a marker above its centroid</string>
+    <string name="label_fighting_example_label">Label fighting test-case</string>
+    <string name="label_fighting_example_description">Shows a grid of points in the Overgate Shopping Center, to test label occlusion.</string>
 
 
     <string name="exit_button_label">Exit</string>

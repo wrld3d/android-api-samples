@@ -115,7 +115,11 @@ public final class ExamplesList {
 
             new ExampleContainer(R.string.map_options_example_label,
                     R.string.map_options_example_description,
-                    EegeoMapOptionsActivity.class)
+                    EegeoMapOptionsActivity.class),
+
+            new ExampleContainer(R.string.label_fighting_example_label,
+                    R.string.label_fighting_example_description,
+                    LabelFightingActivity.class)
 
     };
 
