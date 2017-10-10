@@ -4,6 +4,8 @@
     <string name="eegeo_api_key">obtain an api key by signing up at wrld3d.com and insert here</string>
     <string name="basic_example_label">Embed a 3D map</string>
     <string name="basic_example_description">How to embed a 3D map view in an Android App</string>
+    <string name="tdp_example_label">TDP test area</string>
+    <string name="tdp_example_description">TDP test area description</string>
     <string name="move_camera_example_label">Move the camera</string>
     <string name="move_camera_example_description">Simple camera movement</string>
     <string name="animate_camera_example_label">Animate the camera</string>

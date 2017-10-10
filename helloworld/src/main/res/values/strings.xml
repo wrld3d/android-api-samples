@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">WRLD Android API HelloWorld</string>
     <string name="app_short_name">WRLD HelloWorld</string>
-    <string name="eegeo_api_key">obtain an api key by signing up at wrld3d.com and insert here</string>
+    <string name="eegeo_api_key">35d405f70ea9064e878a51d05728f331</string>
 </resources>
