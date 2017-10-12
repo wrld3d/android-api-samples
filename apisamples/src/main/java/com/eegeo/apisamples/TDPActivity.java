@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.annotation.UiThread;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import com.eegeo.mapapi.EegeoApi;
@@ -71,6 +72,12 @@ public class TDPActivity extends AppCompatActivity {
                 }, 2000);
             }
         });
+    }
+
+    public void onClickMapCollapse(View view) {
+        if (m_eegeoMap != null) {
+            m_eegeoMap.setMapCollapsed(!m_eegeoMap.isMapCollapsed());
+        }
     }
 
     @Override
