@@ -58,15 +58,9 @@ public class TDPActivity extends AppCompatActivity {
                 m_timerHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        m_positioner.getScreenPoint().then(new Ready<Point>() {
-                            @UiThread
-                            @Override
-                            public void ready(Point screenPoint) {
-                                Log.d("TDP", "Screen point: " + screenPoint.toString());
-                                m_myButton.setX(screenPoint.x);
-                                m_myButton.setY(screenPoint.y);
-                            }
-                        });
+                        Point screenPoint = m_positioner.getScreenPoint();
+                        m_myButton.setX(screenPoint.x);
+                        m_myButton.setY(screenPoint.y);
                         m_timerHandler.postDelayed(this, 20);
                     }
                 }, 2000);
