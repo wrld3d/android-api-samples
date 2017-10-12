@@ -2,16 +2,21 @@ package com.eegeo.apisamples;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
+
+import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
+import com.eegeo.mapapi.positioner.Positioner;
+import com.eegeo.mapapi.positioner.PositionerOptions;
 
 public class TDPActivity extends AppCompatActivity {
 
     private MapView m_mapView;
+    private EegeoMap m_eegeoMap = null;
+    private Positioner m_positioner = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,10 @@ public class TDPActivity extends AppCompatActivity {
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
-                Toast.makeText(TDPActivity.this, "Welcome to WRLD Maps", Toast.LENGTH_LONG).show();
+                m_eegeoMap = map;
+                m_positioner = m_eegeoMap.addPositioner(new PositionerOptions()
+                        .position(new LatLng(37.784560, -122.402092))
+                );
             }
         });
     }
@@ -50,6 +58,11 @@ public class TDPActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        if (m_eegeoMap != null) {
+            m_eegeoMap.removePositioner(m_positioner);
+        }
+
         m_mapView.onDestroy();
     }
 
