@@ -15,9 +15,12 @@ import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 
+import com.eegeo.mapapi.buildings.BuildingHighlight;
+import com.eegeo.mapapi.buildings.OnBuildingInformationReceivedListener;
 import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.picking.PickResult;
+import com.eegeo.mapapi.positioner.OnPositionerChangedListener;
 import com.eegeo.mapapi.positioner.Positioner;
 import com.eegeo.mapapi.positioner.PositionerOptions;
 import com.eegeo.mapapi.util.Promise;
@@ -53,17 +56,18 @@ public class TDPActivity extends AppCompatActivity {
                 m_eegeoMap = map;
                 m_positioner = m_eegeoMap.addPositioner(new PositionerOptions()
                         .position(new LatLng(37.802115, -122.405592))
-                );
+                        .positionerChangedListener(new OnPositionerChangedListener() {
+                            @Override
+                            public void onPositionerChanged(Positioner positioner) {
+                                if (positioner == m_positioner) {
+                                    Point screenPoint = m_positioner.getScreenPoint();
+                                    m_myButton.setX(screenPoint.x);
+                                    m_myButton.setY(screenPoint.y);
+                                }
 
-                m_timerHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Point screenPoint = m_positioner.getScreenPoint();
-                        m_myButton.setX(screenPoint.x);
-                        m_myButton.setY(screenPoint.y);
-                        m_timerHandler.postDelayed(this, 20);
-                    }
-                }, 2000);
+                            }
+                        })
+                );
             }
         });
     }
