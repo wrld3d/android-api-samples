@@ -29,7 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:text="Hello" />
+            android:textAllCaps="false"
+            android:text="@string/positioner_layout_created_view_label"/>
     </com.eegeo.mapapi.MapView>
 
     <RelativeLayout
@@ -40,6 +41,7 @@
             android:id="@+id/map_collapse_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAllCaps="false"
             android:enabled="true"
             android:onClick="onClickMapCollapse"
             android:text="@string/map_colllapse_button_label"/>

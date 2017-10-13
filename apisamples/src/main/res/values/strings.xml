@@ -85,6 +85,8 @@
     <string name="topfloor_button_label">Top Floor</string>
     <string name="bottomfloor_button_label">Bottom Floor</string>
     <string name="map_colllapse_button_label">Collapse</string>
+    <string name="positioner_layout_created_view_label">Layout-created</string>
+    <string name="positioner_code_created_view_label">View </string>
 
     <string name="default_start_lat">37.7858</string>
     <string name="default_start_lon">-122.401</string>
