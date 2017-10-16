@@ -9,10 +9,10 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="com.eegeo.apisamples.TDPActivity">
+                tools:context="com.eegeo.apisamples.AttachViewToPositionerActivity">
 
     <com.eegeo.mapapi.MapView
-        android:id="@+id/tdp_mapview"
+        android:id="@+id/add_multiple_positioners_mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         eegeo:camera_target_latitude="37.7858"
@@ -20,31 +20,6 @@
         eegeo:camera_zoom="16"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="154dp"
-        android:layout_marginStart="154dp" >
-
-        <Button
-            android:id="@+id/tdp_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:textAllCaps="false"
-            android:text="@string/positioner_layout_created_view_label"/>
+        android:layout_alignParentStart="true" >
     </com.eegeo.mapapi.MapView>
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <Button
-            android:id="@+id/map_collapse_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:enabled="true"
-            android:onClick="onClickMapCollapse"
-            android:text="@string/map_colllapse_button_label"/>
-
-    </RelativeLayout>
 </RelativeLayout>

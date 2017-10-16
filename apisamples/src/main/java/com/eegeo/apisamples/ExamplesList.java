@@ -9,9 +9,6 @@ public final class ExamplesList {
             new ExampleContainer(R.string.basic_example_label,
                     R.string.basic_example_description,
                     BasicMapActivity.class),
-            new ExampleContainer(R.string.tdp_example_label,
-                    R.string.tdp_example_description,
-                    TDPActivity.class),
             new ExampleContainer(R.string.move_camera_example_label,
                     R.string.move_camera_example_description,
                     MoveCameraActivity.class),
@@ -111,14 +108,21 @@ public final class ExamplesList {
             new ExampleContainer(R.string.query_building_information_example_label,
                     R.string.query_building_information_example_description,
                     QueryBuildingInformationActivity.class),
-
             new ExampleContainer(R.string.streaming_complete_notification_example_label,
                     R.string.streaming_complete_notification_example_description,
                     StreamingCompleteNotificationActivity.class),
-
             new ExampleContainer(R.string.map_options_example_label,
                     R.string.map_options_example_description,
-                    EegeoMapOptionsActivity.class)
+                    EegeoMapOptionsActivity.class),
+            new ExampleContainer(R.string.add_positioner_example_label,
+                    R.string.add_positioner_example_description,
+                    AddPositionerActivity.class),
+            new ExampleContainer(R.string.attach_view_to_positioner_example_label,
+                    R.string.attach_view_to_positioner_example_description,
+                    AttachViewToPositionerActivity.class),
+            new ExampleContainer(R.string.add_multiple_positioners_example_label,
+                    R.string.add_multiple_positioners_example_description,
+                    AddMultiplePositionersActivity.class)
 
     };
 
