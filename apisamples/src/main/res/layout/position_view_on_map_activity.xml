@@ -9,10 +9,10 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="com.eegeo.apisamples.AttachViewToPositionerActivity">
+                tools:context="com.eegeo.apisamples.PositionViewOnMapActivity">
 
     <com.eegeo.mapapi.MapView
-        android:id="@+id/attach_view_to_positioner_mapview"
+        android:id="@+id/position_view_on_map_mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         eegeo:camera_target_latitude="37.7858"
@@ -23,7 +23,7 @@
         android:layout_alignParentStart="true" >
 
         <Button
-            android:id="@+id/attach_view_to_positioner_button"
+            android:id="@+id/position_view_on_map_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="false"

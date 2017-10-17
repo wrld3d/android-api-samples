@@ -9,10 +9,10 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="com.eegeo.apisamples.AttachViewToPositionerActivity">
+                tools:context="com.eegeo.apisamples.PositionMultipleViewsOnMapActivity">
 
     <com.eegeo.mapapi.MapView
-        android:id="@+id/add_multiple_positioners_mapview"
+        android:id="@+id/position_multiple_views_on_map_mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         eegeo:camera_target_latitude="37.7858"

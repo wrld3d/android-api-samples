@@ -19,7 +19,7 @@ import com.eegeo.mapapi.positioner.OnPositionerChangedListener;
 import com.eegeo.mapapi.positioner.Positioner;
 import com.eegeo.mapapi.positioner.PositionerOptions;
 
-public class AddMultiplePositionersActivity extends AppCompatActivity {
+public class PositionMultipleViewsOnMapActivity extends AppCompatActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -40,9 +40,9 @@ public class AddMultiplePositionersActivity extends AppCompatActivity {
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
 
         // The MapView is contained in a layout xml
-        setContentView(R.layout.add_multiple_positioners_activity);
+        setContentView(R.layout.position_multiple_views_on_map_activity);
 
-        m_mapView = (MapView) findViewById(R.id.add_multiple_positioners_mapview);
+        m_mapView = (MapView) findViewById(R.id.position_multiple_views_on_map_mapview);
         m_mapView.onCreate(savedInstanceState);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {

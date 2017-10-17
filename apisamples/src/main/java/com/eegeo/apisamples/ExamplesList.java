@@ -114,15 +114,15 @@ public final class ExamplesList {
             new ExampleContainer(R.string.map_options_example_label,
                     R.string.map_options_example_description,
                     EegeoMapOptionsActivity.class),
+            new ExampleContainer(R.string.position_view_on_map_example_label,
+                    R.string.position_view_on_map_example_description,
+                    PositionViewOnMapActivity.class),
             new ExampleContainer(R.string.add_positioner_example_label,
                     R.string.add_positioner_example_description,
                     AddPositionerActivity.class),
-            new ExampleContainer(R.string.attach_view_to_positioner_example_label,
-                    R.string.attach_view_to_positioner_example_description,
-                    AttachViewToPositionerActivity.class),
-            new ExampleContainer(R.string.add_multiple_positioners_example_label,
-                    R.string.add_multiple_positioners_example_description,
-                    AddMultiplePositionersActivity.class)
+            new ExampleContainer(R.string.position_multiple_views_on_map_example_label,
+                    R.string.position_multiple_views_on_map_example_description,
+                    PositionMultipleViewsOnMapActivity.class)
 
     };
 

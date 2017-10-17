@@ -41,17 +41,17 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
-            android:name="com.eegeo.apisamples.AttachViewToPositionerActivity"
+            android:name="com.eegeo.apisamples.PositionViewOnMapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/attach_view_to_positioner_example_label" >
+            android:label="@string/position_view_on_map_example_label" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity" />
         </activity>
         <activity
-            android:name="com.eegeo.apisamples.AddMultiplePositionersActivity"
+            android:name="com.eegeo.apisamples.PositionMultipleViewsOnMapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/add_multiple_positioners_example_label" >
+            android:label="@string/position_multiple_views_on_map_example_label" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity" />

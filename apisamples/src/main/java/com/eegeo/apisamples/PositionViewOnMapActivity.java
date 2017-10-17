@@ -22,7 +22,7 @@ import com.eegeo.mapapi.positioner.OnPositionerChangedListener;
 
 import static com.eegeo.mapapi.geometry.ElevationMode.HeightAboveGround;
 
-public class AttachViewToPositionerActivity extends AppCompatActivity {
+public class PositionViewOnMapActivity extends AppCompatActivity {
 
     private MapView m_mapView;
     private Button m_layoutCreatedButton;
@@ -37,12 +37,12 @@ public class AttachViewToPositionerActivity extends AppCompatActivity {
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
 
         // The MapView is contained in a layout xml
-        setContentView(R.layout.attach_view_to_positioner_activity);
+        setContentView(R.layout.position_view_on_map_activity);
 
-        m_mapView = (MapView) findViewById(R.id.attach_view_to_positioner_mapview);
+        m_mapView = (MapView) findViewById(R.id.position_view_on_map_mapview);
         m_mapView.onCreate(savedInstanceState);
 
-        m_layoutCreatedButton = (Button) findViewById(R.id.attach_view_to_positioner_button);
+        m_layoutCreatedButton = (Button) findViewById(R.id.position_view_on_map_button);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
