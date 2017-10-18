@@ -108,14 +108,21 @@ public final class ExamplesList {
             new ExampleContainer(R.string.query_building_information_example_label,
                     R.string.query_building_information_example_description,
                     QueryBuildingInformationActivity.class),
-
             new ExampleContainer(R.string.streaming_complete_notification_example_label,
                     R.string.streaming_complete_notification_example_description,
                     StreamingCompleteNotificationActivity.class),
-
             new ExampleContainer(R.string.map_options_example_label,
                     R.string.map_options_example_description,
-                    EegeoMapOptionsActivity.class)
+                    EegeoMapOptionsActivity.class),
+            new ExampleContainer(R.string.position_view_on_map_example_label,
+                    R.string.position_view_on_map_example_description,
+                    PositionViewOnMapActivity.class),
+            new ExampleContainer(R.string.add_positioner_example_label,
+                    R.string.add_positioner_example_description,
+                    AddPositionerActivity.class),
+            new ExampleContainer(R.string.position_multiple_views_on_map_example_label,
+                    R.string.position_multiple_views_on_map_example_description,
+                    PositionMultipleViewsOnMapActivity.class)
 
     };
 
