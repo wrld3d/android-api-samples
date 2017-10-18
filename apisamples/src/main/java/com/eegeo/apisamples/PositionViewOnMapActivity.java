@@ -43,6 +43,7 @@ public class PositionViewOnMapActivity extends AppCompatActivity {
         m_mapView.onCreate(savedInstanceState);
 
         m_layoutCreatedButton = (Button) findViewById(R.id.position_view_on_map_button);
+        m_layoutCreatedButton.setVisibility(View.INVISIBLE);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -103,9 +104,15 @@ public class PositionViewOnMapActivity extends AppCompatActivity {
         @UiThread
         public void onPositionerChanged(Positioner positioner)
         {
-            Point screenPoint = positioner.getScreenPoint();
-            m_view.setX(screenPoint.x - (m_view.getWidth ()*m_uv.x));
-            m_view.setY(screenPoint.y - (m_view.getHeight()*m_uv.y));
+            Point screenPoint = positioner.tryGetScreenPoint();
+            if(screenPoint == null || positioner.isBehindGlobeHorizon()) {
+                m_view.setVisibility(View.INVISIBLE);
+            }
+            else {
+                m_view.setVisibility(View.VISIBLE);
+                m_view.setX(screenPoint.x - (m_view.getWidth() * m_uv.x));
+                m_view.setY(screenPoint.y - (m_view.getHeight() * m_uv.y));
+            }
         }
     }
 }

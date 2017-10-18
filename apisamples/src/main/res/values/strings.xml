@@ -106,5 +106,6 @@
     <string name="polyline_start_lat">37.7900</string>
     <string name="polyline_start_lon">-122.401</string>
     <string name="message_add_positioner_activity">Screen X:%1$d Y:%2$d</string>
+    <string name="message_not_visible_add_positioner_activity">Not visible.</string>
 
 </resources>

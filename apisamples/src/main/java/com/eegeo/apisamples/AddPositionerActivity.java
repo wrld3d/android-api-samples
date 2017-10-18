@@ -53,6 +53,7 @@ public class AddPositionerActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         m_mapView.addView(m_crossView);
+        m_crossView.setVisibility(View.INVISIBLE);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -102,21 +103,30 @@ public class AddPositionerActivity extends AppCompatActivity {
         {
             m_textView = textView;
             m_crossView = crossView;
+            m_crossView.setVisibility(View.INVISIBLE);
         }
 
         //This will be called each time the screen coordinate of the positioner changes.
         @UiThread
-        public void onPositionerChanged(Positioner positioner)
-        {
-            Point screenPoint = positioner.getScreenPoint();
+        public void onPositionerChanged(Positioner positioner) {
+            Point screenPoint = positioner.tryGetScreenPoint();
 
-            //Print out the screen coordinate.
-            String string = String.format(getString(R.string.message_add_positioner_activity), screenPoint.x, screenPoint.y);
-            m_textView.setText(string);
+            if(screenPoint == null || positioner.isBehindGlobeHorizon()) {
+                String string = getString(R.string.message_not_visible_add_positioner_activity);
+                m_textView.setText(string);
 
-            //Draw a cross
-            m_crossView.setX(screenPoint.x - (m_crossView.getWidth ()/2));
-            m_crossView.setY(screenPoint.y - (m_crossView.getHeight()/2));
+                m_crossView.setVisibility(View.INVISIBLE);
+            }
+            else{
+                //Print out the screen coordinate.
+                String string = String.format(getString(R.string.message_add_positioner_activity), screenPoint.x, screenPoint.y);
+                m_textView.setText(string);
+
+                //Draw a cross
+                m_crossView.setVisibility(View.VISIBLE);
+                m_crossView.setX(screenPoint.x - (m_crossView.getWidth() / 2));
+                m_crossView.setY(screenPoint.y - (m_crossView.getHeight() / 2));
+            }
         }
     };
 
