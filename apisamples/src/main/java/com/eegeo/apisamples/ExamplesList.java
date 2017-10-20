@@ -117,12 +117,9 @@ public final class ExamplesList {
             new ExampleContainer(R.string.position_view_on_map_example_label,
                     R.string.position_view_on_map_example_description,
                     PositionViewOnMapActivity.class),
-            new ExampleContainer(R.string.add_positioner_example_label,
-                    R.string.add_positioner_example_description,
-                    AddPositionerActivity.class),
-            new ExampleContainer(R.string.position_multiple_views_on_map_example_label,
-                    R.string.position_multiple_views_on_map_example_description,
-                    PositionMultipleViewsOnMapActivity.class)
+            new ExampleContainer(R.string.position_code_created_view_on_map_example_label,
+                    R.string.position_code_created_view_on_map_example_description,
+                    PositionCodeCreatedViewOnMapActivity.class)
 
     };
 

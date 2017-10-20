@@ -33,14 +33,6 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
-            android:name="com.eegeo.apisamples.AddPositionerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/add_positioner_example_label">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eegeo.apisamples.MainActivity"/>
-        </activity>
-        <activity
             android:name="com.eegeo.apisamples.PositionViewOnMapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/position_view_on_map_example_label" >
@@ -49,9 +41,9 @@
                 android:value="com.eegeo.apisamples.MainActivity" />
         </activity>
         <activity
-            android:name="com.eegeo.apisamples.PositionMultipleViewsOnMapActivity"
+            android:name="com.eegeo.apisamples.PositionCodeCreatedViewOnMapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/position_multiple_views_on_map_example_label" >
+            android:label="@string/position_code_created_view_on_map_example_label" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity" />

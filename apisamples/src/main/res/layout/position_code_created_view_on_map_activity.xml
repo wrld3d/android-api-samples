@@ -9,14 +9,14 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="com.eegeo.apisamples.PositionMultipleViewsOnMapActivity">
+                tools:context="com.eegeo.apisamples.PositionCodeCreatedViewOnMapActivity">
 
     <com.eegeo.mapapi.MapView
-        android:id="@+id/position_multiple_views_on_map_mapview"
+        android:id="@+id/position_code_created_view_on_map_mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        eegeo:camera_target_latitude="37.7858"
-        eegeo:camera_target_longitude="-122.401"
+        eegeo:camera_target_latitude="37.788126"
+        eegeo:camera_target_longitude="-122.398103"
         eegeo:camera_zoom="16"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
