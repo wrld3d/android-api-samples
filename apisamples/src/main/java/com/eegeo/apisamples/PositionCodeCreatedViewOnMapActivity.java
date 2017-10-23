@@ -69,6 +69,12 @@ public class PositionCodeCreatedViewOnMapActivity extends AppCompatActivity {
         );
     }
 
+    public void onClickMapCollapse(View view) {
+        if (m_eegeoMap != null) {
+            m_eegeoMap.setMapCollapsed(!m_eegeoMap.isMapCollapsed());
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
