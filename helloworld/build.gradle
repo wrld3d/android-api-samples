@@ -48,3 +48,20 @@ dependencies {
     compile 'com.android.support:support-core-utils:25.3.0'
     testCompile 'junit:junit:4.12'
 }
+
+// Set the API key from the WRLD_API_KEY environment variable, as an alternative to modifying strings.xml
+android.applicationVariants.all{ variant ->
+    variant.mergeResources.doLast{
+        def apiKey = System.getenv("WRLD_API_KEY")
+        print "Reading API key from env, WRLD_API_KEY="
+        println apiKey
+
+        if (apiKey != null) {
+            File valuesFile = file("${buildDir}/intermediates/res/merged/${variant.dirName}/values/values.xml")
+            println("Replacing WRLD API key in: " + valuesFile)
+            String content = valuesFile.getText('UTF-8')
+            content = content.replaceAll(/obtain an api key by signing up at wrld3d.com and insert here/, apiKey)
+            valuesFile.write(content, 'UTF-8')
+        }
+    }
+}
