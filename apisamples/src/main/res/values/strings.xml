@@ -4,6 +4,8 @@
     <string name="eegeo_api_key">obtain an api key by signing up at wrld3d.com and insert here</string>
     <string name="basic_example_label">Embed a 3D map</string>
     <string name="basic_example_description">How to embed a 3D map view in an Android App</string>
+    <string name="searchbox_example_label">Add a search box</string>
+    <string name="searchbox_example_description">Add a search tool widget</string>
     <string name="position_view_on_map_example_label">Position a View on the map</string>
     <string name="position_view_on_map_example_description">Use a positioner to locate a View at a point on the map</string>
     <string name="position_code_created_view_on_map_example_label">Position a code-created View on the map</string>

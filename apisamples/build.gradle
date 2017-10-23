@@ -46,14 +46,20 @@ android {
 
 // latest release is https://bintray.com/wrld/maven/wrld-android-sdk/_latestVersion
 def sdkArtifactName = 'com.wrld:wrld-android-sdk:' + sdkVersion + '@aar'
+def sdkWidgetArtifactName = 'com.wrld:wrld-android-sdk-widgets:' + sdkVersion + '@aar'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     if (rootProject.getProperty('useLocalSdkBuild').toBoolean()) {
         debugCompile project(path: ':sdk', configuration: 'debug')
         releaseCompile project(path: ':sdk', configuration: 'release')
+        debugCompile project(path: ':widgets', configuration: 'debug')
+        releaseCompile project(path: ':widgets', configuration: 'release')
     } else {
         compile(sdkArtifactName) {
+            transitive = true
+        }
+        compile(sdkWidgetArtifactName) {
             transitive = true
         }
     }

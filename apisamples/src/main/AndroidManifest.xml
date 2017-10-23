@@ -33,6 +33,14 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
+            android:name="com.eegeo.apisamples.SearchboxActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/searchbox_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
             android:name="com.eegeo.apisamples.PositionViewOnMapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/position_view_on_map_example_label" >
