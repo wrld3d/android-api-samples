@@ -18,18 +18,12 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.positioner.OnPositionerChangedListener;
 import com.eegeo.mapapi.positioner.Positioner;
 import com.eegeo.mapapi.positioner.PositionerOptions;
+import com.eegeo.ui.util.ViewAnchor;
 
-public class PositionMultipleViewsOnMapActivity extends AppCompatActivity {
+public class PositionCodeCreatedViewOnMapActivity extends AppCompatActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
-
-    private LatLng[] m_positions = {
-            new LatLng(37.788126, -122.398103),
-            new LatLng(37.784754, -122.402831),
-            new LatLng(37.795205, -122.402788),
-            new LatLng(37.795658, -122.393962)
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,21 +34,17 @@ public class PositionMultipleViewsOnMapActivity extends AppCompatActivity {
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
 
         // The MapView is contained in a layout xml
-        setContentView(R.layout.position_multiple_views_on_map_activity);
+        setContentView(R.layout.position_code_created_view_on_map_activity);
 
-        m_mapView = (MapView) findViewById(R.id.position_multiple_views_on_map_mapview);
+        m_mapView = (MapView) findViewById(R.id.position_code_created_view_on_map_mapview);
         m_mapView.onCreate(savedInstanceState);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
-
-                //Create an ImageView for each position and attach it to a positioner.
-                for (LatLng position : m_positions) {
-                    View view = createAndAddImageView();
-                    addViewAtPosition(view, position);
-                }
+                View view = createAndAddImageView();
+                addViewAtPosition(view, new LatLng(37.802355, -122.405848));
             }
         });
     }
@@ -100,26 +90,25 @@ public class PositionMultipleViewsOnMapActivity extends AppCompatActivity {
     private class ViewAnchorAdapter implements OnPositionerChangedListener {
 
         private View m_view;
-        private PointF m_uv;
+        private PointF m_anchorUV;
 
         ViewAnchorAdapter(@NonNull View view, float u, float v)
         {
             m_view = view;
-            m_uv = new PointF(u, v);
+            m_anchorUV = new PointF(u, v);
         }
 
         @UiThread
-        public void onPositionerChanged(Positioner positioner)
-        {
-            Point screenPoint = positioner.tryGetScreenPoint();
-            if(screenPoint == null || positioner.isBehindGlobeHorizon()) {
-                m_view.setVisibility(View.INVISIBLE);
+        public void onPositionerChanged(Positioner positioner) {
+            if(positioner.isScreenPointProjectionDefined()) {
+                m_view.setVisibility(View.VISIBLE);
+                Point screenPoint = positioner.getScreenPointOrNull();
+                if(screenPoint != null)
+                    ViewAnchor.positionView(m_view, screenPoint, m_anchorUV);
             }
             else {
-                m_view.setVisibility(View.VISIBLE);
-                m_view.setX(screenPoint.x - (m_view.getWidth ()*m_uv.x));
-                m_view.setY(screenPoint.y - (m_view.getHeight()*m_uv.y));
-            }
+            m_view.setVisibility(View.INVISIBLE);
+        }
         }
     }
 }

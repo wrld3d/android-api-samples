@@ -15,20 +15,50 @@
         android:id="@+id/position_view_on_map_mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        eegeo:camera_target_latitude="37.7858"
-        eegeo:camera_target_longitude="-122.401"
+        eegeo:camera_target_latitude="37.802355"
+        eegeo:camera_target_longitude="-122.405848"
         eegeo:camera_zoom="16"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" >
 
-        <Button
-            android:id="@+id/position_view_on_map_button"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/position_view_on_map_callout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:textAllCaps="false"
-            android:text="@string/positioner_layout_created_view_label"/>
+            android:background="@drawable/callout"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:src="@drawable/wrld3d_blue"/>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView android:id="@+id/position_view_on_map_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Layout created View"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:id="@+id/screen_text_view_on_map_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/world_text_view_on_map_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+        </LinearLayout>
     </com.eegeo.mapapi.MapView>
 
     <RelativeLayout

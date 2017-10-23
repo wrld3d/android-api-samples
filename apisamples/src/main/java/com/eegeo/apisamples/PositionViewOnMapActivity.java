@@ -8,25 +8,29 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
-import com.eegeo.mapapi.camera.CameraPosition;
-import com.eegeo.mapapi.camera.CameraUpdateFactory;
 import com.eegeo.mapapi.geometry.LatLng;
+import com.eegeo.mapapi.geometry.LatLngAlt;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.positioner.Positioner;
 import com.eegeo.mapapi.positioner.PositionerOptions;
 import com.eegeo.mapapi.positioner.OnPositionerChangedListener;
+import com.eegeo.ui.util.ViewAnchor;
 
 import static com.eegeo.mapapi.geometry.ElevationMode.HeightAboveGround;
 
 public class PositionViewOnMapActivity extends AppCompatActivity {
 
     private MapView m_mapView;
-    private Button m_layoutCreatedButton;
     private EegeoMap m_eegeoMap = null;
+
+    View m_calloutView;
+    TextView m_screenView;
+    TextView m_worldView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,10 @@ public class PositionViewOnMapActivity extends AppCompatActivity {
         m_mapView = (MapView) findViewById(R.id.position_view_on_map_mapview);
         m_mapView.onCreate(savedInstanceState);
 
-        m_layoutCreatedButton = (Button) findViewById(R.id.position_view_on_map_button);
-        m_layoutCreatedButton.setVisibility(View.INVISIBLE);
+        m_calloutView = findViewById(R.id.position_view_on_map_callout);
+        m_calloutView.setVisibility(View.INVISIBLE);
+        m_screenView = (TextView) findViewById(R.id.screen_text_view_on_map_text);
+        m_worldView = (TextView) findViewById(R.id.world_text_view_on_map_text);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -54,14 +60,8 @@ public class PositionViewOnMapActivity extends AppCompatActivity {
                         .position(new LatLng(37.802355, -122.405848))
                         .elevation(10.0)
                         .elevationMode(HeightAboveGround)
-                        .positionerChangedListener(new ViewAnchorAdapter(m_layoutCreatedButton, 0.5f, 0.5f))
+                        .positionerChangedListener(new OnScreenPointChangedListener(m_calloutView, m_screenView, m_worldView))
                 );
-
-                CameraPosition position = new CameraPosition.Builder()
-                        .target(37.802355, -122.405848)
-                        .zoom(19)
-                        .build();
-                map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
             }
         });
     }
@@ -90,28 +90,61 @@ public class PositionViewOnMapActivity extends AppCompatActivity {
         m_mapView.onDestroy();
     }
 
-    private class ViewAnchorAdapter implements OnPositionerChangedListener {
+    private class OnScreenPointChangedListener implements OnPositionerChangedListener {
 
-        private View m_view;
-        private PointF m_uv;
+        private View m_callout;
+        private TextView m_screenTextView;
+        private TextView m_worldTextView;
 
-        ViewAnchorAdapter(@NonNull View view, float u, float v)
+        OnScreenPointChangedListener(@NonNull View callout,
+                                     @NonNull TextView screenTextView,
+                                     @NonNull TextView worldTextView)
         {
-            m_view = view;
-            m_uv = new PointF(u, v);
+            m_callout = callout;
+            m_screenTextView = screenTextView;
+            m_worldTextView = worldTextView;
         }
 
         @UiThread
-        public void onPositionerChanged(Positioner positioner)
-        {
-            Point screenPoint = positioner.tryGetScreenPoint();
-            if(screenPoint == null || positioner.isBehindGlobeHorizon()) {
-                m_view.setVisibility(View.INVISIBLE);
+        public void onPositionerChanged(Positioner positioner) {
+            String notVisibleString = getString(R.string.not_visible_add_positioner_activity);
+
+            if(positioner.isScreenPointProjectionDefined())
+            {
+                Point screenPoint = positioner.getScreenPointOrNull();
+                if(screenPoint != null)
+                {
+                    m_screenTextView.setText(String.format(
+                            getString(R.string.screen_point_add_positioner_activity),
+                            screenPoint.x,
+                            screenPoint.y));
+
+                    PointF anchorUV = new PointF(0.5f, 1.0f);
+                    ViewAnchor.positionView(m_callout, screenPoint, anchorUV);
+                }
+                else {
+                    m_screenTextView.setText(notVisibleString);
+                }
+
+                LatLngAlt transformedPoint = positioner.getTransformedPointOrNull();
+                if(transformedPoint != null)
+                {
+                    m_worldTextView.setText(String.format(
+                            getString(R.string.world_point_add_positioner_activity),
+                            transformedPoint.latitude,
+                            transformedPoint.longitude,
+                            transformedPoint.altitude));
+                }
+                else {
+                    m_worldTextView.setText(notVisibleString);
+                }
+
+                m_callout.setVisibility(View.VISIBLE);
             }
             else {
-                m_view.setVisibility(View.VISIBLE);
-                m_view.setX(screenPoint.x - (m_view.getWidth() * m_uv.x));
-                m_view.setY(screenPoint.y - (m_view.getHeight() * m_uv.y));
+                m_screenTextView.setText(notVisibleString);
+                m_worldTextView.setText(notVisibleString);
+                m_callout.setVisibility(View.INVISIBLE);
             }
         }
     }
