@@ -63,6 +63,12 @@ public final class ExamplesList {
             new ExampleContainer(R.string.marker_change_draw_order_example_label,
                     R.string.marker_change_draw_order_example_description,
                     MarkerChangeDrawOrderActivity.class),
+            new ExampleContainer(R.string.position_view_on_map_example_label,
+                    R.string.position_view_on_map_example_description,
+                    PositionViewOnMapActivity.class),
+            new ExampleContainer(R.string.position_code_created_view_on_map_example_label,
+                    R.string.position_code_created_view_on_map_example_description,
+                    PositionCodeCreatedViewOnMapActivity.class),
             new ExampleContainer(R.string.add_polygon_example_label,
                     R.string.add_polygon_example_description,
                     AddPolygonActivity.class),
@@ -113,14 +119,7 @@ public final class ExamplesList {
                     StreamingCompleteNotificationActivity.class),
             new ExampleContainer(R.string.map_options_example_label,
                     R.string.map_options_example_description,
-                    EegeoMapOptionsActivity.class),
-            new ExampleContainer(R.string.position_view_on_map_example_label,
-                    R.string.position_view_on_map_example_description,
-                    PositionViewOnMapActivity.class),
-            new ExampleContainer(R.string.position_code_created_view_on_map_example_label,
-                    R.string.position_code_created_view_on_map_example_description,
-                    PositionCodeCreatedViewOnMapActivity.class)
-
+                    EegeoMapOptionsActivity.class)
     };
 
     // Pure static class

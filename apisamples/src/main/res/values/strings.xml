@@ -6,8 +6,8 @@
     <string name="basic_example_description">How to embed a 3D map view in an Android App</string>
     <string name="position_view_on_map_example_label">Position a View on the map</string>
     <string name="position_view_on_map_example_description">Use a positioner to locate a View at a point on the map</string>
-    <string name="position_code_created_view_on_map_example_label">Position a code created View on the map</string>
-    <string name="position_code_created_view_on_map_example_description">Position a code created View on the map and use a positioner to locate it</string>
+    <string name="position_code_created_view_on_map_example_label">Position a code-created View on the map</string>
+    <string name="position_code_created_view_on_map_example_description">Position a code-created View on the map and use a positioner to locate it</string>
     <string name="move_camera_example_label">Move the camera</string>
     <string name="move_camera_example_description">Simple camera movement</string>
     <string name="animate_camera_example_label">Animate the camera</string>
@@ -79,7 +79,6 @@
     <string name="query_building_information_example_label">Query building information</string>
     <string name="query_building_information_example_description">Obtain information about a building at a location and place a marker above its centroid</string>
 
-
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>
     <string name="moveup_button_label">Move Up</string>
@@ -87,8 +86,6 @@
     <string name="topfloor_button_label">Top Floor</string>
     <string name="bottomfloor_button_label">Bottom Floor</string>
     <string name="map_colllapse_button_label">Collapse</string>
-    <string name="positioner_layout_created_view_label">Layout created view</string>
-    <string name="positioner_code_created_view_label">View </string>
 
     <string name="default_start_lat">37.7858</string>
     <string name="default_start_lon">-122.401</string>

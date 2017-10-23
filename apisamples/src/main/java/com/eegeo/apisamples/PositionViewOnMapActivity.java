@@ -46,7 +46,6 @@ public class PositionViewOnMapActivity extends AppCompatActivity {
         m_mapView = (MapView) findViewById(R.id.position_view_on_map_mapview);
         m_mapView.onCreate(savedInstanceState);
 
-        //The coordinate will be printed in the top left corner of the screen
         m_calloutView = findViewById(R.id.position_view_on_map_callout);
         m_calloutView.setVisibility(View.INVISIBLE);
         m_screenView = (TextView) findViewById(R.id.screen_text_view_on_map_text);
@@ -106,39 +105,45 @@ public class PositionViewOnMapActivity extends AppCompatActivity {
             m_worldTextView = worldTextView;
         }
 
-        //This will be called each time the screen coordinate of the positioner changes.
         @UiThread
         public void onPositionerChanged(Positioner positioner) {
-            if(positioner.isScreenPointValid())
+            String notVisibleString = getString(R.string.not_visible_add_positioner_activity);
+
+            if(positioner.isScreenPointProjectionDefined())
             {
-                Point screenPoint = positioner.getScreenPoint();
-                LatLngAlt transformedPoint = positioner.getTransformedPoint();
+                Point screenPoint = positioner.getScreenPointOrNull();
+                if(screenPoint != null)
+                {
+                    m_screenTextView.setText(String.format(
+                            getString(R.string.screen_point_add_positioner_activity),
+                            screenPoint.x,
+                            screenPoint.y));
 
-                //Print out the screen coordinate.
-                m_screenTextView.setText(String.format(
-                        getString(R.string.screen_point_add_positioner_activity),
-                        screenPoint.x,
-                        screenPoint.y));
+                    PointF anchorUV = new PointF(0.5f, 1.0f);
+                    ViewAnchor.positionView(m_callout, screenPoint, anchorUV);
+                }
+                else {
+                    m_screenTextView.setText(notVisibleString);
+                }
 
-                m_worldTextView.setText(String.format(
-                        getString(R.string.world_point_add_positioner_activity),
-                        transformedPoint.latitude,
-                        transformedPoint.longitude,
-                        transformedPoint.altitude));
+                LatLngAlt transformedPoint = positioner.getTransformedPointOrNull();
+                if(transformedPoint != null)
+                {
+                    m_worldTextView.setText(String.format(
+                            getString(R.string.world_point_add_positioner_activity),
+                            transformedPoint.latitude,
+                            transformedPoint.longitude,
+                            transformedPoint.altitude));
+                }
+                else {
+                    m_worldTextView.setText(notVisibleString);
+                }
 
                 m_callout.setVisibility(View.VISIBLE);
-
-                //We want to anchor the view at the bottom center where the call out tab is.
-                PointF anchorUV = new PointF(
-                        0.5f, //0.0f=left, 0.5f=hCenter, 1.0f=right
-                        1.0f); //0.0f=top, 0.5f=vCenter, 1.0f=bottom
-
-                ViewAnchor.positionView(m_callout, screenPoint, anchorUV);
             }
             else {
-                String string = getString(R.string.not_visible_add_positioner_activity);
-                m_screenTextView.setText(string);
-                m_worldTextView.setText(string);
+                m_screenTextView.setText(notVisibleString);
+                m_worldTextView.setText(notVisibleString);
                 m_callout.setVisibility(View.INVISIBLE);
             }
         }

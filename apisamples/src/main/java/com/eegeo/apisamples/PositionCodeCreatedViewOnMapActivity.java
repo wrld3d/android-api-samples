@@ -43,10 +43,8 @@ public class PositionCodeCreatedViewOnMapActivity extends AppCompatActivity {
             @Override
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
-
-                //Create an ImageView and attach it to a positioner.
                 View view = createAndAddImageView();
-                addViewAtPosition(view, new LatLng(37.788126, -122.398103));
+                addViewAtPosition(view, new LatLng(37.802355, -122.405848));
             }
         });
     }
@@ -102,10 +100,11 @@ public class PositionCodeCreatedViewOnMapActivity extends AppCompatActivity {
 
         @UiThread
         public void onPositionerChanged(Positioner positioner) {
-            if(positioner.isScreenPointValid()) {
+            if(positioner.isScreenPointProjectionDefined()) {
                 m_view.setVisibility(View.VISIBLE);
-                Point screenPoint = positioner.getScreenPoint();
-                ViewAnchor.positionView(m_view, screenPoint, m_anchorUV);
+                Point screenPoint = positioner.getScreenPointOrNull();
+                if(screenPoint != null)
+                    ViewAnchor.positionView(m_view, screenPoint, m_anchorUV);
             }
             else {
             m_view.setVisibility(View.INVISIBLE);
