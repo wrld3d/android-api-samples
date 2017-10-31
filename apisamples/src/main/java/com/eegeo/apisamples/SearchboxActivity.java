@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -20,6 +21,8 @@ public class SearchboxActivity extends AppCompatActivity {
     private ViewGroup m_searchView;
 
     private SearchModule m_searchModule;
+
+    private Button m_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,9 @@ public class SearchboxActivity extends AppCompatActivity {
                 ViewGroup uiLayout = (ViewGroup) getLayoutInflater().inflate(R.layout.searchbox_activity_ui, m_mapView, true);
                 m_searchView = (ViewGroup) uiLayout.findViewById(R.id.searchbox_ui);
                 m_searchModule = new SearchModule(m_searchView, SearchboxActivity.this);
+                
+                ViewGroup m_searchButtonView = (ViewGroup) uiLayout.findViewById(R.id.search_ui);
+                m_searchModule.setButton((Button)m_searchButtonView.findViewById(R.id.expand_button));
             }
         });
     }
