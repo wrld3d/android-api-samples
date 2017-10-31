@@ -46,7 +46,7 @@ android {
 
 // latest release is https://bintray.com/wrld/maven/wrld-android-sdk/_latestVersion
 def sdkArtifactName = 'com.wrld:wrld-android-sdk:' + sdkVersion + '@aar'
-def sdkWidgetArtifactName = 'com.wrld:wrld-android-sdk-widgets:' + sdkVersion + '@aar'
+def sdkWidgetArtifactName = 'com.wrld:wrld-android-widgets:' + sdkVersion + '@aar'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
