@@ -54,13 +54,13 @@ public class SearchboxActivity extends AppCompatActivity {
             public void onMapReady(final EegeoMap map) {
                 ViewGroup uiLayout = (ViewGroup) getLayoutInflater().inflate(R.layout.searchbox_activity_ui, m_mapView, true);
                 m_searchView = (ViewGroup) uiLayout.findViewById(R.id.searchbox_ui);
-                m_searchModule = new SearchModule(m_searchView, SearchboxActivity.this);
+                m_searchModule = new SearchModule(m_searchView);
                 
                 ViewGroup m_searchButtonView = (ViewGroup) uiLayout.findViewById(R.id.search_ui);
                 m_searchModule.setButton((Button)m_searchButtonView.findViewById(R.id.expand_button));
 
                 m_searchModule.addSearchProvider(new DebugSearchProvider("Set 1"));
-                m_searchModule.addSearchProvider(new DebugSearchProvider("Set 2"), new TitleOnlySearchResultViewFactory(com.wrld.widgets.R.layout.title_only_search_result));
+                //m_searchModule.addSearchProvider(new DebugSearchProvider("Set 2"), new TitleOnlySearchResultViewFactory(com.wrld.widgets.R.layout.title_only_search_result));
             }
         });
     }
