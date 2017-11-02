@@ -15,6 +15,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.wrld.widgets.searchbox.DebugSuggestionProvider;
 import com.wrld.widgets.searchbox.DebugSearchProvider;
 import com.wrld.widgets.searchbox.SearchModule;
+import com.wrld.widgets.searchbox.TitleOnlySearchResultViewFactory;
 
 public class SearchboxActivity extends AppCompatActivity {
 
@@ -59,9 +60,12 @@ public class SearchboxActivity extends AppCompatActivity {
                 ViewGroup m_searchButtonView = (ViewGroup) uiLayout.findViewById(R.id.search_ui);
                 m_searchModule.setButton((Button)m_searchButtonView.findViewById(R.id.expand_button));
 
-                m_searchModule.addSearchProvider(new DebugSearchProvider("Set 1"));
-                m_searchModule.addSearchProvider(new DebugSuggestionProvider("Set 1"));
-                //m_searchModule.addSearchProvider(new DebugSearchProvider("Set 2"), new TitleOnlySearchResultViewFactory(com.wrld.widgets.R.layout.title_only_search_result));
+                m_searchModule.addSearchProvider(new DebugSearchProvider("Set 1"), false);
+
+                DebugSuggestionProvider SuggestionProvider = new DebugSuggestionProvider("Set 2");
+                SuggestionProvider.setSuggestionViewFactory(new TitleOnlySearchResultViewFactory(com.wrld.widgets.R.layout.title_only_search_result));
+
+                m_searchModule.addSearchProvider(SuggestionProvider, true);
             }
         });
     }
