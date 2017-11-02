@@ -13,7 +13,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 
 import java.util.Locale;
 
-public class QueryCameraActivity extends AppCompatActivity {
+public class QueryCameraActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
 

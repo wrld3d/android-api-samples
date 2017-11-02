@@ -13,7 +13,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.polylines.Polyline;
 import com.eegeo.mapapi.polylines.PolylineOptions;
 
-public class AddPolylineActivity extends AppCompatActivity {
+public class AddPolylineActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

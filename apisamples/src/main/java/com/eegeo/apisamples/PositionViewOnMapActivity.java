@@ -23,7 +23,7 @@ import com.eegeo.ui.util.ViewAnchor;
 
 import static com.eegeo.mapapi.geometry.ElevationMode.HeightAboveGround;
 
-public class PositionViewOnMapActivity extends AppCompatActivity {
+public class PositionViewOnMapActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

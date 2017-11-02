@@ -9,7 +9,7 @@ import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class BasicMapActivity extends AppCompatActivity {
+public class BasicMapActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
 

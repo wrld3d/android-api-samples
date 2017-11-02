@@ -13,7 +13,7 @@ import com.eegeo.mapapi.indoors.OnIndoorExitedListener;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class ExitIndoorExampleActivity extends AppCompatActivity {
+public class ExitIndoorExampleActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

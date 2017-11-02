@@ -11,7 +11,7 @@ import com.eegeo.mapapi.geometry.LatLngAlt;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.markers.MarkerOptions;
 
-public class PickingCameraActivity extends AppCompatActivity {
+public class PickingCameraActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
 

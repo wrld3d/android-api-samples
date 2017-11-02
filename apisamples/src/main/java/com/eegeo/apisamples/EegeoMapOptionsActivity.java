@@ -12,7 +12,7 @@ import com.eegeo.mapapi.camera.CameraPosition;
 import com.eegeo.mapapi.map.EegeoMapOptions;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class EegeoMapOptionsActivity extends AppCompatActivity {
+public class EegeoMapOptionsActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
 

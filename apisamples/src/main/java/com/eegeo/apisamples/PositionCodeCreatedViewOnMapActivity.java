@@ -20,7 +20,7 @@ import com.eegeo.mapapi.positioner.Positioner;
 import com.eegeo.mapapi.positioner.PositionerOptions;
 import com.eegeo.ui.util.ViewAnchor;
 
-public class PositionCodeCreatedViewOnMapActivity extends AppCompatActivity {
+public class PositionCodeCreatedViewOnMapActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

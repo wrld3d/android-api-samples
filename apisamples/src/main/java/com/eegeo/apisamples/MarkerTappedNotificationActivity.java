@@ -16,7 +16,7 @@ import com.eegeo.mapapi.markers.MarkerOptions;
 
 import java.util.Locale;
 
-public class MarkerTappedNotificationActivity extends AppCompatActivity {
+public class MarkerTappedNotificationActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

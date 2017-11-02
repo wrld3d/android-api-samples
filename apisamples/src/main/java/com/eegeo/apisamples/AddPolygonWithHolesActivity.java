@@ -15,7 +15,7 @@ import com.eegeo.mapapi.polygons.PolygonOptions;
 
 import java.util.Arrays;
 
-public class AddPolygonWithHolesActivity extends AppCompatActivity {
+public class AddPolygonWithHolesActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

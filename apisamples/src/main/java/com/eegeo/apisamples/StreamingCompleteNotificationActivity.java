@@ -10,7 +10,7 @@ import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class StreamingCompleteNotificationActivity extends AppCompatActivity {
+public class StreamingCompleteNotificationActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
 

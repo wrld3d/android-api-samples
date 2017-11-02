@@ -14,7 +14,7 @@ import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.bluesphere.BlueSphere;
 
-public class BlueSphereIndoorsActivity extends AppCompatActivity {
+public class BlueSphereIndoorsActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

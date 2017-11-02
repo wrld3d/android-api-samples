@@ -11,7 +11,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.markers.Marker;
 import com.eegeo.mapapi.markers.MarkerOptions;
 
-public class MarkerCustomIconActivity extends AppCompatActivity {
+public class MarkerCustomIconActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
