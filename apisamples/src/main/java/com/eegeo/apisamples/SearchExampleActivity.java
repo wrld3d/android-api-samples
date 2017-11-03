@@ -1,7 +1,7 @@
 package com.eegeo.apisamples;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -22,6 +22,7 @@ public class SearchExampleActivity extends SoftBackButtonActivity implements OnP
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
+    private int m_failedSearches = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +62,10 @@ public class SearchExampleActivity extends SoftBackButtonActivity implements OnP
 
     @Override
     public void onPoiSearchCompleted(PoiSearchResponse response) {
-        if (response.succeeded()) {
-            List<PoiSearchResult> results = response.getResults();
+        List<PoiSearchResult> results = response.getResults();
 
-            if (results.size() == 0) {
-                Toast.makeText(SearchExampleActivity.this, "No POIs found!", Toast.LENGTH_LONG).show();
-            }
-
-            for (PoiSearchResult poi: results) {
+        if (response.succeeded() && results.size() > 0) {
+            for (PoiSearchResult poi : results) {
                 m_eegeoMap.addMarker(new MarkerOptions()
                         .labelText(poi.title)
                         .position(poi.latLng)
@@ -76,7 +73,15 @@ public class SearchExampleActivity extends SoftBackButtonActivity implements OnP
             }
         }
         else {
-            Toast.makeText(SearchExampleActivity.this, "POI search failed!", Toast.LENGTH_LONG).show();
+            m_failedSearches += 1;
+
+            if (m_failedSearches >= 3) {
+                new AlertDialog.Builder(this)
+                        .setTitle("No POIs found")
+                        .setMessage("Visit https://mapdesigner.wrld3d.com/poi/latest/ to create some POIs.")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
         }
     }
 
