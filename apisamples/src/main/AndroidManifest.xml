@@ -330,6 +330,24 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
 
+        <activity
+            android:name="com.eegeo.apisamples.SearchExampleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/search_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.CancelSearchActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/cancel_search_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
     </application>
 
 </manifest>
