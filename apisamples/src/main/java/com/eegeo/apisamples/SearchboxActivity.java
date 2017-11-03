@@ -60,9 +60,9 @@ public class SearchboxActivity extends AppCompatActivity {
                 ViewGroup m_searchButtonView = (ViewGroup) uiLayout.findViewById(R.id.search_ui);
                 m_searchModule.setButton((Button)m_searchButtonView.findViewById(R.id.expand_button));
 
-                m_searchModule.addSearchProvider(new DebugSearchProvider("Set 1"), false);
+                m_searchModule.addSearchProvider(new DebugSearchProvider("Search Provider"), false);
 
-                DebugSuggestionProvider SuggestionProvider = new DebugSuggestionProvider("Set 2");
+                DebugSuggestionProvider SuggestionProvider = new DebugSuggestionProvider("Suggestion Provider");
                 SuggestionProvider.setSuggestionViewFactory(new TitleOnlySearchResultViewFactory(com.wrld.widgets.R.layout.title_only_search_result));
 
                 m_searchModule.addSearchProvider(SuggestionProvider, true);
