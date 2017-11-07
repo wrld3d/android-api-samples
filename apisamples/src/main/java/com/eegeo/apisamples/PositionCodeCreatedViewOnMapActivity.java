@@ -24,6 +24,7 @@ public class PositionCodeCreatedViewOnMapActivity extends SoftBackButtonActivity
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
+    private OnPositionerChangedListener m_positionerChangedListener = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,30 +44,21 @@ public class PositionCodeCreatedViewOnMapActivity extends SoftBackButtonActivity
             @Override
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
-                View view = createAndAddImageView();
-                addViewAtPosition(view, new LatLng(37.802355, -122.405848));
+
+                ImageView imageView = new ImageView(PositionCodeCreatedViewOnMapActivity.this);
+                imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                imageView.setImageResource(R.drawable.wrld3d);
+                m_mapView.addView(imageView);
+                imageView.setVisibility(View.INVISIBLE);
+
+                m_positionerChangedListener = new ViewAnchorAdapter(imageView, 0.5f, 0.5f);
+                m_eegeoMap.addPositionerChangedListener(m_positionerChangedListener);
+
+                m_eegeoMap.addPositioner(new PositionerOptions()
+                        .position(new LatLng(37.802355, -122.405848))
+                );
             }
         });
-    }
-
-    private ImageView createAndAddImageView() {
-        ImageView image = new ImageView(this);
-        image.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-
-        image.setImageResource(R.drawable.wrld3d);
-
-        m_mapView.addView(image);
-        image.setVisibility(View.INVISIBLE);
-        return image;
-    }
-
-    private void addViewAtPosition(View view, LatLng position) {
-        m_eegeoMap.addPositioner(new PositionerOptions()
-                .position(position)
-                .positionerChangedListener(new ViewAnchorAdapter(view, 0.5f, 0.5f))
-        );
     }
 
     public void onClickMapCollapse(View view) {

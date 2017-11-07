@@ -27,6 +27,7 @@ public class PositionViewOnMapActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
+    private OnPositionerChangedListener m_positionerChangedListener = null;
 
     View m_calloutView;
     TextView m_screenView;
@@ -56,11 +57,13 @@ public class PositionViewOnMapActivity extends SoftBackButtonActivity {
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
 
+                m_positionerChangedListener = new OnScreenPointChangedListener(m_calloutView, m_screenView, m_worldView);
+                m_eegeoMap.addPositionerChangedListener(m_positionerChangedListener);
+
                 map.addPositioner(new PositionerOptions()
                         .position(new LatLng(37.802355, -122.405848))
                         .elevation(10.0)
                         .elevationMode(HeightAboveGround)
-                        .positionerChangedListener(new OnScreenPointChangedListener(m_calloutView, m_screenView, m_worldView))
                 );
             }
         });
