@@ -125,7 +125,10 @@ public final class ExamplesList {
                     SearchExampleActivity.class),
             new ExampleContainer(R.string.cancel_search_label,
                     R.string.cancel_search_description,
-                    CancelSearchActivity.class)
+                    CancelSearchActivity.class),
+            new ExampleContainer(R.string.load_mapscene_label,
+                    R.string.load_mapscene_description,
+                    LoadMapsceneActivity.class)
     };
 
     // Pure static class

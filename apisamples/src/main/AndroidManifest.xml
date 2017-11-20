@@ -348,6 +348,15 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
 
+        <activity
+            android:name="com.eegeo.apisamples.LoadMapsceneActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/load_mapscene_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
     </application>
 
 </manifest>
