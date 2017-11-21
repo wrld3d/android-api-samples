@@ -125,7 +125,19 @@ public final class ExamplesList {
                     SearchExampleActivity.class),
             new ExampleContainer(R.string.cancel_search_label,
                     R.string.cancel_search_description,
-                    CancelSearchActivity.class)
+                    CancelSearchActivity.class),
+            new ExampleContainer(R.string.route_example_label,
+                    R.string.route_example_description,
+                    OutdoorRouteActivity.class),
+            new ExampleContainer(R.string.indoor_route_example_label,
+                    R.string.indoor_route_example_description,
+                    IndoorRouteActivity.class),
+            new ExampleContainer(R.string.multipart_route_example_label,
+                    R.string.multipart_route_example_description,
+                    MultipartRouteActivity.class),
+            new ExampleContainer(R.string.cancel_route_query_label,
+                    R.string.cancel_route_query_description,
+                    CancelRoutingQueryActivity.class)
     };
 
     // Pure static class
