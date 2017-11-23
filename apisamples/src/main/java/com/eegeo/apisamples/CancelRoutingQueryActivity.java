@@ -26,9 +26,9 @@ public class CancelRoutingQueryActivity extends SoftBackButtonActivity implement
         super.onCreate(savedInstanceState);
 
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
-        setContentView(R.layout.basic_map_activity);
+        setContentView(R.layout.routing_example_activity);
 
-        m_mapView = (MapView) findViewById(R.id.basic_mapview);
+        m_mapView = (MapView) findViewById(R.id.routing_example_mapview);
         m_mapView.onCreate(savedInstanceState);
 
         final OnRoutingQueryCompletedListener listener = this;
