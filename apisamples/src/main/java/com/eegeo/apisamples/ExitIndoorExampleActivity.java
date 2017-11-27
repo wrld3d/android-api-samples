@@ -10,9 +10,10 @@ import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.indoors.OnIndoorEnteredListener;
 import com.eegeo.mapapi.indoors.OnIndoorExitedListener;
+import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class ExitIndoorExampleActivity extends AppCompatActivity {
+public class ExitIndoorExampleActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -32,11 +33,16 @@ public class ExitIndoorExampleActivity extends AppCompatActivity {
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
-                IndoorEventListener listener = new IndoorEventListener(button);
-                map.addOnIndoorEnteredListener(listener);
-                map.addOnIndoorExitedListener(listener);
-                m_eegeoMap = map;
-                button.setEnabled(true);
+                map.addInitialStreamingCompleteListener(new OnInitialStreamingCompleteListener() {
+                    @Override
+                    public void onInitialStreamingComplete() {
+                        IndoorEventListener listener = new IndoorEventListener(button);
+                        map.addOnIndoorEnteredListener(listener);
+                        map.addOnIndoorExitedListener(listener);
+                        m_eegeoMap = map;
+                        button.setEnabled(true);
+                    }
+                });
             }
         });
     }

@@ -17,7 +17,7 @@ import com.eegeo.indoors.IndoorMapView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddIndoorMarkerActivity extends AppCompatActivity {
+public class AddIndoorMarkerActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

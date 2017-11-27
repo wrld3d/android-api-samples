@@ -13,7 +13,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.polygons.Polygon;
 import com.eegeo.mapapi.polygons.PolygonOptions;
 
-public class AddPolygonActivity extends AppCompatActivity {
+public class AddPolygonActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

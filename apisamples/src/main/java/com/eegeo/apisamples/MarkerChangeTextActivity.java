@@ -12,7 +12,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.markers.Marker;
 import com.eegeo.mapapi.markers.MarkerOptions;
 
-public class MarkerChangeTextActivity extends AppCompatActivity {
+public class MarkerChangeTextActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

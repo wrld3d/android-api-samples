@@ -15,7 +15,7 @@ import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class RemoveBuildingHighlightActivity extends AppCompatActivity implements OnInitialStreamingCompleteListener {
+public class RemoveBuildingHighlightActivity extends SoftBackButtonActivity implements OnInitialStreamingCompleteListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

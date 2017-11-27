@@ -19,7 +19,7 @@ import com.eegeo.mapapi.polygons.PolygonOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddPolygonIndoorsActivity extends AppCompatActivity {
+public class AddPolygonIndoorsActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

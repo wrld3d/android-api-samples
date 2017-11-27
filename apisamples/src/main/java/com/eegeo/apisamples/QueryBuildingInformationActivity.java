@@ -23,7 +23,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.markers.MarkerOptions;
 import com.eegeo.mapapi.polylines.PolylineOptions;
 
-public class QueryBuildingInformationActivity extends AppCompatActivity {
+public class QueryBuildingInformationActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

@@ -26,7 +26,7 @@ import com.eegeo.mapapi.picking.PickResult;
 import com.eegeo.mapapi.util.Ready;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
-public class PickingBuildingsActivity extends AppCompatActivity {
+public class PickingBuildingsActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

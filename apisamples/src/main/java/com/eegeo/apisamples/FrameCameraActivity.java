@@ -12,7 +12,7 @@ import com.eegeo.mapapi.geometry.LatLngBounds;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class FrameCameraActivity extends AppCompatActivity {
+public class FrameCameraActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
 

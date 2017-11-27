@@ -17,7 +17,7 @@ import com.eegeo.mapapi.markers.MarkerOptions;
 import com.eegeo.mapapi.picking.PickResult;
 import com.eegeo.mapapi.util.Ready;
 
-public class PlaceObjectsOnBuildingsActivity extends AppCompatActivity implements OnInitialStreamingCompleteListener {
+public class PlaceObjectsOnBuildingsActivity extends SoftBackButtonActivity implements OnInitialStreamingCompleteListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

@@ -11,7 +11,7 @@ import com.eegeo.mapapi.camera.CameraUpdateFactory;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class MoveCameraActivity extends AppCompatActivity {
+public class MoveCameraActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
 

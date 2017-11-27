@@ -122,7 +122,16 @@ public final class ExamplesList {
                     StreamingCompleteNotificationActivity.class),
             new ExampleContainer(R.string.map_options_example_label,
                     R.string.map_options_example_description,
-                    EegeoMapOptionsActivity.class)
+                    EegeoMapOptionsActivity.class),
+            new ExampleContainer(R.string.search_example_label,
+                    R.string.search_example_description,
+                    SearchExampleActivity.class),
+            new ExampleContainer(R.string.cancel_search_label,
+                    R.string.cancel_search_description,
+                    CancelSearchActivity.class),
+            new ExampleContainer(R.string.load_mapscene_label,
+                    R.string.load_mapscene_description,
+                    LoadMapsceneActivity.class)
     };
 
     // Pure static class

@@ -15,7 +15,7 @@ import com.eegeo.mapapi.indoors.OnIndoorEnteredListener;
 import com.eegeo.mapapi.indoors.OnIndoorExitedListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class NameIndoorExampleActivity extends AppCompatActivity {
+public class NameIndoorExampleActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

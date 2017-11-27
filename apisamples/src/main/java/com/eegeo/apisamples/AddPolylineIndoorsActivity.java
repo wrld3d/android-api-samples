@@ -18,7 +18,7 @@ import com.eegeo.mapapi.polylines.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddPolylineIndoorsActivity extends AppCompatActivity {
+public class AddPolylineIndoorsActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

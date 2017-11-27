@@ -13,7 +13,7 @@ import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.indoors.IndoorMapView;
 
-public class UXIndoorExampleActivity extends AppCompatActivity {
+public class UXIndoorExampleActivity extends SoftBackButtonActivity {
 
     private MapView m_mapView;
     private IndoorMapView m_interiorView = null;
