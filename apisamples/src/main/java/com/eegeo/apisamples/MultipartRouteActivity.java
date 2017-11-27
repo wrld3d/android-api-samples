@@ -79,7 +79,7 @@ public class MultipartRouteActivity extends SoftBackButtonActivity implements On
                     PolylineOptions options = new PolylineOptions().color(ColorUtils.setAlphaComponent(Color.RED, 128));
 
                     if (step.isIndoors) {
-                        options.indoor("westport_house", step.floorIndex);
+                        options.indoor(step.indoorId, step.floorIndex);
                     }
 
                     for (LatLng point: step.path) {
