@@ -78,7 +78,7 @@ public class IndoorRouteActivity extends SoftBackButtonActivity implements OnRou
 
                     PolylineOptions options = new PolylineOptions()
                         .color(ColorUtils.setAlphaComponent(Color.RED, 128))
-                        .indoor(step.indoorId, step.floorIndex);
+                        .indoor(step.indoorId, step.indoorFloorId);
 
                     for (LatLng point: step.path) {
                         options.add(point);
