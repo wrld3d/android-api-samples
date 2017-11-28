@@ -50,7 +50,7 @@ public class CancelRoutingQueryActivity extends SoftBackButtonActivity implement
     }
 
     @Override
-    public void onRoutingQueryCompleted(RoutingQueryResponse response) {
+    public void onRoutingQueryCompleted(RoutingQuery query, RoutingQueryResponse response) {
         Toast.makeText(CancelRoutingQueryActivity.this, "This toast should never show!", Toast.LENGTH_LONG).show();
     }
 

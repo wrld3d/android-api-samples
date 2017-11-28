@@ -19,6 +19,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.services.routing.OnRoutingQueryCompletedListener;
 import com.eegeo.mapapi.services.routing.RoutingService;
+import com.eegeo.mapapi.services.routing.RoutingQuery;
 import com.eegeo.mapapi.services.routing.RoutingQueryOptions;
 import com.eegeo.mapapi.services.routing.RoutingQueryResponse;
 import com.eegeo.mapapi.services.routing.Route;
@@ -66,7 +67,7 @@ public class MultipartRouteActivity extends SoftBackButtonActivity implements On
     }
 
     @Override
-    public void onRoutingQueryCompleted(RoutingQueryResponse response) {
+    public void onRoutingQueryCompleted(RoutingQuery query, RoutingQueryResponse response) {
         Toast.makeText(MultipartRouteActivity.this, "Found routes", Toast.LENGTH_LONG).show();
 
         for (Route route: response.getResults()) {
@@ -79,7 +80,7 @@ public class MultipartRouteActivity extends SoftBackButtonActivity implements On
                     PolylineOptions options = new PolylineOptions().color(ColorUtils.setAlphaComponent(Color.RED, 128));
 
                     if (step.isIndoors) {
-                        options.indoor(step.indoorId, step.floorIndex);
+                        options.indoor(step.indoorId, step.indoorFloorId);
                     }
 
                     for (LatLng point: step.path) {

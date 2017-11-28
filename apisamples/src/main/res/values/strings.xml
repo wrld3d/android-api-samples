@@ -95,6 +95,15 @@
     <string name="cancel_route_query_label">Cancel a routing query</string>
     <string name="cancel_route_query_description">Cancel a routing service query before it completes</string>
 
+    <string name="route_example_label">Find an outdoor route</string>
+    <string name="route_example_description">Use the routing service to find a route between two places outdoors</string>
+    <string name="indoor_route_example_label">Find an indoor route</string>
+    <string name="indoor_route_example_description">Use the routing service to find a route inside a building</string>
+    <string name="multipart_route_example_label">Find a multipart route</string>
+    <string name="multipart_route_example_description">Use the routing service to find a route from inside one building to another</string>
+    <string name="cancel_route_query_label">Cancel a routing query</string>
+    <string name="cancel_route_query_description">Cancel a routing service query before it completes</string>
+
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>
     <string name="moveup_button_label">Move Up</string>
