@@ -47,6 +47,7 @@ android {
 // latest release is https://bintray.com/wrld/maven/wrld-android-sdk/_latestVersion
 def sdkArtifactName = 'com.wrld:wrld-android-sdk:' + sdkVersion + '@aar'
 def sdkWidgetArtifactName = 'com.wrld:wrld-android-widgets:' + sdkVersion + '@aar'
+def sdksearchprovidersArtifactName = 'com.wrld:wrld-android-searchproviders:' + sdkVersion + '@aar'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -55,11 +56,16 @@ dependencies {
         releaseCompile project(path: ':sdk', configuration: 'release')
         debugCompile project(path: ':widgets', configuration: 'debug')
         releaseCompile project(path: ':widgets', configuration: 'release')
+        debugCompile project(path: ':searchproviders', configuration: 'debug')
+        releaseCompile project(path: ':searchproviders', configuration: 'release')
     } else {
         compile(sdkArtifactName) {
             transitive = true
         }
         compile(sdkWidgetArtifactName) {
+            transitive = true
+        }
+        compile(sdksearchprovidersArtifactName) {
             transitive = true
         }
     }
