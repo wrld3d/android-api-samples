@@ -52,6 +52,8 @@ dependencies {
     if (rootProject.getProperty('useLocalSdkBuild').toBoolean()) {
         debugCompile project(path: ':sdk', configuration: 'debug')
         releaseCompile project(path: ':sdk', configuration: 'release')
+        debugCompile project(path: ':dataviz', configuration: 'debug')
+        releaseCompile project(path: ':dataviz', configuration: 'release')
     } else {
         compile(sdkArtifactName) {
             transitive = true
