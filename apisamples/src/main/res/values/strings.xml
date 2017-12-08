@@ -94,6 +94,8 @@
     <string name="multipart_route_example_description">Use the routing service to find a route from inside one building to another</string>
     <string name="cancel_route_query_label">Cancel a routing query</string>
     <string name="cancel_route_query_description">Cancel a routing service query before it completes</string>
+    <string name="route_view_example_label">Use a RouteView to display a route</string>
+    <string name="route_view_example_description">Display routes on the map easily using the RouteView type</string>
 
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>

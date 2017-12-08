@@ -140,7 +140,10 @@ public final class ExamplesList {
                     MultipartRouteActivity.class),
             new ExampleContainer(R.string.cancel_route_query_label,
                     R.string.cancel_route_query_description,
-                    CancelRoutingQueryActivity.class)
+                    CancelRoutingQueryActivity.class),
+            new ExampleContainer(R.string.route_view_example_label,
+                    R.string.route_view_example_description,
+                    RouteViewActivity.class)
     };
 
     // Pure static class

@@ -393,6 +393,14 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
 
+        <activity
+            android:name="com.eegeo.apisamples.RouteViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/route_view_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
