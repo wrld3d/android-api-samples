@@ -401,6 +401,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.RouteViewStyleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/route_view_style_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.RouteViewMarkersActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/route_view_markers_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
