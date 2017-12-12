@@ -95,6 +95,13 @@
     <string name="cancel_route_query_label">Cancel a routing query</string>
     <string name="cancel_route_query_description">Cancel a routing service query before it completes</string>
 
+    <string name="route_view_example_label">Display a route</string>
+    <string name="route_view_example_description">Display routes on the map using the RouteView widget</string>
+    <string name="route_view_style_example_label">Change the style of a RouteView</string>
+    <string name="route_view_style_example_description">Change the color and width of a RouteView dynamically</string>
+    <string name="route_view_markers_example_label">Draw markers along a route</string>
+    <string name="route_view_markers_example_description">Add markers to the map for each step of a route</string>
+
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>
     <string name="moveup_button_label">Move Up</string>
