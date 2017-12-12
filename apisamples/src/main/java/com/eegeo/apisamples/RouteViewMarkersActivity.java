@@ -26,8 +26,8 @@ import com.eegeo.mapapi.services.routing.RoutingQueryResponse;
 import com.eegeo.mapapi.services.routing.Route;
 import com.eegeo.mapapi.services.routing.RouteSection;
 import com.eegeo.mapapi.services.routing.RouteStep;
-import com.wrld.dataviz.RouteView;
-import com.wrld.dataviz.RouteViewOptions;
+import com.eegeo.mapapi.widgets.RouteView;
+import com.eegeo.mapapi.widgets.RouteViewOptions;
 
 
 public class RouteViewMarkersActivity extends SoftBackButtonActivity implements OnRoutingQueryCompletedListener {
