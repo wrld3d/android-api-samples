@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
+import com.eegeo.mapapi.camera.CameraAnimationOptions;
 import com.eegeo.mapapi.camera.CameraPosition;
 import com.eegeo.mapapi.camera.CameraUpdateFactory;
 import com.eegeo.mapapi.indoors.OnIndoorEnteredListener;
@@ -51,7 +52,9 @@ public class AnimateCameraToIndoorActivity extends SoftBackButtonActivity {
                                 .zoom(19)
                                 .bearing(270)
                                 .build();
-                        map.animateCamera(CameraUpdateFactory.newCameraPosition(position), 5000);
+                        CameraAnimationOptions animationOptions = new CameraAnimationOptions.Builder()
+                                .build();
+                        map.animateCamera(CameraUpdateFactory.newCameraPosition(position), animationOptions);
 
                     }
                 });
