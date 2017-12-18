@@ -90,7 +90,7 @@ public class SearchboxActivity extends AppCompatActivity {
                         m_searchModule,
                         matchedTextColor);
 
-                SuggestionProvider poiSearchProvider = createWrldPoiSearchProvider(map);
+                SuggestionProvider poiSearchProvider = createWrldPoiSearchProvider(context, map);
 
                 // Sets up and authenticates with Yelp.  You need a Yelp API key to use Yelp.
                 SuggestionProvider yelpSearchProvider = createYelpSearchProvider(context, map);
@@ -148,10 +148,10 @@ public class SearchboxActivity extends AppCompatActivity {
         return locations;
     }
 
-    private SuggestionProvider createWrldPoiSearchProvider(EegeoMap map) {
+    private SuggestionProvider createWrldPoiSearchProvider(Context context, EegeoMap map) {
         PoiService poiService = map.createPoiService();
 
-        SuggestionProvider wrldPoiSearchProvider =  new WrldPoiSearchProvider(poiService, map);
+        SuggestionProvider wrldPoiSearchProvider =  new WrldPoiSearchProvider(context, poiService, map);
         wrldPoiSearchProvider.setResultViewFactory(m_defaultSearchResultViewFactory);
         wrldPoiSearchProvider.setSuggestionViewFactory(m_defaultSuggestionViewFactory);
         return wrldPoiSearchProvider;
@@ -160,7 +160,7 @@ public class SearchboxActivity extends AppCompatActivity {
     private SuggestionProvider createYelpSearchProvider (Context context, EegeoMap map) {
 
         SearchResultViewFactory yelpResultViewFactory = new YelpSearchResultViewFactory(context);
-        YelpSearchProvider yelpSearch = new YelpSearchProvider(m_requestQueue, map, m_errorHandler);
+        YelpSearchProvider yelpSearch = new YelpSearchProvider(context, m_requestQueue, map, m_errorHandler);
 
         // Yelp search requires authenticating with a Yelp API client id and secret.
         // This needs to be called before any search results or autocomplete suggestions are requested.
