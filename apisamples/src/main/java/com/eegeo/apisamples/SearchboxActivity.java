@@ -1,6 +1,7 @@
 package com.eegeo.apisamples;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -11,6 +12,7 @@ import com.android.volley.toolbox.Volley;
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
+import com.eegeo.mapapi.camera.CameraPosition;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.services.poi.PoiService;
 import com.wrld.searchproviders.AlertErrorHandler;
@@ -18,7 +20,9 @@ import com.wrld.searchproviders.ErrorHandler;
 import com.wrld.searchproviders.YelpSearchProvider;
 import com.wrld.searchproviders.YelpSearchResultViewFactory;
 import com.wrld.widgets.searchbox.DefaultSearchResultViewFactory;
+import com.wrld.widgets.searchbox.SearchBoxMenuChild;
 import com.wrld.widgets.searchbox.SearchBoxMenuGroup;
+import com.wrld.widgets.searchbox.SearchBoxMenuItem;
 import com.wrld.widgets.searchbox.SearchModule;
 import com.wrld.widgets.searchbox.DefaultSuggestionViewFactory;
 import com.wrld.searchproviders.WrldPoiSearchProvider;
@@ -67,7 +71,6 @@ public class SearchboxActivity extends AppCompatActivity {
         m_mapView.onCreate(savedInstanceState);
 
         m_defaultSearchResultViewFactory = new DefaultSearchResultViewFactory(com.wrld.widgets.R.layout.search_result);
-        m_defaultSuggestionViewFactory = new DefaultSuggestionViewFactory(com.wrld.widgets.R.layout.search_suggestion);
 
         m_errorHandler = new AlertErrorHandler(context);
         m_requestQueue = Volley.newRequestQueue(context);
@@ -79,6 +82,13 @@ public class SearchboxActivity extends AppCompatActivity {
                 ViewGroup uiLayout = (ViewGroup) getLayoutInflater().inflate(R.layout.searchbox_activity_ui, m_mapView, true);
                 m_searchView = (ViewGroup) uiLayout.findViewById(R.id.searchbox_ui);
                 m_searchModule = new SearchModule(m_searchView);
+                int matchedTextColor = ContextCompat.getColor(context, com.wrld.widgets.R.color.searchbox_autcomplete_list_header_font_matched);
+
+				//TODO use another suggestion factory 
+                m_defaultSuggestionViewFactory = new DefaultSuggestionViewFactory(
+                        com.wrld.widgets.R.layout.search_suggestion,
+                        m_searchModule,
+                        matchedTextColor);
 
                 SuggestionProvider poiSearchProvider = createWrldPoiSearchProvider(map);
 
@@ -87,8 +97,55 @@ public class SearchboxActivity extends AppCompatActivity {
 
                 m_searchModule.setSearchProviders(new SearchProvider[]{poiSearchProvider, yelpSearchProvider});
                 m_searchModule.setSuggestionProviders(new SuggestionProvider[]{poiSearchProvider, yelpSearchProvider});
+
+                //m_searchModule.setSearchProviders(new SearchProvider[]{poiSearchProvider, poiSearchProvider, poiSearchProvider, poiSearchProvider, yelpSearchProvider});
+                //m_searchModule.setSuggestionProviders(new SuggestionProvider[]{poiSearchProvider, poiSearchProvider, poiSearchProvider, poiSearchProvider, yelpSearchProvider});
+
+                SearchBoxMenuGroup locations = m_searchModule.addGroup("Locations");
+                locations.add(createLocations());
+                locations.addOnClickListenerToAllChildren(jumpToLocation(map, m_searchModule));
             }
         });
+    }
+
+    private SearchBoxMenuItem.OnClickListener jumpToLocation(final EegeoMap map, final SearchModule searchModule){
+        return new SearchBoxMenuItem.OnClickListener() {
+            @Override
+            public void onClick(SearchBoxMenuItem clickedItem) {
+                CameraPositionChild clickedLocation = (CameraPositionChild) clickedItem;
+                map.setCameraPosition(clickedLocation.getCameraPosition());
+                searchModule.showDefaultView();
+            }
+        };
+    }
+
+    private class CameraPositionChild extends SearchBoxMenuChild{
+
+        private CameraPosition m_cameraPosition;
+
+        public CameraPosition getCameraPosition() { return m_cameraPosition; }
+
+        public CameraPositionChild(String text, CameraPosition cameraPosition) {
+            super(text);
+            m_cameraPosition = cameraPosition;
+        }
+    }
+
+    private SearchBoxMenuChild[] createLocations(){
+        SearchBoxMenuChild[] locations = new SearchBoxMenuChild[10];
+        CameraPosition.Builder builder = new CameraPosition.Builder();
+
+        locations[0] = new CameraPositionChild("Bangkok",       builder.target(13.747348, 100.533493).build());
+        locations[1] = new CameraPositionChild("Chicago",       builder.target(41.882276, -87.629201).build());
+        locations[2] = new CameraPositionChild("Dundee",        builder.target(56.458598, -2.969868).build());
+        locations[3] = new CameraPositionChild("Edinburgh",     builder.target(55.948991, -3.199949).build());
+        locations[4] = new CameraPositionChild("London",        builder.target(51.51122, -0.081494).build());
+        locations[5] = new CameraPositionChild("Milan",         builder.target(45.474097, 9.177512).build());
+        locations[6] = new CameraPositionChild("New York",      builder.target(40.710184, -74.012957).build());
+        locations[7] = new CameraPositionChild("Oslo",          builder.target(59.907757, 10.752348).build());
+        locations[8] = new CameraPositionChild("San Francisco", builder.target(-22.948350, -43.207783).build());
+        locations[9] = new CameraPositionChild("Vancouver",     builder.target(37.791592, -122.39937).build());
+        return locations;
     }
 
     private SuggestionProvider createWrldPoiSearchProvider(EegeoMap map) {
