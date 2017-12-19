@@ -131,7 +131,31 @@ public final class ExamplesList {
                     SearchExampleActivity.class),
             new ExampleContainer(R.string.cancel_search_label,
                     R.string.cancel_search_description,
-                    CancelSearchActivity.class)
+                    CancelSearchActivity.class),
+            new ExampleContainer(R.string.load_mapscene_label,
+                    R.string.load_mapscene_description,
+                    LoadMapsceneActivity.class),
+            new ExampleContainer(R.string.route_example_label,
+                    R.string.route_example_description,
+                    OutdoorRouteActivity.class),
+            new ExampleContainer(R.string.indoor_route_example_label,
+                    R.string.indoor_route_example_description,
+                    IndoorRouteActivity.class),
+            new ExampleContainer(R.string.multipart_route_example_label,
+                    R.string.multipart_route_example_description,
+                    MultipartRouteActivity.class),
+            new ExampleContainer(R.string.cancel_route_query_label,
+                    R.string.cancel_route_query_description,
+                    CancelRoutingQueryActivity.class),
+            new ExampleContainer(R.string.route_view_example_label,
+                    R.string.route_view_example_description,
+                    RouteViewActivity.class),
+            new ExampleContainer(R.string.route_view_style_example_label,
+                    R.string.route_view_style_example_description,
+                    RouteViewStyleActivity.class),
+            new ExampleContainer(R.string.route_view_markers_example_label,
+                    R.string.route_view_markers_example_description,
+                    RouteViewMarkersActivity.class)
     };
 
     // Pure static class

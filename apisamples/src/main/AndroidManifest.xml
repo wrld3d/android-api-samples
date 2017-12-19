@@ -365,6 +365,77 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
 
+        <activity
+            android:name="com.eegeo.apisamples.LoadMapsceneActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/load_mapscene_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.OutdoorRouteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/route_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.IndoorRouteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/indoor_route_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.MultipartRouteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/multipart_route_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.CancelRoutingQueryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/cancel_route_query_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.RouteViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/route_view_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.RouteViewStyleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/route_view_style_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.RouteViewMarkersActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/route_view_markers_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
