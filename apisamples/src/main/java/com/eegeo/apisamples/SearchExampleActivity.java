@@ -66,10 +66,16 @@ public class SearchExampleActivity extends SoftBackButtonActivity implements OnP
 
         if (response.succeeded() && results.size() > 0) {
             for (PoiSearchResult poi : results) {
-                m_eegeoMap.addMarker(new MarkerOptions()
-                        .labelText(poi.title)
-                        .position(poi.latLng)
-                        .iconKey(poi.tags));
+                MarkerOptions options = new MarkerOptions()
+                    .labelText(poi.title)
+                    .position(poi.latLng)
+                    .iconKey(poi.tags);
+
+                if (poi.indoor) {
+                    options.indoor(poi.indoorId, poi.floorId);
+                }
+
+                m_eegeoMap.addMarker(options);
             }
         }
         else {
