@@ -35,6 +35,7 @@
         <activity
             android:name="com.eegeo.apisamples.SearchboxActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustNothing"
             android:label="@string/searchbox_example_label">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -341,6 +342,7 @@
         <activity
             android:name="com.eegeo.apisamples.SearchExampleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+
             android:label="@string/search_example_label">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
