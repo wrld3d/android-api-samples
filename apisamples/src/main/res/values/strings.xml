@@ -13,7 +13,7 @@
     <string name="animate_camera_example_label">Animate the camera</string>
     <string name="animate_camera_example_description">Move the camera with animation</string>
     <string name="framing_camera_example_label">Frame an area</string>
-    <string name="framing_camera_example_description">Move the map camera to frame an area</string>
+    <string name="framing_camera_example_description">Move the camera to frame an area</string>
     <string name="query_camera_example_label">Query camera location and zoom</string>
     <string name="query_camera_example_description">Obtain the current camera location and zoom level</string>
     <string name="picking_camera_example_label">Pick a point on the map</string>
@@ -39,7 +39,7 @@
     <string name="marker_change_text_example_label">Change the title of a marker</string>
     <string name="marker_change_text_example_label_description">Alter the text on a marker after adding to the map</string>
     <string name="marker_change_location_example_label">Change the location of a marker</string>
-    <string name="marker_change_location_example_description">Adjust the location of a marker after it has been created</string>
+    <string name="marker_change_location_example_description">Alter the location of a marker after adding to the map</string>
     <string name="marker_tapped_notification_example_label">Select a marker</string>
     <string name="marker_tapped_notification_example_description">Get notified when the user taps on a marker</string>
     <string name="marker_change_draw_order_example_label">Change the draw order of markers</string>
@@ -82,7 +82,7 @@
     <string name="search_example_label">Search for POIs</string>
     <string name="search_example_description">Use the POI service to find POIs on the map matching a certain query</string>
     <string name="cancel_search_label">Cancel a POI search</string>
-    <string name="cancel_search_description">Cancel an ongoing search before it completes.</string>
+    <string name="cancel_search_description">Cancel an ongoing search before it completes</string>
     <string name="load_mapscene_label">"Load a Mapscene"</string>
     <string name="load_mapscene_description">"Use the Mapscene service to load and apply a mapscene"</string>
 
