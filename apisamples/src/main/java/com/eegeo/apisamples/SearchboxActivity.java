@@ -19,16 +19,18 @@ import com.wrld.searchproviders.AlertErrorHandler;
 import com.wrld.searchproviders.ErrorHandler;
 import com.wrld.searchproviders.YelpSearchProvider;
 import com.wrld.searchproviders.YelpSearchResultViewFactory;
-import com.wrld.widgets.searchbox.DefaultSearchResultViewFactory;
-import com.wrld.widgets.searchbox.SearchBoxMenuChild;
-import com.wrld.widgets.searchbox.SearchBoxMenuGroup;
-import com.wrld.widgets.searchbox.SearchBoxMenuItem;
-import com.wrld.widgets.searchbox.SearchModule;
-import com.wrld.widgets.searchbox.DefaultSuggestionViewFactory;
+import com.wrld.widgets.searchbox.SearchModuleFactory;
+import com.wrld.widgets.searchbox.api.DefaultSearchResultViewFactory;
 import com.wrld.searchproviders.WrldPoiSearchProvider;
-import com.wrld.widgets.searchbox.SearchProvider;
-import com.wrld.widgets.searchbox.SearchResultViewFactory;
-import com.wrld.widgets.searchbox.SuggestionProvider;
+import com.wrld.widgets.searchbox.api.DefaultSuggestionViewFactory;
+import com.wrld.widgets.searchbox.api.SearchModule;
+import com.wrld.widgets.searchbox.api.SearchProvider;
+import com.wrld.widgets.searchbox.api.SearchResultViewFactory;
+import com.wrld.widgets.searchbox.api.SuggestionProvider;
+import com.wrld.widgets.searchbox.menu.SearchBoxMenuChild;
+import com.wrld.widgets.searchbox.menu.SearchBoxMenuGroup;
+import com.wrld.widgets.searchbox.menu.SearchBoxMenuItem;
+import com.wrld.widgets.ui.TextHighlighter;
 
 public class SearchboxActivity extends AppCompatActivity {
 
@@ -37,7 +39,6 @@ public class SearchboxActivity extends AppCompatActivity {
     private ViewGroup m_searchView;
 
     private SearchModule m_searchModule;
-
 
     private SearchResultViewFactory m_defaultSearchResultViewFactory;
     private SearchResultViewFactory m_defaultSuggestionViewFactory;
@@ -81,14 +82,14 @@ public class SearchboxActivity extends AppCompatActivity {
             public void onMapReady(final EegeoMap map) {
                 ViewGroup uiLayout = (ViewGroup) getLayoutInflater().inflate(R.layout.searchbox_activity_ui, m_mapView, true);
                 m_searchView = (ViewGroup) uiLayout.findViewById(R.id.searchbox_ui);
-                m_searchModule = new SearchModule(m_searchView);
+                m_searchModule = SearchModuleFactory.create(m_searchView);
                 int matchedTextColor = ContextCompat.getColor(context, com.wrld.widgets.R.color.searchbox_autcomplete_list_header_font_matched);
 
 				//TODO use another suggestion factory 
                 m_defaultSuggestionViewFactory = new DefaultSuggestionViewFactory(
                         com.wrld.widgets.R.layout.search_suggestion,
                         m_searchModule,
-                        matchedTextColor);
+                        new TextHighlighter(matchedTextColor));
 
                 SuggestionProvider poiSearchProvider = createWrldPoiSearchProvider(context, map);
 
@@ -100,7 +101,6 @@ public class SearchboxActivity extends AppCompatActivity {
 
                 //m_searchModule.setSearchProviders(new SearchProvider[]{poiSearchProvider, poiSearchProvider, poiSearchProvider, poiSearchProvider, yelpSearchProvider});
                 //m_searchModule.setSuggestionProviders(new SuggestionProvider[]{poiSearchProvider, poiSearchProvider, poiSearchProvider, poiSearchProvider, yelpSearchProvider});
-
                 SearchBoxMenuGroup locations = m_searchModule.addGroup("Locations");
                 locations.add(createLocations());
                 locations.addOnClickListenerToAllChildren(jumpToLocation(map, m_searchModule));
@@ -119,7 +119,7 @@ public class SearchboxActivity extends AppCompatActivity {
         };
     }
 
-    private class CameraPositionChild extends SearchBoxMenuChild{
+    private class CameraPositionChild extends SearchBoxMenuChild {
 
         private CameraPosition m_cameraPosition;
 
