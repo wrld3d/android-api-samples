@@ -16,7 +16,10 @@ import com.eegeo.mapapi.services.poi.PoiService;
 import com.eegeo.mapapi.services.poi.TagSearchOptions;
 import com.eegeo.mapapi.services.poi.TextSearchOptions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SearchExampleActivity extends SoftBackButtonActivity implements OnPoiSearchCompletedListener {
 
@@ -64,12 +67,31 @@ public class SearchExampleActivity extends SoftBackButtonActivity implements OnP
     public void onPoiSearchCompleted(PoiSearchResponse response) {
         List<PoiSearchResult> results = response.getResults();
 
+        // Icon/Tag mapping, see:
+        // https://github.com/wrld3d/wrld-icon-tools/blob/master/data/search_tags.json
+        Map<String,String> iconKeyTagDict = new HashMap<String, String>() {
+            {
+                put("park", "park");
+                put("coffee", "coffee");
+                put("general", "general");
+            }
+        };
+
         if (response.succeeded() && results.size() > 0) {
             for (PoiSearchResult poi : results) {
+
+                String iconKey = "pin";
+                String[] tags = poi.tags.split(" ");
+                for (String tag : tags) {
+                    if (iconKeyTagDict.containsKey(tag)) {
+                        iconKey = iconKeyTagDict.get(tag);
+                    }
+                }
+
                 MarkerOptions options = new MarkerOptions()
                     .labelText(poi.title)
                     .position(poi.latLng)
-                    .iconKey(poi.tags);
+                    .iconKey(iconKey);
 
                 if (poi.indoor) {
                     options.indoor(poi.indoorId, poi.floorId);
