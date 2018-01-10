@@ -2,10 +2,6 @@ package com.eegeo.apisamples;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.graphics.ColorUtils;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.eegeo.mapapi.EegeoApi;
@@ -23,7 +19,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.markers.MarkerOptions;
 import com.eegeo.mapapi.polylines.PolylineOptions;
 
-public class QueryBuildingInformationActivity extends SoftBackButtonActivity {
+public class QueryBuildingInformationActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

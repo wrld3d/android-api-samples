@@ -18,7 +18,7 @@ import com.eegeo.mapapi.services.poi.TextSearchOptions;
 
 import java.util.List;
 
-public class SearchExampleActivity extends SoftBackButtonActivity implements OnPoiSearchCompletedListener {
+public class SearchExampleActivity extends WrldExampleActivity implements OnPoiSearchCompletedListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

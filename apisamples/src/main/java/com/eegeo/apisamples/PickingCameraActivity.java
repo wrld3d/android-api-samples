@@ -1,7 +1,6 @@
 package com.eegeo.apisamples;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.eegeo.mapapi.EegeoApi;
@@ -11,7 +10,7 @@ import com.eegeo.mapapi.geometry.LatLngAlt;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.markers.MarkerOptions;
 
-public class PickingCameraActivity extends SoftBackButtonActivity {
+public class PickingCameraActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
 

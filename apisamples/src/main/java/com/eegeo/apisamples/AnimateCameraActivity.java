@@ -1,7 +1,6 @@
 package com.eegeo.apisamples;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -11,7 +10,7 @@ import com.eegeo.mapapi.camera.CameraUpdateFactory;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class AnimateCameraActivity extends SoftBackButtonActivity {
+public class AnimateCameraActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
 

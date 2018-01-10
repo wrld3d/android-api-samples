@@ -3,7 +3,6 @@ package com.eegeo.apisamples;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.graphics.ColorUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import java.util.List;
@@ -27,7 +26,7 @@ import com.eegeo.mapapi.polylines.Polyline;
 import com.eegeo.mapapi.polylines.PolylineOptions;
 
 
-public class OutdoorRouteActivity extends SoftBackButtonActivity implements OnRoutingQueryCompletedListener {
+public class OutdoorRouteActivity extends WrldExampleActivity implements OnRoutingQueryCompletedListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

@@ -3,7 +3,6 @@ package com.eegeo.apisamples;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -27,7 +26,7 @@ import com.eegeo.mapapi.widgets.RouteView;
 import com.eegeo.mapapi.widgets.RouteViewOptions;
 
 
-public class RouteViewStyleActivity extends SoftBackButtonActivity implements OnRoutingQueryCompletedListener {
+public class RouteViewStyleActivity extends WrldExampleActivity implements OnRoutingQueryCompletedListener {
 
     private static int BLUE = Color.argb(255, 0,113,188);
     private static int WHITE = Color.argb(128, 255, 255, 255);

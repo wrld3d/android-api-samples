@@ -1,10 +1,7 @@
 package com.eegeo.apisamples;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.UiThread;
-import android.support.v7.app.AppCompatActivity;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -17,7 +14,7 @@ import com.eegeo.mapapi.markers.MarkerOptions;
 import com.eegeo.mapapi.picking.PickResult;
 import com.eegeo.mapapi.util.Ready;
 
-public class PlaceObjectsOnBuildingsActivity extends SoftBackButtonActivity implements OnInitialStreamingCompleteListener {
+public class PlaceObjectsOnBuildingsActivity extends WrldExampleActivity implements OnInitialStreamingCompleteListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
