@@ -5,10 +5,6 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-/**
- * Created by michael.odonnell on 10/01/2018.
- */
-
 public class ExtendedBaseExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public int getGroupCount() {
@@ -17,7 +13,7 @@ public class ExtendedBaseExpandableListViewAdapter extends BaseExpandableListAda
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 20;
+        return 50;
     }
 
     @Override
@@ -49,7 +45,6 @@ public class ExtendedBaseExpandableListViewAdapter extends BaseExpandableListAda
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         if(convertView == null){
             convertView = new TextView(parent.getContext());
-
         }
 
         TextView textView = (TextView)convertView;

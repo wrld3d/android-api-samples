@@ -1,11 +1,15 @@
 package com.eegeo.apisamples;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.content.Context;
+import android.widget.ImageButton;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -19,7 +23,6 @@ import com.wrld.searchproviders.AlertErrorHandler;
 import com.wrld.searchproviders.ErrorHandler;
 import com.wrld.searchproviders.YelpSearchProvider;
 import com.wrld.searchproviders.YelpSearchResultViewFactory;
-import com.wrld.widgets.searchbox.SearchModuleFactory;
 import com.wrld.widgets.searchbox.SpoofSuggestionProvider;
 import com.wrld.widgets.searchbox.api.DefaultSearchResultViewFactory;
 import com.wrld.searchproviders.WrldPoiSearchProvider;
@@ -33,11 +36,11 @@ import com.wrld.widgets.searchbox.menu.SearchBoxMenuGroup;
 import com.wrld.widgets.searchbox.menu.SearchBoxMenuItem;
 import com.wrld.widgets.ui.TextHighlighter;
 
+import java.util.List;
+
 public class SearchboxActivity extends AppCompatActivity {
 
     private MapView m_mapView;
-
-    private ViewGroup m_searchView;
 
     private SearchModule m_searchModule;
 
@@ -82,8 +85,7 @@ public class SearchboxActivity extends AppCompatActivity {
             @Override
             public void onMapReady(final EegeoMap map) {
                 ViewGroup uiLayout = (ViewGroup) getLayoutInflater().inflate(R.layout.searchbox_activity_ui, m_mapView, true);
-                m_searchView = (ViewGroup) uiLayout.findViewById(R.id.searchbox_ui);
-                m_searchModule = SearchModuleFactory.create(m_searchView);
+                m_searchModule = (SearchModule)uiLayout.findViewById(R.id.search_module);
                 int matchedTextColor = ContextCompat.getColor(context, com.wrld.widgets.R.color.searchbox_autcomplete_list_header_font_matched);
 
 				//TODO use another suggestion factory 
@@ -107,8 +109,43 @@ public class SearchboxActivity extends AppCompatActivity {
                 SearchBoxMenuGroup locations = m_searchModule.addGroup("Locations");
                 locations.add(createLocations());
                 locations.addOnClickListenerToAllChildren(jumpToLocation(map, m_searchModule));
+
+                ImageButton button = (ImageButton) uiLayout.findViewById(R.id.button);
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        displaySpeechRecognizer();
+                    }
+                });
             }
         });
+    }
+
+    private static final int SPEECH_REQUEST_CODE = 0;
+
+    // Create an intent that can start the Speech Recognizer activity
+    private void displaySpeechRecognizer() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+// Start the activity, the intent will be populated with the speech text
+        startActivityForResult(intent, SPEECH_REQUEST_CODE);
+    }
+
+    // This callback is invoked when the Speech Recognizer returns.
+// This is where you process the intent and extract the speech text from the intent.
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
+            List<String> results = data.getStringArrayListExtra(
+                    RecognizerIntent.EXTRA_RESULTS);
+            String spokenText = results.get(0);
+            // Do something with spokenText
+            m_searchModule.doSearch(spokenText);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private SearchBoxMenuItem.OnClickListener jumpToLocation(final EegeoMap map, final SearchModule searchModule){
