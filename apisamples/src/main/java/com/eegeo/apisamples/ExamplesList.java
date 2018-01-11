@@ -8,6 +8,9 @@ public final class ExamplesList {
     public static final ExampleContainer[] Examples = {
             new ExampleContainer(R.string.basic_example_label,
                     R.string.basic_example_description,
+                    ListViewMapActivity.class),
+            new ExampleContainer(R.string.basic_example_label,
+                    R.string.basic_example_description,
                     BasicMapActivity.class),
             new ExampleContainer(R.string.searchbox_example_label,
                     R.string.searchbox_example_description,

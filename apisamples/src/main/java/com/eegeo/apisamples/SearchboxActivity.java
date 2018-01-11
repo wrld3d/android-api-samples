@@ -20,6 +20,7 @@ import com.wrld.searchproviders.ErrorHandler;
 import com.wrld.searchproviders.YelpSearchProvider;
 import com.wrld.searchproviders.YelpSearchResultViewFactory;
 import com.wrld.widgets.searchbox.SearchModuleFactory;
+import com.wrld.widgets.searchbox.SpoofSuggestionProvider;
 import com.wrld.widgets.searchbox.api.DefaultSearchResultViewFactory;
 import com.wrld.searchproviders.WrldPoiSearchProvider;
 import com.wrld.widgets.searchbox.api.DefaultSuggestionViewFactory;
@@ -96,8 +97,10 @@ public class SearchboxActivity extends AppCompatActivity {
                 // Sets up and authenticates with Yelp.  You need a Yelp API key to use Yelp.
                 SuggestionProvider yelpSearchProvider = createYelpSearchProvider(context, map);
 
+                SuggestionProvider spoofProvider = new SpoofSuggestionProvider("Spoof", m_defaultSuggestionViewFactory, 50, 100);
+
                 m_searchModule.setSearchProviders(new SearchProvider[]{poiSearchProvider, yelpSearchProvider});
-                m_searchModule.setSuggestionProviders(new SuggestionProvider[]{poiSearchProvider, yelpSearchProvider});
+                m_searchModule.setSuggestionProviders(new SuggestionProvider[]{poiSearchProvider, yelpSearchProvider, spoofProvider});
 
                 //m_searchModule.setSearchProviders(new SearchProvider[]{poiSearchProvider, poiSearchProvider, poiSearchProvider, poiSearchProvider, yelpSearchProvider});
                 //m_searchModule.setSuggestionProviders(new SuggestionProvider[]{poiSearchProvider, poiSearchProvider, poiSearchProvider, poiSearchProvider, yelpSearchProvider});
