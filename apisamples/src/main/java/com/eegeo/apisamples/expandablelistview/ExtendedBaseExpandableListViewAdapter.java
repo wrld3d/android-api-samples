@@ -27,7 +27,7 @@ public class ExtendedBaseExpandableListViewAdapter extends BaseExpandableListAda
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return "Child" + childPosition;
+        return "Group " + groupPosition + " Child " + childPosition;
     }
 
     @Override

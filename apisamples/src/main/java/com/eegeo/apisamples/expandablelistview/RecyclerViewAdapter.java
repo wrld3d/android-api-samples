@@ -24,19 +24,21 @@ import android.widget.TextView;
 
 import com.eegeo.apisamples.R;
 
+import java.util.ArrayList;
+
 /**
  * Provide views to RecyclerView with data from mDataSet.
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
 
-    private String[] mDataSet;
+    private ArrayList<String[]> mDataSet;
 
     // BEGIN_INCLUDE(recyclerViewSampleViewHolder)
     /**
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView textView;
 
         public ViewHolder(View v) {
@@ -53,6 +55,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView getTextView() {
             return textView;
         }
+
+        // Handles the row being being clicked
+        @Override
+        public void onClick(View view) {
+            android.util.Log.v("MOD", "clicked view");
+        }
     }
     // END_INCLUDE(recyclerViewSampleViewHolder)
 
@@ -60,17 +68,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      * Initialize the dataset of the Adapter.
      */
     public RecyclerViewAdapter() {
-        int itemCount = 100;
-        mDataSet = new String[itemCount];
-        for(int i = 0; i < itemCount; ++i){
-            mDataSet[i] = "Item " + (i+1);
+        int groupCount = 10;
+        int itemCount = 10;
+        mDataSet = new ArrayList<String[]>();
+        for(int group = 0; group < groupCount; ++group) {
+            String[] children = new String[itemCount];
+            for (int child = 0; child < itemCount; ++child) {
+                children[child] = "Item " + (child + 1);
+            }
+            mDataSet.add(children);
         }
     }
 
     // BEGIN_INCLUDE(recyclerViewOnCreateViewHolder)
     // Create new views (invoked by the layout manager)
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, final int viewType) {
         // Create a new view.
         View v = new TextView(viewGroup.getContext());
         v.setBackgroundColor(Color.WHITE);
@@ -85,13 +98,54 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getTextView().setText(mDataSet[position]);
+        viewHolder.getTextView().setText(getChild(position));
     }
     // END_INCLUDE(recyclerViewOnBindViewHolder)
+
+    @Override
+    public int getItemViewType(int position){
+        return isGroup(position) ? 0 : 1;
+    }
+
+    private String getChild(final int position){
+        int count = 0;
+        for(int groupIndex = 0; groupIndex < mDataSet.size(); ++groupIndex){
+            if(position == count){
+                return "Group " + groupIndex;
+            }
+            ++count;
+            String[] group = mDataSet.get(groupIndex);
+            int positionInGroup = position - count;
+            if(positionInGroup < group.length){
+                return group[positionInGroup];
+            }
+            count += group.length;
+        }
+
+        return "";
+    }
+
+    private boolean isGroup(final int position){
+        int count = 0;
+        for(int groupIndex = 0; groupIndex < mDataSet.size(); ++groupIndex){
+            if(count == position){
+                return true;
+            }
+            if(position < count){
+                return false;
+            }
+            count +=  mDataSet.get(groupIndex).length + 1;
+        }
+        return false;
+    }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        int count = 0;
+        for(String[] group : mDataSet){
+            count += group.length;
+        }
+        return count + mDataSet.size();
     }
 }

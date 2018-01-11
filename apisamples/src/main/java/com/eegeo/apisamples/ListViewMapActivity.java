@@ -82,7 +82,7 @@ public class ListViewMapActivity extends SoftBackButtonActivity {
     private void setupExpandableListView(){
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.wilbur);
         listView.setVisibility(View.VISIBLE);
-        //expandableListView.setLayoutTransition(createLayoutTransition());
+        listView.setLayoutTransition(createLayoutTransition());
         listView.setAdapter(new ExtendedBaseExpandableListViewAdapter());
     }
 
