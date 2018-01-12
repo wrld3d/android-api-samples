@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:wrld="http://schemas.android.com/apk/com.wrld.widgets.searchbox"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ExpandableListView
-        android:id="@+id/wilbur"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:visibility="gone"/>
+        android:orientation="horizontal">
 
-    <android.support.v7.widget.RecyclerView
+        <SearchView
+            android:id="@+id/willard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/gladys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
+    </LinearLayout>
+
+    <fragment
+        android:name="com.wrld.widgets.searchbox.SearchModule"
         android:id="@+id/edbert"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/pale_green"
-        android:visibility="gone"
-        android:layoutAnimation="@anim/layout_animation_fall_down" />
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="28dp"
+        wrld:maxSuggestions="2"
+        wrld:maxResults="4">
+    </fragment>
+
 </LinearLayout>

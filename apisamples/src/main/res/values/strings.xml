@@ -131,4 +131,6 @@
     <string name="world_point_add_positioner_activity">Lat:%1$.3f Long:%2$.3f Alt: %3$.3fm</string>
     <string name="not_visible_add_positioner_activity">Not visible.</string>
 
+    <string name="voice_prompt_text">Hello Barry</string>
+
 </resources>

@@ -85,7 +85,7 @@ public class SearchboxActivity extends AppCompatActivity {
             @Override
             public void onMapReady(final EegeoMap map) {
                 ViewGroup uiLayout = (ViewGroup) getLayoutInflater().inflate(R.layout.searchbox_activity_ui, m_mapView, true);
-                m_searchModule = (SearchModule)uiLayout.findViewById(R.id.search_module);
+                m_searchModule = (SearchModule)getSupportFragmentManager().findFragmentById (R.id.search_module);
                 int matchedTextColor = ContextCompat.getColor(context, com.wrld.widgets.R.color.searchbox_autcomplete_list_header_font_matched);
 
 				//TODO use another suggestion factory 
@@ -110,14 +110,14 @@ public class SearchboxActivity extends AppCompatActivity {
                 locations.add(createLocations());
                 locations.addOnClickListenerToAllChildren(jumpToLocation(map, m_searchModule));
 
-                ImageButton button = (ImageButton) uiLayout.findViewById(R.id.button);
+                /*ImageButton button = (ImageButton) uiLayout.findViewById(R.id.button);
 
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         displaySpeechRecognizer();
                     }
-                });
+                });*/
             }
         });
     }

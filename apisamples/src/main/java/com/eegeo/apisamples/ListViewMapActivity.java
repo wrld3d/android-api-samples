@@ -1,120 +1,73 @@
 package com.eegeo.apisamples;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.LayoutTransition;
-import android.animation.ObjectAnimator;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.annotation.RequiresApi;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ExpandableListView;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.SearchView;
 
-import com.eegeo.apisamples.expandablelistview.ExtendedBaseExpandableListViewAdapter;
-import com.eegeo.apisamples.expandablelistview.RecyclerViewAdapter;
+import java.util.List;
 
 public class ListViewMapActivity extends SoftBackButtonActivity {
+
+    private static final int SPEECH_REQUEST_CODE = 0;
+
+    private SearchView m_searchView;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // The MapView is contained in a layout xml
         setContentView(R.layout.list_view_map_activity);
 
-        //setupExpandableListView();
-        setupRecyclerView();
-    }
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        m_searchView = (SearchView) findViewById(R.id.willard);
+        ComponentName componentName = getComponentName();
+        SearchableInfo searchableInfo = searchManager.getSearchableInfo(componentName);
+        m_searchView.setSearchableInfo(searchableInfo);
+        m_searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 
-    private void setupRecyclerView(){
-        RecyclerView listView = (RecyclerView) findViewById(R.id.edbert);
-        listView.setVisibility(View.VISIBLE);
+        ImageButton button = (ImageButton) findViewById(R.id.gladys);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        listView.setLayoutManager(linearLayoutManager);
-
-        listView.setAdapter(new RecyclerViewAdapter());
-
-        //addGroupDecoration(listView);
-    }
-
-    private void addGroupDecoration(RecyclerView recyclerView)
-    {
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-
-            private int textSize = 50;
-            private int groupSpacing = 100;
-            private int itemsInGroup = 3;
-
-            private Paint paint = new Paint();
-            {
-                paint.setTextSize(textSize);
-            }
-
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
-                for (int i = 0; i < parent.getChildCount(); i++) {
-                    View view = parent.getChildAt(i);
-                    int position = parent.getChildAdapterPosition(view);
-                    if (position % itemsInGroup == 0) {
-                        c.drawText("Group " + (position / itemsInGroup + 1), view.getLeft(),
-                                view.getTop() - groupSpacing / 2 + textSize / 3, paint);
-                    }
-                }
-            }
-
-            @Override
-            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                if (parent.getChildAdapterPosition(view) % itemsInGroup == 0) {
-                    outRect.set(0, groupSpacing, 0, 0);
-                }
+            public void onClick(View v) {
+                displaySpeechRecognizer();
             }
         });
     }
 
-    private void setupExpandableListView(){
-        ExpandableListView listView = (ExpandableListView) findViewById(R.id.wilbur);
-        listView.setVisibility(View.VISIBLE);
-        listView.setLayoutTransition(createLayoutTransition());
-        listView.setAdapter(new ExtendedBaseExpandableListViewAdapter());
+    // Create an intent that can start the Speech Recognizer activity
+    private void displaySpeechRecognizer() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+// Start the activity, the intent will be populated with the speech text
+        startActivityForResult(intent, SPEECH_REQUEST_CODE);
     }
 
-    private LayoutTransition createLayoutTransition(){
-        LayoutTransition layoutTransition = new LayoutTransition();
-
-        ObjectAnimator animIn = ObjectAnimator.ofFloat(null, "scaleY", 0f, 1f);
-        ObjectAnimator animOut = ObjectAnimator.ofFloat(null, "scaleY", 1f, 0f);
-
-        animIn.setDuration(1000);
-        animOut.setDuration(1000);
-
-        animIn.addListener(new AnimatorListenerAdapter() {
-            public void onAnimationStart(Animator anim) {
-                TextView view = (TextView) ((ObjectAnimator) anim).getTarget();
-            }
-        });
-
-        layoutTransition.enableTransitionType(LayoutTransition.APPEARING);
-        layoutTransition.enableTransitionType(LayoutTransition.CHANGE_APPEARING);
-        layoutTransition.enableTransitionType(LayoutTransition.CHANGING);
-        layoutTransition.enableTransitionType(LayoutTransition.CHANGE_DISAPPEARING);
-        layoutTransition.enableTransitionType(LayoutTransition.DISAPPEARING);
-
-        layoutTransition.setAnimator(LayoutTransition.APPEARING, animIn);
-        layoutTransition.setAnimator(LayoutTransition.CHANGE_APPEARING, animIn);
-        layoutTransition.setAnimator(LayoutTransition.CHANGING, animIn);
-        layoutTransition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, animOut);
-        layoutTransition.setAnimator(LayoutTransition.DISAPPEARING, animOut);
-
-        return layoutTransition;
+    // This callback is invoked when the Speech Recognizer returns.
+// This is where you process the intent and extract the speech text from the intent.
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
+            List<String> results = data.getStringArrayListExtra(
+                    RecognizerIntent.EXTRA_RESULTS);
+            String spokenText = results.get(0);
+            m_searchView.setQuery(spokenText, true);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
+
 
     @Override
     protected void onResume() {
@@ -131,4 +84,17 @@ public class ListViewMapActivity extends SoftBackButtonActivity {
         super.onDestroy();
     }
 
+    @Override
+    public void onNewIntent(Intent intent){
+        setIntent(intent);
+        if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            if(query != null) {
+                m_searchView.setQuery(query, false);
+            }
+        }
+        if(Intent.ACTION_VIEW.equals(intent.getAction())) {
+            Uri data = intent.getData();
+        }
+    }
 }
