@@ -67,7 +67,12 @@ public class MultipartRouteActivity extends WrldExampleActivity implements OnRou
 
     @Override
     public void onRoutingQueryCompleted(RoutingQuery query, RoutingQueryResponse response) {
-        Toast.makeText(MultipartRouteActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        if(response.succeeded()) {
+            Toast.makeText(MultipartRouteActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(MultipartRouteActivity.this, "Failed to find routes", Toast.LENGTH_LONG).show();
+        }
 
         for (Route route: response.getResults()) {
             for (RouteSection section: route.sections) {
