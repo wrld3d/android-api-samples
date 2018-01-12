@@ -205,7 +205,7 @@ public class SearchboxActivity extends AppCompatActivity {
         // Yelp search requires authenticating with a Yelp API client id and secret.
         // This needs to be called before any search results or autocomplete suggestions are requested.
         // The keys can be obtained from https://www.yelp.com/developers/v3/manage_app
-        yelpSearch.authenticate(getString(R.string.yelp_client_id), getString(R.string.yelp_client_secret));
+        yelpSearch.authenticate(getString(R.string.yelp_api_key));
 
         yelpSearch.setResultViewFactory(yelpResultViewFactory);
         yelpSearch.setSuggestionViewFactory(m_defaultSuggestionViewFactory);

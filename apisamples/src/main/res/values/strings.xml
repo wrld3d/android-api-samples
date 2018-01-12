@@ -2,8 +2,7 @@
     <string name="app_name">WRLD Android API Samples</string>
     <string name="app_short_name">WRLD Samples</string>
     <string name="eegeo_api_key">obtain an api key by signing up at wrld3d.com and insert here</string>
-    <string name="yelp_client_id">Enter your yelp client id here</string>
-    <string name="yelp_client_secret">Enter your yelp client secret here</string>
+    <string name="yelp_api_key">insert your Yelp API key here</string>
     <string name="basic_example_label">Embed a 3D map</string>
     <string name="basic_example_description">How to embed a 3D map view in an Android App</string>
     <string name="searchbox_example_label">Add a search box</string>
