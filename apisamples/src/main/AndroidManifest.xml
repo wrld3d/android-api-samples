@@ -17,10 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <provider
-            android:name="com.wrld.widgets.searchbox.api.SuggestionContentProvider"
-            android:authorities="com.wrld.widgets.searchbox.api.suggestions" />
-
         <activity
             android:name="com.eegeo.apisamples.MainActivity"
             android:label="@string/app_short_name">
@@ -63,7 +59,6 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
-                <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
