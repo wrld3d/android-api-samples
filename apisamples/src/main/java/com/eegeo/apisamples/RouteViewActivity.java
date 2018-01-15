@@ -37,7 +37,7 @@ public class RouteViewActivity extends WrldExampleActivity implements OnRoutingQ
         super.onCreate(savedInstanceState);
 
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
-        setContentView(R.layout.routing_indoors_example_activity);
+        setContentView(R.layout.routing_example_activity);
 
         m_mapView = (MapView) findViewById(R.id.routing_example_mapview);
         m_mapView.onCreate(savedInstanceState);
