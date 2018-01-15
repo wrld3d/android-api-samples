@@ -18,8 +18,8 @@
         android:theme="@style/AppTheme">
 
         <provider
-            android:name="com.eegeo.apisamples.MyCustomSearchProvider"
-            android:authorities="com.eegeo.apisamples.MyCustomSearchProvider" />
+            android:name="com.wrld.widgets.searchbox.api.SuggestionContentProvider"
+            android:authorities="com.wrld.widgets.searchbox.api.suggestions" />
 
         <activity
             android:name="com.eegeo.apisamples.MainActivity"

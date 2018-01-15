@@ -153,16 +153,7 @@ public class SearchboxActivity extends AppCompatActivity {
     @Override
     public void onNewIntent(Intent intent){
         setIntent(intent);
-        if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            if(query != null) {
-                m_searchModule.doSearch(query);
-            }
-        }
-        if(Intent.ACTION_VIEW.equals(intent.getAction())) {
-            Uri data = intent.getData();
-            m_searchModule.doSearch(data.toString());
-        }
+        m_searchModule.handleSearchIntent(intent);
     }
 
     private SearchBoxMenuItem.OnClickListener jumpToLocation(final EegeoMap map, final SearchModule searchModule){
