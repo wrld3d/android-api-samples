@@ -17,7 +17,7 @@ import com.eegeo.mapapi.indoors.OnIndoorExitedListener;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class AnimateCameraToIndoorActivity extends SoftBackButtonActivity {
+public class AnimateCameraToIndoorActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
