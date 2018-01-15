@@ -5,7 +5,6 @@ import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ImageView;
@@ -20,7 +19,7 @@ import com.eegeo.mapapi.positioner.Positioner;
 import com.eegeo.mapapi.positioner.PositionerOptions;
 import com.eegeo.ui.util.ViewAnchor;
 
-public class PositionCodeCreatedViewOnMapActivity extends SoftBackButtonActivity {
+public class PositionCodeCreatedViewOnMapActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

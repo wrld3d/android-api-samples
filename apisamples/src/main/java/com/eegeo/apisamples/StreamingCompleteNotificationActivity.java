@@ -2,7 +2,6 @@ package com.eegeo.apisamples;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -10,7 +9,7 @@ import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class StreamingCompleteNotificationActivity extends SoftBackButtonActivity {
+public class StreamingCompleteNotificationActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
 

@@ -2,7 +2,6 @@ package com.eegeo.apisamples;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.eegeo.mapapi.EegeoApi;
@@ -12,7 +11,7 @@ import com.eegeo.mapapi.camera.CameraPosition;
 import com.eegeo.mapapi.map.EegeoMapOptions;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
-public class EegeoMapOptionsActivity extends SoftBackButtonActivity {
+public class EegeoMapOptionsActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
 

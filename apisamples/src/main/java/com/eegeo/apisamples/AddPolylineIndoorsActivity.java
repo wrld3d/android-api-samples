@@ -3,7 +3,6 @@ package com.eegeo.apisamples;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.graphics.ColorUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 
 import com.eegeo.indoors.IndoorMapView;
@@ -18,7 +17,7 @@ import com.eegeo.mapapi.polylines.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddPolylineIndoorsActivity extends SoftBackButtonActivity {
+public class AddPolylineIndoorsActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

@@ -2,9 +2,6 @@ package com.eegeo.apisamples;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -14,7 +11,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 
 import java.util.Locale;
 
-public class QueryCameraActivity extends SoftBackButtonActivity {
+public class QueryCameraActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
 

@@ -9,7 +9,6 @@ import android.support.annotation.RequiresApi;
 import android.support.annotation.UiThread;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.view.GestureDetectorCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,7 +25,7 @@ import com.eegeo.mapapi.picking.PickResult;
 import com.eegeo.mapapi.util.Ready;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
-public class PickingBuildingsActivity extends SoftBackButtonActivity {
+public class PickingBuildingsActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

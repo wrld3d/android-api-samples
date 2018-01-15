@@ -2,7 +2,6 @@ package com.eegeo.apisamples;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -26,7 +25,7 @@ import com.eegeo.mapapi.widgets.RouteView;
 import com.eegeo.mapapi.widgets.RouteViewOptions;
 
 
-public class RouteViewActivity extends SoftBackButtonActivity implements OnRoutingQueryCompletedListener {
+public class RouteViewActivity extends WrldExampleActivity implements OnRoutingQueryCompletedListener {
 
     private MapView m_mapView;
     private IndoorMapView m_indoorMapView = null;
@@ -38,7 +37,7 @@ public class RouteViewActivity extends SoftBackButtonActivity implements OnRouti
         super.onCreate(savedInstanceState);
 
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
-        setContentView(R.layout.routing_indoors_example_activity);
+        setContentView(R.layout.routing_example_activity);
 
         m_mapView = (MapView) findViewById(R.id.routing_example_mapview);
         m_mapView.onCreate(savedInstanceState);

@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SearchExampleActivity extends SoftBackButtonActivity implements OnPoiSearchCompletedListener {
+public class SearchExampleActivity extends WrldExampleActivity implements OnPoiSearchCompletedListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

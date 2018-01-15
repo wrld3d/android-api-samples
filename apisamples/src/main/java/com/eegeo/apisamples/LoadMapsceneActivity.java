@@ -12,7 +12,7 @@ import com.eegeo.mapapi.services.mapscene.MapsceneRequestResponse;
 import com.eegeo.mapapi.services.mapscene.MapsceneService;
 import com.eegeo.mapapi.services.mapscene.OnMapsceneRequestCompletedListener;
 
-public class LoadMapsceneActivity extends SoftBackButtonActivity implements OnMapsceneRequestCompletedListener
+public class LoadMapsceneActivity extends WrldExampleActivity implements OnMapsceneRequestCompletedListener
 {
 
     private MapView m_mapView;

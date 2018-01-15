@@ -3,7 +3,6 @@ package com.eegeo.apisamples;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.graphics.ColorUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -29,7 +28,7 @@ import com.eegeo.mapapi.polylines.Polyline;
 import com.eegeo.mapapi.polylines.PolylineOptions;
 
 
-public class IndoorRouteActivity extends SoftBackButtonActivity implements OnRoutingQueryCompletedListener {
+public class IndoorRouteActivity extends WrldExampleActivity implements OnRoutingQueryCompletedListener {
 
     private MapView m_mapView;
     private IndoorMapView m_indoorMapView = null;
@@ -68,7 +67,12 @@ public class IndoorRouteActivity extends SoftBackButtonActivity implements OnRou
 
     @Override
     public void onRoutingQueryCompleted(RoutingQuery query, RoutingQueryResponse response) {
-        Toast.makeText(IndoorRouteActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        if(response.succeeded()) {
+            Toast.makeText(IndoorRouteActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(IndoorRouteActivity.this, "Failed to find routes", Toast.LENGTH_LONG).show();
+        }
 
         for (Route route: response.getResults()) {
             for (RouteSection section: route.sections) {

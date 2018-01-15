@@ -14,7 +14,7 @@ import com.eegeo.mapapi.services.poi.PoiService;
 import com.eegeo.mapapi.services.poi.TextSearchOptions;
 
 
-public class CancelSearchActivity extends SoftBackButtonActivity implements OnPoiSearchCompletedListener {
+public class CancelSearchActivity extends WrldExampleActivity implements OnPoiSearchCompletedListener {
 
     private MapView m_mapView;
 

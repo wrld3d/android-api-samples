@@ -1,10 +1,7 @@
 package com.eegeo.apisamples;
 
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 
 import com.eegeo.mapapi.EegeoApi;
@@ -13,7 +10,7 @@ import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.indoors.IndoorMapView;
 
-public class UXIndoorExampleActivity extends SoftBackButtonActivity {
+public class UXIndoorExampleActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private IndoorMapView m_interiorView = null;
