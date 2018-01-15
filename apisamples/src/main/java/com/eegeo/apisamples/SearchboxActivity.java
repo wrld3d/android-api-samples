@@ -1,6 +1,8 @@
 package com.eegeo.apisamples;
 
+import android.app.SearchManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v4.content.ContextCompat;
@@ -146,6 +148,21 @@ public class SearchboxActivity extends AppCompatActivity {
             m_searchModule.doSearch(spokenText);
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onNewIntent(Intent intent){
+        setIntent(intent);
+        if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            if(query != null) {
+                m_searchModule.doSearch(query);
+            }
+        }
+        if(Intent.ACTION_VIEW.equals(intent.getAction())) {
+            Uri data = intent.getData();
+            m_searchModule.doSearch(data.toString());
+        }
     }
 
     private SearchBoxMenuItem.OnClickListener jumpToLocation(final EegeoMap map, final SearchModule searchModule){
