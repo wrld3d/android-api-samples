@@ -12,10 +12,6 @@
     <string name="move_camera_example_description">Simple camera movement</string>
     <string name="animate_camera_example_label">Animate the camera</string>
     <string name="animate_camera_example_description">Move the camera with animation</string>
-    <string name="move_camera_to_indoor_example_label">Move the camera to an indoor map</string>
-    <string name="move_camera_to_indoor_example_description">Move the map camera to a point on an indoor map.</string>
-    <string name="animate_camera_to_indoor_example_label">Animate the camera to an indoor map</string>
-    <string name="animate_camera_to_indoor_example_description">Move the map camera with animation to a point on an indoor map.</string>
     <string name="framing_camera_example_label">Frame an area</string>
     <string name="framing_camera_example_description">Move the camera to frame an area</string>
     <string name="query_camera_example_label">Query camera location and zoom</string>

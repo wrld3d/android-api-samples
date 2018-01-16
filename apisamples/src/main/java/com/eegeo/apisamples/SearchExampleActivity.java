@@ -47,17 +47,17 @@ public class SearchExampleActivity extends WrldExampleActivity implements OnPoiS
                 PoiService poiService = map.createPoiService();
 
                 poiService.searchText(
-                        new TextSearchOptions("free", map.getCameraPosition().target)
+                        new TextSearchOptions("free", map.getCameraPosition().target.toLatLng())
                         .radius(1000.0)
                         .number(60)
                         .onPoiSearchCompletedListener(listener));
 
                 poiService.searchTag(
-                        new TagSearchOptions("coffee", map.getCameraPosition().target)
+                        new TagSearchOptions("coffee", map.getCameraPosition().target.toLatLng())
                         .onPoiSearchCompletedListener(listener));
 
                 poiService.searchAutocomplete(
-                        new AutocompleteOptions("auto", map.getCameraPosition().target)
+                        new AutocompleteOptions("auto", map.getCameraPosition().target.toLatLng())
                         .onPoiSearchCompletedListener(listener));
             }
         });
