@@ -67,25 +67,6 @@ public class OutdoorRouteActivity extends WrldExampleActivity implements OnRouti
         else{
             Toast.makeText(OutdoorRouteActivity.this, "Failed to find routes", Toast.LENGTH_LONG).show();
         }
-
-        for (Route route: response.getResults()) {
-            for (RouteSection section: route.sections) {
-                for (RouteStep step: section.steps) {
-                    if (step.path.size() < 2) {
-                        continue;
-                    }
-
-                    PolylineOptions options = new PolylineOptions().color(ColorUtils.setAlphaComponent(Color.RED, 128));
-
-                    for (LatLng point: step.path) {
-                        options.add(point);
-                    }
-
-                    Polyline routeLine = m_eegeoMap.addPolyline(options);
-                    m_routeLines.add(routeLine);
-                }
-            }
-        }
     }
 
     @Override
