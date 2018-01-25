@@ -73,6 +73,23 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
+            android:name="com.eegeo.apisamples.MoveCameraToIndoorActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/move_camera_to_indoor_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.AnimateCameraToIndoorActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/animate_camera_to_indoor_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
             android:name="com.eegeo.apisamples.QueryCameraActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/query_camera_example_label">
