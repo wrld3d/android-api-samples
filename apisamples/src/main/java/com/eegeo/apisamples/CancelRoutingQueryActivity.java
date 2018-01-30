@@ -1,7 +1,6 @@
 package com.eegeo.apisamples;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.eegeo.mapapi.EegeoApi;
@@ -17,7 +16,7 @@ import com.eegeo.mapapi.services.routing.RoutingQueryResponse;
 import com.eegeo.mapapi.services.routing.RoutingQuery;
 
 
-public class CancelRoutingQueryActivity extends SoftBackButtonActivity implements OnRoutingQueryCompletedListener {
+public class CancelRoutingQueryActivity extends WrldExampleActivity implements OnRoutingQueryCompletedListener {
 
     private MapView m_mapView;
 

@@ -3,7 +3,6 @@ package com.eegeo.apisamples;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 
 import com.eegeo.indoors.IndoorMapView;
@@ -14,7 +13,7 @@ import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.bluesphere.BlueSphere;
 
-public class BlueSphereIndoorsActivity extends SoftBackButtonActivity {
+public class BlueSphereIndoorsActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

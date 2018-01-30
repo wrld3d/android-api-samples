@@ -1,13 +1,13 @@
 package com.eegeo.apisamples;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.view.View;
-import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.eegeo.mapapi.EegeoApi;
@@ -23,7 +23,7 @@ import com.eegeo.ui.util.ViewAnchor;
 
 import static com.eegeo.mapapi.geometry.ElevationMode.HeightAboveGround;
 
-public class PositionViewOnMapActivity extends SoftBackButtonActivity {
+public class PositionViewOnMapActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -151,4 +151,6 @@ public class PositionViewOnMapActivity extends SoftBackButtonActivity {
             }
         }
     }
+
+
 }

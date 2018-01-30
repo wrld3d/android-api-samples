@@ -16,9 +16,12 @@ import com.eegeo.mapapi.services.poi.PoiService;
 import com.eegeo.mapapi.services.poi.TagSearchOptions;
 import com.eegeo.mapapi.services.poi.TextSearchOptions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class SearchExampleActivity extends SoftBackButtonActivity implements OnPoiSearchCompletedListener {
+public class SearchExampleActivity extends WrldExampleActivity implements OnPoiSearchCompletedListener {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -44,17 +47,17 @@ public class SearchExampleActivity extends SoftBackButtonActivity implements OnP
                 PoiService poiService = map.createPoiService();
 
                 poiService.searchText(
-                        new TextSearchOptions("free", map.getCameraPosition().target.toLatLng())
+                        new TextSearchOptions("free", map.getCameraPosition().target)
                         .radius(1000.0)
                         .number(60)
                         .onPoiSearchCompletedListener(listener));
 
                 poiService.searchTag(
-                        new TagSearchOptions("coffee", map.getCameraPosition().target.toLatLng())
+                        new TagSearchOptions("coffee", map.getCameraPosition().target)
                         .onPoiSearchCompletedListener(listener));
 
                 poiService.searchAutocomplete(
-                        new AutocompleteOptions("auto", map.getCameraPosition().target.toLatLng())
+                        new AutocompleteOptions("auto", map.getCameraPosition().target)
                         .onPoiSearchCompletedListener(listener));
             }
         });
@@ -64,12 +67,37 @@ public class SearchExampleActivity extends SoftBackButtonActivity implements OnP
     public void onPoiSearchCompleted(PoiSearchResponse response) {
         List<PoiSearchResult> results = response.getResults();
 
+        // Icon/Tag mapping, see:
+        // https://github.com/wrld3d/wrld-icon-tools/blob/master/data/search_tags.json
+        Map<String,String> iconKeyTagDict = new HashMap<String, String>() {
+            {
+                put("park", "park");
+                put("coffee", "coffee");
+                put("general", "general");
+            }
+        };
+
         if (response.succeeded() && results.size() > 0) {
             for (PoiSearchResult poi : results) {
-                m_eegeoMap.addMarker(new MarkerOptions()
-                        .labelText(poi.title)
-                        .position(poi.latLng)
-                        .iconKey(poi.tags));
+
+                String iconKey = "pin";
+                String[] tags = poi.tags.split(" ");
+                for (String tag : tags) {
+                    if (iconKeyTagDict.containsKey(tag)) {
+                        iconKey = iconKeyTagDict.get(tag);
+                    }
+                }
+
+                MarkerOptions options = new MarkerOptions()
+                    .labelText(poi.title)
+                    .position(poi.latLng)
+                    .iconKey(iconKey);
+
+                if (poi.indoor) {
+                    options.indoor(poi.indoorId, poi.floorId);
+                }
+
+                m_eegeoMap.addMarker(options);
             }
         }
         else {

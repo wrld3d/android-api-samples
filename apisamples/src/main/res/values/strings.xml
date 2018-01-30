@@ -14,17 +14,21 @@
     <string name="move_camera_example_label">Move the camera</string>
     <string name="move_camera_example_description">Simple camera movement</string>
     <string name="animate_camera_example_label">Animate the camera</string>
-    <string name="animate_camera_example_description">Move the map camera with animation</string>
+    <string name="animate_camera_example_description">Move the camera with animation</string>
+    <string name="move_camera_to_indoor_example_label">Move the camera to an indoor map</string>
+    <string name="move_camera_to_indoor_example_description">Move the map camera to a point on an indoor map.</string>
+    <string name="animate_camera_to_indoor_example_label">Animate the camera to an indoor map</string>
+    <string name="animate_camera_to_indoor_example_description">Move the map camera with animation to a point on an indoor map.</string>
     <string name="framing_camera_example_label">Frame an area</string>
-    <string name="framing_camera_example_description">Move the map camera to frame an area</string>
+    <string name="framing_camera_example_description">Move the camera to frame an area</string>
     <string name="query_camera_example_label">Query camera location and zoom</string>
     <string name="query_camera_example_description">Obtain the current camera location and zoom level</string>
     <string name="picking_camera_example_label">Pick a point on the map</string>
-    <string name="picking_camera_example_description">Obtain the position coordinates of a point on the map that is tapped by the user</string>
+    <string name="picking_camera_example_description">Obtain the coordinates of a point on the map that is tapped by the user</string>
     <string name="exit_indoor_example_label">Enter and exit an indoor map</string>
     <string name="exit_indoor_example_description">Entering and exiting an indoor map</string>
     <string name="name_indoor_example_label">Query the name of an indoor map</string>
-    <string name="name_indoor_example_description">Display the name of an indoor map</string>
+    <string name="name_indoor_example_description">After entering an indoor map, display its name</string>
     <string name="move_floor_indoor_example_label">Control indoor map floors</string>
     <string name="move_floor_indoor_example_description">Move between indoor map floors</string>
     <string name="ux_floor_indoor_example_label">Animate indoor maps with a slider</string>
@@ -40,7 +44,7 @@
     <string name="add_indoor_marker_example_label">Add an indoor marker</string>
     <string name="add_indoor_marker_example_description">Display a marker on an indoor map</string>
     <string name="marker_change_text_example_label">Change the title of a marker</string>
-    <string name="marker_change_text_example_label_description">Alter text on a marker after adding to the map</string>
+    <string name="marker_change_text_example_label_description">Alter the text on a marker after adding to the map</string>
     <string name="marker_change_location_example_label">Change the location of a marker</string>
     <string name="marker_change_location_example_description">Alter the location of a marker after adding to the map</string>
     <string name="marker_tapped_notification_example_label">Select a marker</string>
@@ -85,7 +89,7 @@
     <string name="search_example_label">Search for POIs</string>
     <string name="search_example_description">Use the POI service to find POIs on the map matching a certain query</string>
     <string name="cancel_search_label">Cancel a POI search</string>
-    <string name="cancel_search_description">Cancel an ongoing search before it completes.</string>
+    <string name="cancel_search_description">Cancel an ongoing search before it completes</string>
     <string name="load_mapscene_label">"Load a Mapscene"</string>
     <string name="load_mapscene_description">"Use the Mapscene service to load and apply a mapscene"</string>
 

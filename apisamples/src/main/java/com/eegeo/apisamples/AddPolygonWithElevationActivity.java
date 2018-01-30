@@ -3,7 +3,6 @@ package com.eegeo.apisamples;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.graphics.ColorUtils;
-import android.support.v7.app.AppCompatActivity;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -13,7 +12,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.polygons.Polygon;
 import com.eegeo.mapapi.polygons.PolygonOptions;
 
-public class AddPolygonWithElevationActivity extends SoftBackButtonActivity {
+public class AddPolygonWithElevationActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;

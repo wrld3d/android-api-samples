@@ -3,7 +3,6 @@ package com.eegeo.apisamples;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.graphics.ColorUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -29,7 +28,7 @@ import com.eegeo.mapapi.polylines.Polyline;
 import com.eegeo.mapapi.polylines.PolylineOptions;
 
 
-public class MultipartRouteActivity extends SoftBackButtonActivity implements OnRoutingQueryCompletedListener {
+public class MultipartRouteActivity extends WrldExampleActivity implements OnRoutingQueryCompletedListener {
 
     private MapView m_mapView;
     private IndoorMapView m_indoorMapView = null;
@@ -68,29 +67,11 @@ public class MultipartRouteActivity extends SoftBackButtonActivity implements On
 
     @Override
     public void onRoutingQueryCompleted(RoutingQuery query, RoutingQueryResponse response) {
-        Toast.makeText(MultipartRouteActivity.this, "Found routes", Toast.LENGTH_LONG).show();
-
-        for (Route route: response.getResults()) {
-            for (RouteSection section: route.sections) {
-                for (RouteStep step: section.steps) {
-                    if (step.path.size() < 2) {
-                        continue;
-                    }
-
-                    PolylineOptions options = new PolylineOptions().color(ColorUtils.setAlphaComponent(Color.RED, 128));
-
-                    if (step.isIndoors) {
-                        options.indoor(step.indoorId, step.indoorFloorId);
-                    }
-
-                    for (LatLng point: step.path) {
-                        options.add(point);
-                    }
-
-                    Polyline routeLine = m_eegeoMap.addPolyline(options);
-                    m_routeLines.add(routeLine);
-                }
-            }
+        if(response.succeeded()) {
+            Toast.makeText(MultipartRouteActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(MultipartRouteActivity.this, "Failed to find routes", Toast.LENGTH_LONG).show();
         }
     }
 

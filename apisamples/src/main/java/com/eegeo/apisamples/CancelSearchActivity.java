@@ -14,7 +14,7 @@ import com.eegeo.mapapi.services.poi.PoiService;
 import com.eegeo.mapapi.services.poi.TextSearchOptions;
 
 
-public class CancelSearchActivity extends SoftBackButtonActivity implements OnPoiSearchCompletedListener {
+public class CancelSearchActivity extends WrldExampleActivity implements OnPoiSearchCompletedListener {
 
     private MapView m_mapView;
 
@@ -36,7 +36,7 @@ public class CancelSearchActivity extends SoftBackButtonActivity implements OnPo
                 PoiService poiService = map.createPoiService();
 
                 PoiSearch search = poiService.searchText(
-                        new TextSearchOptions("poi", map.getCameraPosition().target.toLatLng())
+                        new TextSearchOptions("poi", map.getCameraPosition().target)
                         .radius(1000.0)
                         .number(60)
                         .onPoiSearchCompletedListener(listener));
