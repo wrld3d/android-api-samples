@@ -7,6 +7,8 @@ import android.widget.Button;
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
+import com.eegeo.mapapi.camera.CameraUpdateFactory;
+import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.indoors.OnIndoorEnteredListener;
 import com.eegeo.mapapi.indoors.OnIndoorExitedListener;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
@@ -65,10 +67,14 @@ public class ExitIndoorExampleActivity extends WrldExampleActivity {
     }
 
     public void onClick(View view) {
-        if(m_indoors)
-        {
+        if (m_indoors) {
             m_eegeoMap.exitIndoorMap();
         } else {
+            LatLng indoorMapLatLng = new LatLng(
+                    Double.parseDouble(getString(R.string.indoor_start_lat)),
+                    Double.parseDouble(getString(R.string.indoor_start_lon)));
+            m_eegeoMap.moveCamera(CameraUpdateFactory.newLatLng(indoorMapLatLng));
+
             m_eegeoMap.enterIndoorMap("intercontinental_hotel_8628");
         }
     }
