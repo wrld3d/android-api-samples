@@ -20,4 +20,11 @@
         eegeo:camera_zoom="16"
         />
 
+    <fragment android:name="com.wrld.widgets.searchbox.WrldSearchWidget"
+        android:id="@+id/basic_searchwidget"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        eegeo:maxSuggestions="2"
+        eegeo:maxResults="4" />
+
 </RelativeLayout>

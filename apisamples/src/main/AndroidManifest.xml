@@ -49,21 +49,6 @@
                 android:resource="@xml/searchable"/>
         </activity>
         <activity
-            android:name="com.eegeo.apisamples.SearchboxActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="adjustNothing"
-            android:launchMode="singleTop"
-            android:label="@string/searchbox_example_label">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eegeo.apisamples.MainActivity"/>
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-            </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
-        <activity
             android:name="com.eegeo.apisamples.PositionViewOnMapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/position_view_on_map_example_label" >

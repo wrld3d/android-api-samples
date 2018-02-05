@@ -8,7 +8,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <fragment
+   <!-- <fragment
         android:name="com.wrld.widgets.searchbox.SearchModule"
         android:id="@+id/search_module"
         android:layout_width="350dp"
@@ -17,7 +17,7 @@
         android:layout_alignParentStart="true"
         android:layout_margin="28dp"
         wrld:maxSuggestions="2"
-        wrld:maxResults="4"/>
+        wrld:maxResults="4"/>-->
 
     <!--ImageButton
         android:id="@+id/button"
