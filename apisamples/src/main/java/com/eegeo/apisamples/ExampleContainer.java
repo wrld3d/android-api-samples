@@ -1,5 +1,6 @@
 package com.eegeo.apisamples;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
 public class ExampleContainer {
@@ -17,10 +18,10 @@ public class ExampleContainer {
     /**
      * Class for the example
      */
-    public final Class<? extends AppCompatActivity> activityClass;
+    public final Class<? extends Activity> activityClass;
 
     public ExampleContainer(
-            int titleResourceId, int descResourceId, Class<? extends AppCompatActivity> activityClass) {
+            int titleResourceId, int descResourceId, Class<? extends Activity> activityClass) {
         this.titleResourceId = titleResourceId;
         this.descResourceId = descResourceId;
         this.activityClass = activityClass;

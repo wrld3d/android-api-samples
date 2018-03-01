@@ -28,19 +28,10 @@
         <activity
             android:name="com.eegeo.apisamples.BasicMapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/basic_example_label">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eegeo.apisamples.MainActivity"/>
-        </activity>
-        <activity
-            android:name="com.eegeo.apisamples.ListViewMapActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/basic_example_label"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
-                <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

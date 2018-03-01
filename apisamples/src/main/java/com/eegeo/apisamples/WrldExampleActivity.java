@@ -1,12 +1,13 @@
 package com.eegeo.apisamples;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
-public class WrldExampleActivity extends AppCompatActivity {
+public class WrldExampleActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
