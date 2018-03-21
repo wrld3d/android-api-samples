@@ -8,6 +8,7 @@ import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.geometry.LatLngAlt;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
+import com.eegeo.mapapi.markers.Marker;
 import com.eegeo.mapapi.markers.MarkerOptions;
 
 public class PickingCameraActivity extends WrldExampleActivity {
@@ -51,6 +52,7 @@ public class PickingCameraActivity extends WrldExampleActivity {
 
     public class OnMapClickedHandler implements EegeoMap.OnMapClickListener {
         private EegeoMap m_eegeoMap;
+        private Marker m_marker = null;
 
         OnMapClickedHandler(EegeoMap eegeoMap) {
             this.m_eegeoMap = eegeoMap;
@@ -58,9 +60,20 @@ public class PickingCameraActivity extends WrldExampleActivity {
 
         @Override
         public void onMapClick(LatLngAlt point) {
-            m_eegeoMap.addMarker(new MarkerOptions()
-                    .position(point.toLatLng())
-                    .labelText("Picked"));
+            if (m_marker != null) {
+                m_eegeoMap.removeMarker(m_marker);
+                m_marker = null;
+            }
+
+            MarkerOptions markerOptions = new MarkerOptions()
+                                            .position(point.toLatLng())
+                                            .labelText("Picked");
+
+            if (m_eegeoMap.getActiveIndoorMap() != null) {
+                markerOptions.indoor(m_eegeoMap.getActiveIndoorMap().id, m_eegeoMap.getCurrentFloorIndex());
+            }
+
+            m_marker = m_eegeoMap.addMarker(markerOptions);
 
             Toast.makeText(PickingCameraActivity.this, String.format("LatLng [%f, %f]; altitude %f m",
                     point.latitude, point.longitude, point.altitude), Toast.LENGTH_LONG).show();
