@@ -10,7 +10,6 @@ if (project.hasProperty('keyStorePropertiesFile')) {
 def buildNumber = project.hasProperty('buildNumber') ? project.getProperty('buildNumber') : 'dev'
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "com.wrld.apisamples"
@@ -48,17 +47,18 @@ android {
 def sdkArtifactName = 'com.wrld:wrld-android-sdk:' + sdkVersion + '@aar'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
     if (rootProject.getProperty('useLocalSdkBuild').toBoolean()) {
-        debugCompile project(path: ':sdk', configuration: 'debug')
-        releaseCompile project(path: ':sdk', configuration: 'release')
+        println("useLocalSdkBuild is true - using locally built Wrld Android Java SDK")
+        api project(':sdk')
     } else {
-        compile(sdkArtifactName) {
+        println("useLocalSdkBuild is false - obtaining Wrld Android Java SDK from: " + sdkArtifactName)
+        api(sdkArtifactName) {
             transitive = true
         }
     }
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0'
+    implementation 'com.android.support:appcompat-v7:25.3.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.0'
 }
 
 // Set the API key from the WRLD_API_KEY environment variable, as an alternative to modifying strings.xml
