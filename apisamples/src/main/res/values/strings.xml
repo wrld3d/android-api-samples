@@ -106,6 +106,9 @@
     <string name="route_view_markers_example_label">Draw markers along a route</string>
     <string name="route_view_markers_example_description">Add markers to the map for each step of a route</string>
 
+    <string name="precaching_map_data_example_label">Precaching map data</string>
+    <string name="precaching_map_data_example_description">Precache map data for future use</string>
+
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>
     <string name="moveup_button_label">Move Up</string>

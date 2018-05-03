@@ -436,6 +436,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.PrecachingMapDataActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/precaching_map_data_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
