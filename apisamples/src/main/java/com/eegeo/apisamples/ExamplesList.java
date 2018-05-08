@@ -155,7 +155,13 @@ public final class ExamplesList {
                     RouteViewStyleActivity.class),
             new ExampleContainer(R.string.route_view_markers_example_label,
                     R.string.route_view_markers_example_description,
-                    RouteViewMarkersActivity.class)
+                    RouteViewMarkersActivity.class),
+            new ExampleContainer(R.string.precaching_map_data_example_label,
+                    R.string.precaching_map_data_example_description,
+                    PrecachingMapDataActivity.class),
+            new ExampleContainer(R.string.cancel_precaching_map_data_example_label,
+                    R.string.cancel_precaching_map_data_example_description,
+                    CancelPrecachingMapDataActivity.class)
     };
 
     // Pure static class
