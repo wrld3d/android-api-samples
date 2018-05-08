@@ -9,10 +9,10 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="com.eegeo.apisamples.PrecachingMapDataActivity">
+                tools:context="com.eegeo.apisamples.CancelPrecachingMapDataActivity">
 
     <com.eegeo.mapapi.MapView
-        android:id="@+id/precaching_map_data_mapview"
+        android:id="@+id/cancel_precaching_map_data_mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"

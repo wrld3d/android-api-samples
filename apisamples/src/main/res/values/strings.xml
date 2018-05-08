@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WRLD Android API Samples</string>
     <string name="app_short_name">WRLD Samples</string>
-    <string name="eegeo_api_key">obtain an api key by signing up at wrld3d.com and insert here</string>
+    <string name="eegeo_api_key">53eebefdfb2381f0a4576e964b99e914</string>
     <string name="basic_example_label">Embed a 3D map</string>
     <string name="basic_example_description">How to embed a 3D map view in an Android App</string>
     <string name="position_view_on_map_example_label">Position a View on the map</string>
@@ -108,6 +108,9 @@
 
     <string name="precaching_map_data_example_label">Precaching map data</string>
     <string name="precaching_map_data_example_description">Precache map data for future use</string>
+
+    <string name="cancel_precaching_map_data_example_label">Cancel precaching map data</string>
+    <string name="cancel_precaching_map_data_example_description">Cancel an operation to precache map data for future use</string>
 
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>

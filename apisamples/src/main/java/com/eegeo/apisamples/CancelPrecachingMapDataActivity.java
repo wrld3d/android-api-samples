@@ -9,11 +9,12 @@ import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.precaching.OnPrecacheOperationCompletedListener;
+import com.eegeo.mapapi.precaching.PrecacheOperation;
 import com.eegeo.mapapi.precaching.PrecacheOperationResult;
 
 import java.util.Locale;
 
-public class PrecachingMapDataActivity extends WrldExampleActivity
+public class CancelPrecachingMapDataActivity extends WrldExampleActivity
         implements OnPrecacheOperationCompletedListener {
 
     private MapView m_mapView;
@@ -32,21 +33,23 @@ public class PrecachingMapDataActivity extends WrldExampleActivity
             @Override
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
-                // Precache a 2000 meter radius around this point
-                m_eegeoMap.precache(
+                // Start precaching a 2000 meter radius around this point
+                PrecacheOperation precacheOperation = m_eegeoMap.precache(
                         new LatLng(37.7952, -122.4028),
                         2000.0,
-                        PrecachingMapDataActivity.this);
+                        CancelPrecachingMapDataActivity.this);
+                // Cancel the precache operation
+                precacheOperation.cancel();
             }
         });
     }
 
     @Override
     public void onPrecacheOperationCompleted(PrecacheOperationResult precacheOperationResult) {
-        AlertDialog dialog = new AlertDialog.Builder(PrecachingMapDataActivity.this)
+        AlertDialog dialog = new AlertDialog.Builder(CancelPrecachingMapDataActivity.this)
                 .setTitle("Precache status")
                 .setMessage(String.format(Locale.getDefault(), "Precaching %s",
-                        precacheOperationResult.succeeded() ? "complete" : "failed"))
+                        precacheOperationResult.succeeded() ? "complete" : "cancelled"))
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .create();
         dialog.show();
