@@ -100,7 +100,7 @@ public class RouteViewMarkersActivity extends WrldExampleActivity implements OnR
             if(pointOnRoute.validResult)
             {
                 MarkerOptions resultMarkerOptions = new MarkerOptions().position(pointOnRoute.resultPoint).labelText("Result Point: " + Double.toString(pointOnRoute.fractionAlongRoute));
-                Marker resultMarker = m_eegeoMap.addMarker(targetMarkerOptions);
+                Marker resultMarker = m_eegeoMap.addMarker(resultMarkerOptions);
                 m_markers.add(resultMarker);
             }
             else
