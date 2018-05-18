@@ -436,6 +436,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.FindPointOnPathActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/find_point_on_path_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.FindPointOnRouteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/find_point_on_route_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

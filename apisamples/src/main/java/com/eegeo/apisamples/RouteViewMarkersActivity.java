@@ -17,8 +17,6 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.markers.Marker;
 import com.eegeo.mapapi.markers.MarkerOptions;
-import com.eegeo.mapapi.pointonpath.PointOnRoute;
-import com.eegeo.mapapi.pointonpath.PointOnRouteOptions;
 import com.eegeo.mapapi.services.routing.OnRoutingQueryCompletedListener;
 import com.eegeo.mapapi.services.routing.RoutingService;
 import com.eegeo.mapapi.services.routing.RoutingQuery;
@@ -73,11 +71,6 @@ public class RouteViewMarkersActivity extends WrldExampleActivity implements OnR
     public void onRoutingQueryCompleted(RoutingQuery query, RoutingQueryResponse response) {
         Toast.makeText(RouteViewMarkersActivity.this, "Found routes", Toast.LENGTH_LONG).show();
 
-        LatLng latLng = new LatLng(56.460369, -2.980330);
-        MarkerOptions targetMarkerOptions = new MarkerOptions().position(latLng).labelText("Target Point");
-        Marker targetMarker = m_eegeoMap.addMarker(targetMarkerOptions);
-        m_markers.add(targetMarker);
-
         for (Route route: response.getResults()) {
             RouteViewOptions options = new RouteViewOptions()
                 .color(Color.argb(128, 255, 0, 0))
@@ -96,17 +89,6 @@ public class RouteViewMarkersActivity extends WrldExampleActivity implements OnR
                 }
             }
 
-            PointOnRoute pointOnRoute = m_eegeoMap.getPointOnRoute(latLng, route, new PointOnRouteOptions());
-            if(pointOnRoute.validResult)
-            {
-                MarkerOptions resultMarkerOptions = new MarkerOptions().position(pointOnRoute.resultPoint).labelText("Result Point: " + Double.toString(pointOnRoute.fractionAlongRoute));
-                Marker resultMarker = m_eegeoMap.addMarker(resultMarkerOptions);
-                m_markers.add(resultMarker);
-            }
-            else
-            {
-                targetMarker.setTitle("NO VALID RESULT");
-            }
         }
     }
 

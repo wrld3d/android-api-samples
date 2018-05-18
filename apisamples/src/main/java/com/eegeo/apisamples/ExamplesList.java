@@ -155,7 +155,13 @@ public final class ExamplesList {
                     RouteViewStyleActivity.class),
             new ExampleContainer(R.string.route_view_markers_example_label,
                     R.string.route_view_markers_example_description,
-                    RouteViewMarkersActivity.class)
+                    RouteViewMarkersActivity.class),
+            new ExampleContainer(R.string.find_point_on_path_example_label,
+                    R.string.find_point_on_path_example_description,
+                    FindPointOnPathActivity.class),
+            new ExampleContainer(R.string.find_point_on_route_example_label,
+                    R.string.find_point_on_route_example_description,
+                    FindPointOnRouteActivity.class)
     };
 
     // Pure static class
