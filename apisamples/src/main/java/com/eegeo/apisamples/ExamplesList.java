@@ -161,7 +161,10 @@ public final class ExamplesList {
                     PrecachingMapDataActivity.class),
             new ExampleContainer(R.string.cancel_precaching_map_data_example_label,
                     R.string.cancel_precaching_map_data_example_description,
-                    CancelPrecachingMapDataActivity.class)
+                    CancelPrecachingMapDataActivity.class),
+            new ExampleContainer(R.string.set_theme_manifest_example_label,
+                    R.string.set_theme_manifest_example_description,
+                    SetThemeManifestActivity.class)
     };
 
     // Pure static class

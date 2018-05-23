@@ -454,6 +454,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
+        <activity
+            android:name="com.eegeo.apisamples.SetThemeManifestActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/set_theme_manifest_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
