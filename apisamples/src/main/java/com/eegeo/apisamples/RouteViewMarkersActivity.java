@@ -88,6 +88,7 @@ public class RouteViewMarkersActivity extends WrldExampleActivity implements OnR
                     m_markers.add(marker);
                 }
             }
+
         }
     }
 
