@@ -111,6 +111,15 @@
     <string name="find_point_on_route_example_label">Find the closest a point on a Route</string>
     <string name="find_point_on_route_example_description">Retrieve information about the closest point on a Route to a given input point</string>
 
+    <string name="precaching_map_data_example_label">Precaching map data</string>
+    <string name="precaching_map_data_example_description">Precache map data for future use</string>
+
+    <string name="cancel_precaching_map_data_example_label">Cancel precaching map data</string>
+    <string name="cancel_precaching_map_data_example_description">Cancel an operation to precache map data for future use</string>
+
+    <string name="set_theme_manifest_example_label">Change the theme manifest</string>
+    <string name="set_theme_manifest_example_description">Set an alternate display theme manifest</string>
+    <string name="set_theme_manifest_example_alternate_theme">http://cdn-resources.wrld3d.com/mobile-themes-new/v1141/legacy/manifest.bin.gz</string>
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>
     <string name="moveup_button_label">Move Up</string>

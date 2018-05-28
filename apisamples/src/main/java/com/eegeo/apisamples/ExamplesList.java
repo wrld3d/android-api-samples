@@ -161,7 +161,16 @@ public final class ExamplesList {
                     FindPointOnPathActivity.class),
             new ExampleContainer(R.string.find_point_on_route_example_label,
                     R.string.find_point_on_route_example_description,
-                    FindPointOnRouteActivity.class)
+                    FindPointOnRouteActivity.class),
+            new ExampleContainer(R.string.precaching_map_data_example_label,
+                    R.string.precaching_map_data_example_description,
+                    PrecachingMapDataActivity.class),
+            new ExampleContainer(R.string.cancel_precaching_map_data_example_label,
+                    R.string.cancel_precaching_map_data_example_description,
+                    CancelPrecachingMapDataActivity.class),
+            new ExampleContainer(R.string.set_theme_manifest_example_label,
+                    R.string.set_theme_manifest_example_description,
+                    SetThemeManifestActivity.class)
     };
 
     // Pure static class

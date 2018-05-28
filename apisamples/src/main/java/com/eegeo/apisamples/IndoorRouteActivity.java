@@ -33,7 +33,6 @@ public class IndoorRouteActivity extends WrldExampleActivity implements OnRoutin
     private MapView m_mapView;
     private IndoorMapView m_indoorMapView = null;
     private EegeoMap m_eegeoMap = null;
-    private List<Polyline> m_routeLines = new ArrayList<Polyline>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +89,6 @@ public class IndoorRouteActivity extends WrldExampleActivity implements OnRoutin
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        if (m_eegeoMap != null) {
-            for (Polyline polyline: m_routeLines) {
-                m_eegeoMap.removePolyline(polyline);
-            }
-        }
-
         m_mapView.onDestroy();
     }
 

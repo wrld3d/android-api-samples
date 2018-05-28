@@ -445,11 +445,38 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
+        
+        <activity
+            android:name="com.eegeo.apisamples.PrecachingMapDataActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/precaching_map_data_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
 
         <activity
             android:name="com.eegeo.apisamples.FindPointOnRouteActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/find_point_on_route_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.CancelPrecachingMapDataActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/cancel_precaching_map_data_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        
+        <activity
+            android:name="com.eegeo.apisamples.SetThemeManifestActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/set_theme_manifest_example_label">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
