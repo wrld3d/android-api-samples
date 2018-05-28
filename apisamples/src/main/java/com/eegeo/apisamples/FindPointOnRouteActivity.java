@@ -86,17 +86,6 @@ public class FindPointOnRouteActivity extends WrldExampleActivity implements OnR
             RouteView routeView = new RouteView(m_eegeoMap, route, options);
             m_routeViews.add(routeView);
 
-            for (RouteSection section: route.sections) {
-                for (RouteStep step: section.steps) {
-                    MarkerOptions markerOptions = new MarkerOptions().position(step.path.get(0));
-                    if (step.isIndoors) {
-                        markerOptions.indoor(step.indoorId, step.indoorFloorId);
-                    }
-                    Marker marker = m_eegeoMap.addMarker(markerOptions);
-                    m_markers.add(marker);
-                }
-            }
-
             m_eegeoMap.getPointOnRoute(latLng, route, new PointOnRouteOptions())
                     .then(new Ready<PointOnRoute>() {
                         @Override
