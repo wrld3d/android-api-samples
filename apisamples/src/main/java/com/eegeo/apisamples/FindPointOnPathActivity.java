@@ -18,7 +18,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.markers.Marker;
 import com.eegeo.mapapi.markers.MarkerOptions;
-import com.eegeo.mapapi.pointonpath.PointOnPath;
+import com.eegeo.mapapi.paths.PointOnPath;
 import com.eegeo.mapapi.polylines.Polyline;
 import com.eegeo.mapapi.polylines.PolylineOptions;
 import com.eegeo.mapapi.services.routing.OnRoutingQueryCompletedListener;
