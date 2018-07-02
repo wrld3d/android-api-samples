@@ -64,7 +64,12 @@ public class RouteViewActivity extends WrldExampleActivity implements OnRoutingQ
 
     @Override
     public void onRoutingQueryCompleted(RoutingQuery query, RoutingQueryResponse response) {
-        Toast.makeText(RouteViewActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        if(response.succeeded()) {
+            Toast.makeText(RouteViewActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(RouteViewActivity.this, "Failed to find routes", Toast.LENGTH_LONG).show();
+        }
 
         for (Route route: response.getResults()) {
             RouteViewOptions options = new RouteViewOptions()
