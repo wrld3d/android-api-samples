@@ -69,7 +69,12 @@ public class RouteViewMarkersActivity extends WrldExampleActivity implements OnR
 
     @Override
     public void onRoutingQueryCompleted(RoutingQuery query, RoutingQueryResponse response) {
-        Toast.makeText(RouteViewMarkersActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        if(response.succeeded()) {
+            Toast.makeText(RouteViewMarkersActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(RouteViewMarkersActivity.this, "Failed to find routes", Toast.LENGTH_LONG).show();
+        }
 
         for (Route route: response.getResults()) {
             RouteViewOptions options = new RouteViewOptions()

@@ -90,7 +90,12 @@ public class RouteViewStyleActivity extends WrldExampleActivity implements OnRou
 
     @Override
     public void onRoutingQueryCompleted(RoutingQuery query, RoutingQueryResponse response) {
-        Toast.makeText(RouteViewStyleActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        if(response.succeeded()) {
+            Toast.makeText(RouteViewStyleActivity.this, "Found routes", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(RouteViewStyleActivity.this, "Failed to find routes", Toast.LENGTH_LONG).show();
+        }
 
         for (Route route: response.getResults()) {
             RouteViewOptions options = new RouteViewOptions()
