@@ -229,7 +229,8 @@ public class MainActivity extends AppCompatActivity  implements OnPoiSearchCompl
             }
         }
             // Here you could show your own custom view instead that uses the poi info.
-            m_poiView.displayPoiInfo(poi.title, poi.subtitle, address, description, phone, web, poi.tags, image_url,  facebook, twitter, email, customView, customViewHeight);
+            String[] tagCollection = poi.tags.split("\\s+");
+            m_poiView.displayPoiInfo(poi.title, poi.subtitle, address, description, phone, web, tagCollection[0], tagCollection, image_url,  facebook, twitter, email, customView, customViewHeight);
         }
     }
 

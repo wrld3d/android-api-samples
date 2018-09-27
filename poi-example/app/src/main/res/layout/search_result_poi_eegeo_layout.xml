@@ -299,15 +299,16 @@
          	            android:src="@drawable/poi_tag" />
 
          	    <TextView
-         	        android:id="@+id/search_result_poi_view_tags"
-         	        android:layout_width="fill_parent"
-         	        android:layout_height="wrap_content"
-         	        android:layout_marginLeft="10dp"
-         	        android:layout_marginRight="38dp"
-         	        android:layout_toRightOf="@+id/search_result_poi_view_tags_icon"
-         	        android:textAlignment="center"
-         	        android:textColor="@color/darkgrey"
-         	        android:textSize="16dp" />
+                    android:id="@+id/search_result_poi_view_tags"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="38dp"
+                    android:layout_toRightOf="@+id/search_result_poi_view_tags_icon"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/darkgrey"
+                    android:textSize="16dp"
+                    android:gravity="start"/>
          	    </RelativeLayout>
          	   
          	    <View

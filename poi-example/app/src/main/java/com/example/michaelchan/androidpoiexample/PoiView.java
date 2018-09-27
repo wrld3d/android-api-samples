@@ -39,6 +39,8 @@ public class PoiView implements View.OnClickListener
     private View m_detailsHeader = null;
     private TextView m_phoneView = null;
     private TextView m_webLinkView = null;
+    private TextView m_humanReadableTagsView = null;
+    private View m_humanReadableTagsHeader = null;
     private ImageView m_tagIcon = null;
     private TextView m_descriptionView = null;
     private View m_poiImageHeader = null;
@@ -52,6 +54,7 @@ public class PoiView implements View.OnClickListener
     private ImageView m_addressIcon = null;
     private ImageView m_phoneIcon = null;
     private ImageView m_webIcon = null;
+    private ImageView m_tagsIcon = null;
     private ImageView m_descriptionIcon = null;
     private View m_poiImageViewContainer = null;
     private ScrollView m_contentContainer = null;
@@ -80,6 +83,8 @@ public class PoiView implements View.OnClickListener
         m_webLinkView = (TextView)m_view.findViewById(R.id.search_result_poi_view_web_link);
         m_descriptionView = (TextView)m_view.findViewById(R.id.search_result_poi_view_descritption);
         m_poiImageHeader = (View)m_view.findViewById(R.id.search_result_poi_image_header);
+        m_humanReadableTagsView = (TextView)m_view.findViewById(R.id.search_result_poi_view_tags);
+        m_humanReadableTagsHeader = (View)m_view.findViewById(R.id.search_result_poi_view_tags_header);
         m_tagIcon = (ImageView)m_view.findViewById(R.id.search_result_poi_view_tag_icon);
         m_poiImage = (ImageView)m_view.findViewById(R.id.search_result_poi_view_image);
         m_poiImageGradient = m_view.findViewById(R.id.search_result_poi_view_image_gradient);
@@ -90,6 +95,7 @@ public class PoiView implements View.OnClickListener
         m_addressIcon = (ImageView)m_view.findViewById(R.id.search_result_poi_view_address_icon);
         m_phoneIcon = (ImageView)m_view.findViewById(R.id.search_result_poi_view_phone_icon);
         m_webIcon = (ImageView)m_view.findViewById(R.id.search_result_poi_view_web_link_icon);
+        m_tagsIcon = (ImageView)m_view.findViewById(R.id.search_result_poi_view_tags_icon);
         m_descriptionIcon = (ImageView)m_view.findViewById(R.id.search_result_poi_view_description_icon);
         m_poiImageViewContainer = (View)m_view.findViewById(R.id.search_result_poi_view_image_container);
         m_contentContainer = (ScrollView)m_view.findViewById(R.id.content_container);
@@ -128,6 +134,7 @@ public class PoiView implements View.OnClickListener
             final String phone,
             final String url,
             final String iconKey,
+            final String[] humanReadableTags,
             final String imageUrl,
             final String facebook,
             final String twitter,
@@ -251,6 +258,27 @@ public class PoiView implements View.OnClickListener
         else
         {
             m_email.setVisibility(View.GONE);
+        }
+
+        if(humanReadableTags.length > 0)
+        {
+            m_humanReadableTagsHeader.setVisibility(View.GONE);
+            m_humanReadableTagsView.setVisibility(View.VISIBLE);
+            m_tagsIcon.setVisibility(View.VISIBLE);
+
+            String output = new String();
+            output += humanReadableTags[0];
+            for(int i = 1; i < humanReadableTags.length; ++ i)
+            {
+                output += (", " + humanReadableTags[i]);
+            }
+            m_humanReadableTagsView.setText(output);
+        }
+        else
+        {
+            m_humanReadableTagsHeader.setVisibility(View.GONE);
+            m_humanReadableTagsView.setVisibility(View.GONE);
+            m_tagsIcon.setVisibility(View.GONE);
         }
 
         if(!description.equals(""))
