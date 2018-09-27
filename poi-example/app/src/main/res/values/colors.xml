@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gold">#1256be</color> <!-- not really -->
+    <color name="olive">#94a847</color>
+    <color name="white">#ffffff</color>
+    <color name="whitesmoke">#f0f0f0</color>
+	<color name="darkersteelblue">#12264c</color>
+	<color name="darksteelblue">#2855aa</color>
+	<color name="lightsteelblue">#cfe0fe</color>
+    <color name="slateblue">#6b8ecd</color>
+    <color name="black">#000000</color>
+	<color name="evendarkergrey">#606060</color>
+	<color name="darkergrey">#707070</color>
+    <color name="darkgrey">#777777</color>
+    <color name="grey">#aaaaaa</color>
+    <color name="lightgrey">#cccccc</color>
+    <color name="blue">#291e9a</color>
+    <color name="menu_separator">#b1cce1</color>
+    <color name="submenu_separator">#c6cecf</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_field_disabled">#6d6d6d</color>
+    <color name="text_field_enabled">#202020</color>
+    <color name="ui_background">#FFFFFF</color>
+    <color name="ui_border">#1256be</color>
+    <color name="button_press">#CDFC0D</color>
+    <color name="menu_button_press">#002B63</color>
+    <color name="menu_text_press">#002E63</color>
+    
+    <color name="table_header_press">#82EBFF</color>
+	<color name="table_sub_cell_press">#EDFCB0</color>
+	<color name="table_divider">#B1CCFF</color>
+	<color name="table_separator">#002B63</color>
+	<color name="table_search_cell">#F2F2F2</color>
+	<color name="table_search_text">#383838</color>
+	<color name="table_search_detail_text">#606060</color>
+	<color name="table_header_text">#CECECE</color>
+	<color name="table_sub_cell_text">#777777</color>
+	<color name="table_cell_highlight">#CCCCCC</color>
+	<color name="menu_header_separator">#002B63</color>
+	<color name="initial_ux_intro_banner_outline">#80FFFFFF</color>
+	<color name="interiors_elevator_text_normal">#FFFFFF</color>
+	<color name="interiors_elevator_text_down">#1256B0</color>
+	<color name="scrollbars">#1256B0</color>
+	<color name="about_links">#1256B0</color>
+    <color name="nav_dialog">#1256B0</color>
+</resources>
