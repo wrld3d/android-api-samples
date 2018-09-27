@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity  implements OnPoiSearchCompl
     private EegeoMap m_eegeoMap = null;
     private int m_failedSearches = 0;
     private OnMarkerClickListener m_markerTappedListener = new MarkerClickListenerImpl();
-    private String apiKey = "";
+    private String apiKey = "your-api-key";
 
     PoiView m_poiView = null;
     List<PoiSearchResult> m_searchResults;
