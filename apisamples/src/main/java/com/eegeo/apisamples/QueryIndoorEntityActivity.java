@@ -8,12 +8,13 @@ import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.camera.CameraPosition;
 import com.eegeo.mapapi.camera.CameraUpdateFactory;
-
+import com.eegeo.mapapi.indoorentities.IndoorEntityPickedMessage;
+import com.eegeo.mapapi.indoorentities.OnIndoorEntityPickedListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
 import java.util.ArrayList;
 
-public class HighlightIndoorEntityActivity extends WrldExampleActivity {
+public class QueryIndoorEntityActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -23,8 +24,8 @@ public class HighlightIndoorEntityActivity extends WrldExampleActivity {
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
 
-        setContentView(R.layout.highlight_indoor_entities_example_activity);
-        m_mapView = (MapView) findViewById(R.id.highlight_indoor_entities_mapview);
+        setContentView(R.layout.query_indoor_entities_example_activity);
+        m_mapView = (MapView) findViewById(R.id.query_indoor_entities_mapview);
         m_mapView.onCreate(savedInstanceState);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
@@ -37,14 +38,11 @@ public class HighlightIndoorEntityActivity extends WrldExampleActivity {
                         .zoom(15)
                         .build();
                 map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
+
+                map.addOnIndoorEntityPickedListener(new EntityPickedListener());
             }
         });
 
-    }
-
-    protected void onHighlightEntitiesButtonPressed(View view)
-    {
-        highlightEntities();
     }
 
     protected void onClearHighlightsButtonPressed(View view)
@@ -52,23 +50,10 @@ public class HighlightIndoorEntityActivity extends WrldExampleActivity {
         m_eegeoMap.clearAllIndoorEntityHighlights();
     }
 
-    private void highlightEntities()
-    {
-        ArrayList<String> indoorEntityIdsRed = new ArrayList<String>();
-        indoorEntityIdsRed.add("0007");
-        indoorEntityIdsRed.add("Meeting Room Small");
-
-        m_eegeoMap.setIndoorEntityHighlights("westport_house", indoorEntityIdsRed, 0x7fff0000);
-
-        ArrayList<String> indoorEntityIdsBlue = new ArrayList<String>();
-        indoorEntityIdsBlue.add("0002");
-        indoorEntityIdsBlue.add("Meeting Room Large");
-
-        m_eegeoMap.setIndoorEntityHighlights("westport_house", indoorEntityIdsBlue, 0x7f0000ff);
-
-        ArrayList<String> indoorEntityIdsGreen = new ArrayList<String>();
-        indoorEntityIdsGreen.add("0033");
-
-        m_eegeoMap.setIndoorEntityHighlights("westport_house", indoorEntityIdsGreen, 0x7f00ff00);
+    public class EntityPickedListener implements OnIndoorEntityPickedListener {
+        @Override
+        public void onIndoorEntityPicked(IndoorEntityPickedMessage message) {
+            m_eegeoMap.setIndoorEntityHighlights(message.indoorMapId(), message.indoorMapEntityIds(), 0x77ff00ff);
+        }
     }
 }
