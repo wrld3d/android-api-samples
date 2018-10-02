@@ -122,10 +122,10 @@
     <string name="set_theme_manifest_example_alternate_theme">http://cdn-resources.wrld3d.com/mobile-themes-new/v1141/legacy/manifest.bin.gz</string>
 
     <string name="highlight_indoor_entities_example_label">Highlighting indoor map entities</string>
-    <string name="highlight_indoor_entities_example_description">Use the buttons to toggle some indoor entity highlights.</string>
+    <string name="highlight_indoor_entities_example_description">Use the buttons to toggle some indoor entity highlights</string>
 
     <string name="query_indoor_entities_example_label">Querying indoor map entities</string>
-    <string name="query_indoor_entities_example_description">Tap on the meeting rooms and desks to highlight them.</string>
+    <string name="query_indoor_entities_example_description">Tap on the meeting rooms and desks to highlight them</string>
 
 
     <string name="exit_button_label">Exit</string>
