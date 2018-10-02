@@ -66,7 +66,7 @@ public class QueryIndoorEntityActivity extends WrldExampleActivity {
         @Override
         public void onIndoorEntityPicked(IndoorEntityPickedMessage message) {
 
-            for (String indoorMapEntityId : message.indoorMapEntityIds()) {
+            for (String indoorMapEntityId : message.indoorMapEntityIds) {
                 int currentColorIdx = m_entityIdsToColorIndex.containsKey(indoorMapEntityId) ? m_entityIdsToColorIndex.get(indoorMapEntityId) + 1 : 0;
                 if(currentColorIdx == m_colors.size())
                 {
@@ -75,7 +75,7 @@ public class QueryIndoorEntityActivity extends WrldExampleActivity {
                 m_entityIdsToColorIndex.put(indoorMapEntityId, currentColorIdx);
             }
 
-            m_eegeoMap.setIndoorEntityHighlights(message.indoorMapId(), message.indoorMapEntityIds(), m_colors.get(m_entityIdsToColorIndex.get(message.indoorMapEntityIds().get(0))));
+            m_eegeoMap.setIndoorEntityHighlights(message.indoorMapId, message.indoorMapEntityIds, m_colors.get(m_entityIdsToColorIndex.get(message.indoorMapEntityIds.get(0))));
         }
     }
 }
