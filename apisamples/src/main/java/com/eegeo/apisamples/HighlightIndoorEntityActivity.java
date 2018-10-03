@@ -42,12 +42,12 @@ public class HighlightIndoorEntityActivity extends WrldExampleActivity {
 
     }
 
-    protected void onHighlightEntitiesButtonPressed(View view)
+    public void onHighlightEntitiesButtonPressed(View view)
     {
         highlightEntities();
     }
 
-    protected void onClearHighlightsButtonPressed(View view)
+    public void onClearHighlightsButtonPressed(View view)
     {
         m_eegeoMap.clearAllIndoorEntityHighlights();
     }
