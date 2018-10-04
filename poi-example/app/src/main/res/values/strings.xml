@@ -61,6 +61,8 @@
     <string name="cancel_text">Cancel</string>
     <string name="yes_text">Yes</string>
     <string name="no_text">No</string>
+    <string name="no_pois_found_title">No POIs found</string>
+    <string name="no_pois_found_message">Visit https://mapdesigner.wrld3d.com/poi/latest/ to create some POIs.</string>
 
     <string name="pin_default_title">Untitled Pin</string>
 

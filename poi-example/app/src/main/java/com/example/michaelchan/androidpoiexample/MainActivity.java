@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity  implements OnPoiSearchCompl
     PoiView m_poiView = null;
     List<PoiSearchResult> m_searchResults;
     HashMap<String, PoiSearchResult> m_resultsMap = new HashMap<>();
+    Map<String,String> m_iconKeyTagDict = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,15 @@ public class MainActivity extends AppCompatActivity  implements OnPoiSearchCompl
 
         final OnPoiSearchCompletedListener listener = this;
 
+        // Icon/Tag mapping, see:
+        // https://github.com/wrld3d/wrld-icon-tools/blob/master/data/search_tags.json
+        m_iconKeyTagDict = new HashMap<String, String>() {
+            {
+                put("general", "general");
+                put("zoo", "zoo");
+            }
+        };
+
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
@@ -68,24 +78,10 @@ public class MainActivity extends AppCompatActivity  implements OnPoiSearchCompl
                 PoiService poiService = map.createPoiService();
 
                 poiService.searchText(
-                        new TextSearchOptions("Custom", map.getCameraPosition().target)
+                        new TextSearchOptions("Test", map.getCameraPosition().target)
                                 .radius(1000.0)
                                 .number(60)
                                 .onPoiSearchCompletedListener(listener));
-
-                poiService.searchTag(
-                        new TagSearchOptions("zoo", map.getCameraPosition().target)
-                                .onPoiSearchCompletedListener(listener));
-
-                poiService.searchAutocomplete(
-                        new AutocompleteOptions("auto", map.getCameraPosition().target)
-                                .onPoiSearchCompletedListener(listener));
-
-                map.addPositioner(new PositionerOptions()
-                        .position(new LatLng(37.802355, -122.405848))
-                        .elevation(10.0)
-                        .elevationMode(HeightAboveGround)
-                );
             }
         });
     }
@@ -99,25 +95,14 @@ public class MainActivity extends AppCompatActivity  implements OnPoiSearchCompl
             m_resultsMap.put(m_searchResults.get(i).title, m_searchResults.get(i));
         }
 
-        // Icon/Tag mapping, see:
-        // https://github.com/wrld3d/wrld-icon-tools/blob/master/data/search_tags.json
-        Map<String,String> iconKeyTagDict = new HashMap<String, String>() {
-            {
-                put("park", "park");
-                put("coffee", "coffee");
-                put("general", "general");
-                put("zoo", "zoo");
-            }
-        };
-
         if (response.succeeded() && results.size() > 0) {
             for (PoiSearchResult poi : results) {
 
                 String iconKey = "pin";
                 String[] tags = poi.tags.split(" ");
                 for (String tag : tags) {
-                    if (iconKeyTagDict.containsKey(tag)) {
-                        iconKey = iconKeyTagDict.get(tag);
+                    if (m_iconKeyTagDict.containsKey(tag)) {
+                        iconKey = m_iconKeyTagDict.get(tag);
                     }
                 }
 
@@ -139,8 +124,8 @@ public class MainActivity extends AppCompatActivity  implements OnPoiSearchCompl
 
             if (m_failedSearches >= 3) {
                 new AlertDialog.Builder(this)
-                        .setTitle("No POIs found")
-                        .setMessage("Visit https://mapdesigner.wrld3d.com/poi/latest/ to create some POIs.")
+                        .setTitle(R.string.no_pois_found_title)
+                        .setMessage(R.string.no_pois_found_message)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             }
@@ -180,57 +165,54 @@ public class MainActivity extends AppCompatActivity  implements OnPoiSearchCompl
             JSONObject jsonObj = new JSONObject();
             try {
                 jsonObj = new JSONObject(poi.userData);
+
+                String address = "";
+                String description = "";
+                String phone = "";
+                String web = "";
+                String image_url = "";
+                String facebook = "";
+                String twitter = "";
+                String email = "";
+                String customView = "";
+                int customViewHeight = -1;
+
+                if (jsonObj.has("address")) {
+                    address = jsonObj.optString("address");
+                }
+                if (jsonObj.has("description")) {
+                    description = jsonObj.optString("description");
+                }
+                if (jsonObj.has("phone")) {
+                    phone = jsonObj.optString("phone");
+                }
+                if (jsonObj.has("web")) {
+                    web = jsonObj.optString("web");
+                }
+                if (jsonObj.has("image_url")) {
+                    image_url = jsonObj.optString("image_url");
+                }
+                if (jsonObj.has("facebook")) {
+                    facebook = jsonObj.optString("facebook");
+                }
+                if (jsonObj.has("twitter")) {
+                    twitter = jsonObj.optString("twitter");
+                }
+                if (jsonObj.has("email")) {
+                    email = jsonObj.optString("email");
+                }
+                if (jsonObj.has("custom_view")) {
+                    customView = jsonObj.optString("custom_view");
+                }
+                if (jsonObj.has("custom_view_height")) {
+                    customViewHeight = jsonObj.optInt("custom_view_height");
+                }
+                // Here you could show your own custom view instead that uses the poi info.
+                String[] tagCollection = poi.tags.split("\\s+");
+                m_poiView.displayPoiInfo(poi.title, poi.subtitle, address, description, phone, web, tagCollection[0], tagCollection, image_url,  facebook, twitter, email, customView, customViewHeight);
             } catch (JSONException e) {
 
             }
-
-            String address = "";
-            String description = "";
-            String phone = "";
-            String web = "";
-            String image_url = "";
-            String facebook = "";
-            String twitter = "";
-            String email = "";
-            String customView = "";
-            int customViewHeight = -1;
-
-            if(jsonObj.length() !=  0)
-            {
-            if (jsonObj.has("address")) {
-                address = jsonObj.optString("address");
-            }
-            if (jsonObj.has("description")) {
-                description = jsonObj.optString("description");
-            }
-            if (jsonObj.has("phone")) {
-                phone = jsonObj.optString("phone");
-            }
-            if (jsonObj.has("web")) {
-                web = jsonObj.optString("web");
-            }
-            if (jsonObj.has("image_url")) {
-                image_url = jsonObj.optString("image_url");
-            }
-            if (jsonObj.has("facebook")) {
-                facebook = jsonObj.optString("facebook");
-            }
-            if (jsonObj.has("twitter")) {
-                twitter = jsonObj.optString("twitter");
-            }
-            if (jsonObj.has("email")) {
-                email = jsonObj.optString("email");
-            }
-            if (jsonObj.has("custom_view")) {
-                customView = jsonObj.optString("custom_view");
-            }
-            if (jsonObj.has("custom_view_height")) {
-                customViewHeight = jsonObj.optInt("custom_view_height");
-            }
-        }
-            // Here you could show your own custom view instead that uses the poi info.
-            String[] tagCollection = poi.tags.split("\\s+");
-            m_poiView.displayPoiInfo(poi.title, poi.subtitle, address, description, phone, web, tagCollection[0], tagCollection, image_url,  facebook, twitter, email, customView, customViewHeight);
         }
     }
 
@@ -244,8 +226,8 @@ public class MainActivity extends AppCompatActivity  implements OnPoiSearchCompl
     @Override
     protected void onPause()
     {
-        super.onPause();
         m_mapView.onPause();
+        super.onPause();
     }
 
     @Override

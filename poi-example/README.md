@@ -12,13 +12,13 @@
 
 ### Importing POIs from a CSV
 
-1. Log into your WRLD account and select 'Places Designer'.
+1. Go to [Places Designer](https://mapdesigner.wrld3d.com/poi/latest/).
 
 2. Select 'Upload New Collection'. Drag the poi-examples.csv provided, or your own .csv, into the upload box.
 
 3. Click the edit button on your POI collection, click 'Add An App' and select the app you want to associate it with.
 
-4. Done!
+4. The POIs are now ready to be viewed in your app!
 
 #### Tip
 You can edit and preview the Pois you have imported here in the Places Designer by selecting them and clicking the tabs on the right side panel.
@@ -29,11 +29,11 @@ You can edit and preview the Pois you have imported here in the Places Designer 
 
 2. Open the gradle project in Android Studio.
 
-3. Set your api-key [here](https://github.com/wrld3d/android-api-samples/blob/poi-example/poi-example/app/src/main/java/com/example/michaelchan/androidpoiexample/MainActivity.java#L41).
+3. Set your API key [here](https://github.com/wrld3d/android-api-samples/blob/poi-example/poi-example/app/src/main/java/com/example/michaelchan/androidpoiexample/MainActivity.java#L41). Make sure it is the same as the one attached to your POI collection in the "Importing POIs from a CSV" section, step 3.
 4. Click run!
 
-### Types of Pois
+### Types of POIs
 
-In this example there are two types of Pois. The first is a standard Poi uses the default layout and customization option offered in Places Designer.
+In this example there are two types of POIs. The first is a standard POI uses the default layout and customization option offered in Places Designer.
 
-The second is a custom html Poi. This type of Poi is created by setting 'custom_view', within the 'user_data' field of a poi, to a custom html view. You can read more about the 'user_data' fields [here](https://github.com/wrld3d/wrld-poi-api) under Points of Interest.
+The second is a custom html POI. This type of POI is created by setting 'custom_view', within the 'user_data' field of a poi, to a custom html view. You can read more about the 'user_data' fields [here](https://github.com/wrld3d/wrld-poi-api#points-of-interest) under Points of Interest.

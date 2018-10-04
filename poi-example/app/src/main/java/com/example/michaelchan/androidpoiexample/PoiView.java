@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,9 +104,6 @@ public class PoiView implements View.OnClickListener
         m_linearContentContainer = (LinearLayout)m_view.findViewById(R.id.linear_content_container);
         m_webView = (WebView)m_view.findViewById(R.id.webview);
         m_webViewContainer = (View)m_view.findViewById(R.id.search_result_poi_view_webview_container);
-
-        new DownloadImageTask((ImageView) m_view.findViewById(R.id.search_result_poi_view_image))
-                .execute("");
 
         m_activity.recursiveDisableSplitMotionEvents((ViewGroup)m_view);
 
@@ -267,11 +265,7 @@ public class PoiView implements View.OnClickListener
             m_tagsIcon.setVisibility(View.VISIBLE);
 
             String output = new String();
-            output += humanReadableTags[0];
-            for(int i = 1; i < humanReadableTags.length; ++ i)
-            {
-                output += (", " + humanReadableTags[i]);
-            }
+            output = TextUtils.join(", ", humanReadableTags);
             m_humanReadableTagsView.setText(output);
         }
         else
@@ -409,7 +403,7 @@ public class PoiView implements View.OnClickListener
     public void updateImageData(String urlString){
         if(urlString.equals(m_poiImageUrl))
         {
-            new DownloadImageTask((ImageView) m_view.findViewById(R.id.search_result_poi_view_image))
+            new DownloadImageTask((ImageView) m_poiImage)
                     .execute(urlString);
         }
         HandleFooterFadeInitialVisibility();
@@ -448,15 +442,8 @@ public class PoiView implements View.OnClickListener
     private void handleCloseClicked()
     {
         m_view.setEnabled(false);
-        dismissKeyboard();
         dismissPoiInfo();
         m_view.setVisibility(View.GONE);
         m_poiImage.setVisibility(View.INVISIBLE);
-    }
-
-    private void dismissKeyboard()
-    {
-        InputMethodManager inputMethodManager = (InputMethodManager)m_view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(m_view.getWindowToken(), 0);
     }
 }
