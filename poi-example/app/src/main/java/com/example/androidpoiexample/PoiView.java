@@ -1,12 +1,11 @@
 // Copyright eeGeo Ltd (2012-2015), All Rights Reserved
 
-package com.example.michaelchan.androidpoiexample;
+package com.example.androidpoiexample;
 
 import java.io.InputStream;
 import java.util.regex.Pattern;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +15,6 @@ import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -48,7 +46,6 @@ public class PoiView implements View.OnClickListener
     private ImageView m_poiImage = null;
     private View m_poiImageProgressBar = null;
     private View m_poiImageGradient = null;
-    private String m_poiImageUrl = null;
     private ImageView m_facebookUrl = null;
     private ImageView m_twitterUrl = null;
     private ImageView m_email = null;
@@ -146,8 +143,57 @@ public class PoiView implements View.OnClickListener
         {
             m_searchResultPoiViewContainer.getLayoutParams().width = maxWidth;
         }
-        m_poiImageUrl = imageUrl;
 
+        showTitleDetails(title, subtitle);
+
+        showPOIImage(imageUrl);
+
+        showPOIDetailsSection(address, phone, url, facebook, twitter, email);
+
+        if(humanReadableTags.length > 0)
+        {
+            m_humanReadableTagsHeader.setVisibility(View.GONE);
+            m_humanReadableTagsView.setVisibility(View.VISIBLE);
+            m_tagsIcon.setVisibility(View.VISIBLE);
+
+            String output;
+            output = TextUtils.join(", ", humanReadableTags);
+            m_humanReadableTagsView.setText(output);
+        }
+        else
+        {
+            m_humanReadableTagsHeader.setVisibility(View.GONE);
+            m_humanReadableTagsView.setVisibility(View.GONE);
+            m_tagsIcon.setVisibility(View.GONE);
+        }
+
+        if(!description.equals(""))
+        {
+            m_descriptionView.setVisibility(View.VISIBLE);
+            m_descriptionIcon.setVisibility(View.VISIBLE);
+            m_descriptionView.setText(description);
+        }
+        else
+        {
+            m_descriptionView.setVisibility(View.GONE);
+            m_descriptionIcon.setVisibility(View.GONE);
+        }
+
+        int iconId = TagResources.getSmallIconForTag(m_activity, iconKey);
+        m_tagIcon.setImageResource(iconId);
+
+        m_closeButton.setEnabled(true);
+
+        m_view.setVisibility(View.VISIBLE);
+        m_view.requestFocus();
+
+        m_handlingClick = false;
+
+        showCustomView(customViewUrl, customViewHeight);
+    }
+
+    private void showTitleDetails(String title, String subtitle)
+    {
         m_titleView.setText(title);
         m_subtitleView.setText(subtitle);
 
@@ -160,6 +206,32 @@ public class PoiView implements View.OnClickListener
             m_subtitleView.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    private void showPOIImage(String imageUrl)
+    {
+        m_poiImageProgressBar.setVisibility(View.GONE);
+        m_poiImageGradient.setVisibility(View.GONE);
+
+        if(!imageUrl.equals(""))
+        {
+            m_poiImageProgressBar.setVisibility(View.VISIBLE);
+            updateImageData(imageUrl.toString());
+            setPoiImageVisibility(View.VISIBLE);
+        }
+        else
+        {
+            setPoiImageVisibility(View.GONE);
+        }
+    }
+
+    private void showPOIDetailsSection(final String address,
+                                       final String phone,
+                                       final String url,
+                                       final String facebook,
+                                       final String twitter,
+                                       final String email)
+    {
         if(!address.equals("") || !phone.equals("") || !facebook.equals("") || !twitter.equals("") || !email.equals(""))
         {
             m_detailsHeader.setVisibility(View.VISIBLE);
@@ -214,94 +286,33 @@ public class PoiView implements View.OnClickListener
             m_webIcon.setVisibility(View.GONE);
         }
 
-        m_poiImageProgressBar.setVisibility(View.GONE);
-        m_poiImageGradient.setVisibility(View.GONE);
+        showPOIImageDetail(facebook, m_facebookUrl);
 
-        if(!imageUrl.equals(""))
+        showPOIImageDetail(twitter, m_twitterUrl);
+
+        showPOIImageDetail(email, m_email);
+    }
+
+    public void showPOIImageDetail(String detail, ImageView view)
+    {
+        if(!detail.equals(""))
         {
-            m_poiImageProgressBar.setVisibility(View.VISIBLE);
-            updateImageData(imageUrl.toString());
-            setPoiImageVisibility(View.VISIBLE);
+            view.setVisibility(View.VISIBLE);
+            view.setTag(detail);
         }
         else
         {
-            setPoiImageVisibility(View.GONE);
+            view.setVisibility(View.GONE);
         }
+    }
 
-        if(!facebook.equals(""))
-        {
-            m_facebookUrl.setVisibility(View.VISIBLE);
-            m_facebookUrl.setTag(facebook);
-        }
-        else
-        {
-            m_facebookUrl.setVisibility(View.GONE);
-        }
-
-        if(!twitter.equals(""))
-        {
-            m_twitterUrl.setVisibility(View.VISIBLE);
-            m_twitterUrl.setTag(twitter);
-        }
-        else
-        {
-            m_twitterUrl.setVisibility(View.GONE);
-        }
-
-        if(!email.equals(""))
-        {
-            m_email.setVisibility(View.VISIBLE);
-            m_email.setTag(email);
-        }
-        else
-        {
-            m_email.setVisibility(View.GONE);
-        }
-
-        if(humanReadableTags.length > 0)
-        {
-            m_humanReadableTagsHeader.setVisibility(View.GONE);
-            m_humanReadableTagsView.setVisibility(View.VISIBLE);
-            m_tagsIcon.setVisibility(View.VISIBLE);
-
-            String output = new String();
-            output = TextUtils.join(", ", humanReadableTags);
-            m_humanReadableTagsView.setText(output);
-        }
-        else
-        {
-            m_humanReadableTagsHeader.setVisibility(View.GONE);
-            m_humanReadableTagsView.setVisibility(View.GONE);
-            m_tagsIcon.setVisibility(View.GONE);
-        }
-
-        if(!description.equals(""))
-        {
-            m_descriptionView.setVisibility(View.VISIBLE);
-            m_descriptionIcon.setVisibility(View.VISIBLE);
-            m_descriptionView.setText(description);
-        }
-        else
-        {
-            m_descriptionView.setVisibility(View.GONE);
-            m_descriptionIcon.setVisibility(View.GONE);
-        }
-
-        int iconId = TagResources.getSmallIconForTag(m_activity, iconKey);
-        m_tagIcon.setImageResource(iconId);
-
-        m_closeButton.setEnabled(true);
-
-        m_view.setVisibility(View.VISIBLE);
-        m_view.requestFocus();
-
-        m_handlingClick = false;
-
-        if(!customViewUrl.equals(""))
+    public void showCustomView(String url, int customViewHeight)
+    {
+        if(!url.equals(""))
         {
             m_webView.getSettings().setUseWideViewPort(true);
             m_webView.getSettings().setLoadWithOverviewMode(true);
-            m_webView.loadUrl(customViewUrl);
+            m_webView.loadUrl(url);
 
             if(customViewHeight != -1) {
                 final int viewHeight = customViewHeight;
@@ -401,11 +412,8 @@ public class PoiView implements View.OnClickListener
     }
 
     public void updateImageData(String urlString){
-        if(urlString.equals(m_poiImageUrl))
-        {
-            new DownloadImageTask((ImageView) m_poiImage)
+            new DownloadImageTask(m_poiImage)
                     .execute(urlString);
-        }
         HandleFooterFadeInitialVisibility();
     }
 

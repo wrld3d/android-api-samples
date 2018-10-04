@@ -1,4 +1,4 @@
-package com.example.michaelchan.androidpoiexample;
+package com.example.androidpoiexample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,17 +13,11 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.markers.Marker;
 import com.eegeo.mapapi.markers.OnMarkerClickListener;
 import com.eegeo.mapapi.services.poi.PoiService;
-import com.eegeo.mapapi.services.poi.TagSearchOptions;
 import com.eegeo.mapapi.services.poi.TextSearchOptions;
 import com.eegeo.mapapi.services.poi.OnPoiSearchCompletedListener;
 import com.eegeo.mapapi.services.poi.PoiSearchResponse;
 import com.eegeo.mapapi.services.poi.PoiSearchResult;
 import com.eegeo.mapapi.markers.MarkerOptions;
-import com.eegeo.mapapi.services.poi.AutocompleteOptions;
-import com.eegeo.mapapi.positioner.PositionerOptions;
-import com.eegeo.mapapi.geometry.LatLng;
-
-import static com.eegeo.mapapi.geometry.ElevationMode.HeightAboveGround;
 
 import org.json.JSONException;
 import org.json.JSONObject;
