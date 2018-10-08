@@ -56,7 +56,7 @@ public class QueryIndoorEntityActivity extends WrldExampleActivity {
 
     }
 
-    protected void onClearHighlightsButtonPressed(View view)
+    public void onClearHighlightsButtonPressed(View view)
     {
         m_eegeoMap.clearAllIndoorEntityHighlights();
         m_entityIdsToColorIndex.clear();
