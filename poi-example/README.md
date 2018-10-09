@@ -2,7 +2,10 @@
 
 ## Requirements
 
-* Gradle >= 4.4
+* [Android Studio](https://developer.android.com/studio/archive) (3.0+ tested)
+* Gradle: (4.4, set within the Project tab of the Project Structure window inside Android Studio)
+* [Android SDK Tools](https://developer.android.com/studio/releases/sdk-tools): (25.2.3.1 or later)
+* [Android NDK](https://developer.android.com/ndk/downloads/older_releases): (>= 11c & < 18)
 
 ## Getting Set up
 
