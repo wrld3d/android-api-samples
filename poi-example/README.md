@@ -34,7 +34,7 @@ You can edit and preview the Pois you have imported here in the Places Designer 
 
 1. Clone this repository if you have not already.
 
-2. Open the gradle project in Android Studio.
+2. Open the poi-example gradle project in Android Studio.
 
 3. Set your API key [here](https://github.com/wrld3d/android-api-samples/blob/poi-example/poi-example/app/src/main/java/com/example/androidpoiexample/MainActivity.java#L35). Make sure it is the same as the one attached to your POI collection in the "Importing POIs from a CSV" section, step 3.
 4. Click run!
