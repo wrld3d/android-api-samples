@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:eegeo="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wrld3d.searchexample.MainActivity"
+    xmlns:wrld="http://schemas.android.com/apk/res-auto">
+
+    <com.eegeo.mapapi.MapView
+        android:id="@+id/mapView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        eegeo:camera_target_latitude="37.7858"
+        eegeo:camera_target_longitude="-122.401"
+        eegeo:camera_zoom="16" >
+
+        <fragment
+            android:id="@+id/basic_searchwidget"
+            android:name="com.wrld.widgets.search.WrldSearchWidget"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            wrld:maxPreviewSearchResultsPerProvider="5"
+            wrld:maxSuggestionsPerProvider="2" />
+    </com.eegeo.mapapi.MapView>
+</RelativeLayout>

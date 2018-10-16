@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Search example</string>
+    <string name="eegeo_api_key">obtain an api key by signing up at wrld3d.com and insert here</string>
+</resources>

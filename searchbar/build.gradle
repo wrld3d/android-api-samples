@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.wrld3d.searchexample"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            jniDebuggable true
+            debuggable true
+            minifyEnabled false
+        }
+    }
+}
+
+// latest release is https://bintray.com/wrld/maven/wrld-android-sdk/_latestVersion
+def sdkArtifactName = 'com.wrld:wrld-android-sdk:' + sdkVersion + '@aar'
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
+    if (rootProject.getProperty('useLocalSdkBuild').toBoolean()) {
+        api project(':sdk')
+    } else {
+        api(sdkArtifactName) {
+            transitive = true
+        }
+    }
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+// Set the API key from the WRLD_API_KEY environment variable, as an alternative to modifying strings.xml
+android.applicationVariants.all{ variant ->
+    variant.mergeResources.doLast{
+        def apiKey = System.getenv("WRLD_API_KEY")
+        print "Reading API key from env, WRLD_API_KEY="
+        println apiKey
+
+        if (apiKey != null) {
+            File valuesFile = file("${buildDir}/intermediates/res/merged/${variant.dirName}/values/values.xml")
+            println("Replacing WRLD API key in: " + valuesFile)
+            String content = valuesFile.getText('UTF-8')
+            content = content.replaceAll(/obtain an api key by signing up at wrld3d.com and insert here/, apiKey)
+            valuesFile.write(content, 'UTF-8')
+        }
+    }
+}
