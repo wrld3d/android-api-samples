@@ -9,12 +9,12 @@ if (project.hasProperty('keyStorePropertiesFile')) {
 
 def buildNumber = project.hasProperty('buildNumber') ? project.getProperty('buildNumber') : 'dev'
 android {
-    compileSdkVersion 25
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.wrld.apisamples"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode 1
         versionName "0.0." + buildNumber
 
@@ -57,7 +57,7 @@ dependencies {
             transitive = true
         }
     }
-    implementation 'com.android.support:appcompat-v7:25.3.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.0'
 }
 

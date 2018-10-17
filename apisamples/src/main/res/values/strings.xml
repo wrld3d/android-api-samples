@@ -120,6 +120,14 @@
     <string name="set_theme_manifest_example_label">Change the theme manifest</string>
     <string name="set_theme_manifest_example_description">Set an alternate display theme manifest</string>
     <string name="set_theme_manifest_example_alternate_theme">http://cdn-resources.wrld3d.com/mobile-themes-new/v1141/legacy/manifest.bin.gz</string>
+
+    <string name="highlight_indoor_entities_example_label">Highlighting indoor map entities</string>
+    <string name="highlight_indoor_entities_example_description">Use the buttons to toggle some indoor entity highlights</string>
+
+    <string name="query_indoor_entities_example_label">Querying indoor map entities</string>
+    <string name="query_indoor_entities_example_description">Tap on the meeting rooms and desks to highlight them</string>
+
+
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>
     <string name="moveup_button_label">Move Up</string>
@@ -127,6 +135,9 @@
     <string name="topfloor_button_label">Top Floor</string>
     <string name="bottomfloor_button_label">Bottom Floor</string>
     <string name="map_colllapse_button_label">Collapse</string>
+
+    <string name="highlight_entities_button_label">Highlight Entities</string>
+    <string name="clear_highlights_button_label">Clear Highlights</string>
 
     <string name="default_start_lat">37.7858</string>
     <string name="default_start_lon">-122.401</string>
