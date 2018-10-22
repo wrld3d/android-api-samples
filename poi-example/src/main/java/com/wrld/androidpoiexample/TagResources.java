@@ -1,6 +1,6 @@
 // Copyright eeGeo Ltd (2012-2015), All Rights Reserved
 
-package com.example.androidpoiexample;
+package com.wrld.androidpoiexample;
 
 import android.app.Activity;
 
