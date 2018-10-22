@@ -492,6 +492,15 @@
         </activity>
 
         <activity
+            android:name="com.eegeo.apisamples.GetInteriorHighlightsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/get_interior_highlights_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
             android:name="com.eegeo.apisamples.QueryIndoorEntityActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/query_indoor_entities_example_label">

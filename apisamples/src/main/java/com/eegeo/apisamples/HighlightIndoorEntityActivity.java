@@ -12,6 +12,7 @@ import com.eegeo.mapapi.camera.CameraUpdateFactory;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HighlightIndoorEntityActivity extends WrldExampleActivity {
 
@@ -70,5 +71,26 @@ public class HighlightIndoorEntityActivity extends WrldExampleActivity {
         indoorEntityIdsGreen.add("0033");
 
         m_eegeoMap.setIndoorEntityHighlights("westport_house", indoorEntityIdsGreen, 0x7f00ff00);
+
+
+        List<String> result = m_eegeoMap.getInteriorHighlights("westport_house");
+
+        ArrayList<Integer> ColorList = new ArrayList<Integer>();
+        ColorList.add(0x7fff0000);
+        ColorList.add(0x7fffff00);
+        ColorList.add(0x7f00ff00);
+        ColorList.add(0x7f00ffff);
+        ColorList.add(0x7f0000ff);
+        ColorList.add(0x7fff00ff);
+
+        int colorCounter = 0;
+
+        for(String highlight : result )
+        {
+            ArrayList<String> highlightColection = new ArrayList<String>();
+            highlightColection.add(highlight);
+            m_eegeoMap.setIndoorEntityHighlights("westport_house", highlightColection, ColorList.get(colorCounter % ColorList.size()));
+            colorCounter++;
+        }
     }
 }
