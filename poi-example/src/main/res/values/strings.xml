@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Android Poi Example</string>
+    <string name="wrld_api_key">obtain an api key by signing up at wrld3d.com and insert here</string>
     <string name="eula_link"><a href='http://www.wrld3d.com/terms-of-service'>EULA</a></string>
     <string name="privacy_link"><a href='http://www.wrld3d.com/privacy'>Privacy Policy</a></string>
     <string name="legal_link"><a href='http://www.wrld3d.com/legal'>Legal</a></string>
