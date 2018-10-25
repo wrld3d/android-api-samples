@@ -12,9 +12,8 @@ Samples demonstrating how to use the [WRLD Android Java Api](https://docs.wrld3d
 3. Navigate to [API Keys](https://accounts.wrld3d.com/#apikeys) and create API keys for the example apps in this repository:
   * In the "New App" edit box enter "HelloWorld" and select "Create API Key".
   * In the "New App" edit box enter "ApiSamples" and select "Create API Key".
-  * In the "New App" edit box enter "PoiExample" and select "Create API Key".
-
-   An API key is a string consisting of 32 alphanumeric characters. You will need to cut and paste each of the keys into a resource file in order to authenticate your apps. This is described in the ['Set your WRLD API key'](#_setApiKey1) step below.
+  * In the "New App" edit box enter "PoiExample" and select "Create API Key".  
+    An API key is a string consisting of 32 alphanumeric characters. You will need to cut and paste each of the keys into a resource file in order to authenticate your apps. This is described in the ['Set your WRLD API key'](#_setApiKey1) step below.
 
 4. Open Android Studio.
 5. Select "Open an existing Android Studio project" and select the top level android-api-samples folder.
