@@ -84,6 +84,8 @@ public class GetInteriorHighlightsActivity extends WrldExampleActivity {
 
     private void highlightAllEntities()
     {
+        String indoorMapId = m_eegeoMap.getActiveIndoorMap().id;
+
         String[] result = m_eegeoMap.getActiveIndoorMap().entityIds;
 
         ArrayList<Integer> ColorList = new ArrayList<Integer>();
@@ -100,16 +102,16 @@ public class GetInteriorHighlightsActivity extends WrldExampleActivity {
         {
             ArrayList<String> highlightColection = new ArrayList<String>();
             highlightColection.add(highlight);
-            m_eegeoMap.setIndoorEntityHighlights(InteriorID, highlightColection, ColorList.get(colorCounter % ColorList.size()));
+            m_eegeoMap.setIndoorEntityHighlights(indoorMapId, highlightColection, ColorList.get(colorCounter % ColorList.size()));
             colorCounter++;
         }
     }
 
     private void highlightAllEntitiesCurrentFloor()
     {
-        String InteriorID = m_eegeoMap.getActiveIndoorMap().id;
+        String indoorMapId = m_eegeoMap.getActiveIndoorMap().id;
 
-        List<String> result = m_eegeoMap.getInteriorHighlightsOnFloor(InteriorID, m_eegeoMap.getCurrentFloorIndex());
+        List<String> result = m_eegeoMap.getInteriorHighlightsOnFloor(indoorMapId, m_eegeoMap.getCurrentFloorIndex());
 
         ArrayList<Integer> ColorList = new ArrayList<Integer>();
         ColorList.add(0x7fff0000);
@@ -125,7 +127,7 @@ public class GetInteriorHighlightsActivity extends WrldExampleActivity {
         {
             ArrayList<String> highlightColection = new ArrayList<String>();
             highlightColection.add(highlight);
-            m_eegeoMap.setIndoorEntityHighlights(InteriorID, highlightColection, ColorList.get(colorCounter % ColorList.size()));
+            m_eegeoMap.setIndoorEntityHighlights(indoorMapId, highlightColection, ColorList.get(colorCounter % ColorList.size()));
             colorCounter++;
         }
     }
