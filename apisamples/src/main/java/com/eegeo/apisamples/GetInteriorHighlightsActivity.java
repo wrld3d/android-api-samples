@@ -84,9 +84,7 @@ public class GetInteriorHighlightsActivity extends WrldExampleActivity {
 
     private void highlightAllEntities()
     {
-        String InteriorID = m_eegeoMap.getActiveIndoorMap().id;
-
-        List<String> result = m_eegeoMap.getInteriorHighlights(InteriorID);
+        String[] result = m_eegeoMap.getActiveIndoorMap().entityIds;
 
         ArrayList<Integer> ColorList = new ArrayList<Integer>();
         ColorList.add(0x7fff0000);
