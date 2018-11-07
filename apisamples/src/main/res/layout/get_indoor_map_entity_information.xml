@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:eegeo="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+tools:context="com.eegeo.apisamples.QueryIndoorMapEntityInformation">
+<com.eegeo.mapapi.MapView
+    android:id="@+id/get_inderior_highlights_mapview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    eegeo:camera_target_latitude="@string/indoor_start_lat"
+    eegeo:camera_target_longitude="@string/indoor_start_lon"
+    eegeo:camera_zoom="@string/default_start_zoom"/>
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Button
+        android:id="@+id/add_indoor_map_entity_information_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onAddIndoorMapEntityInformationPressed"
+        android:text="@string/add_indoor_map_entity_information"/>
+    <Button
+        android:id="@+id/remove_indoor_map_entity_information_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_indoor_map_entity_information_button"
+        android:onClick="onRemoveIndoorMapEntityInformationPressed"
+        android:text="@string/remove_indoor_map_entity_information"/>
+</RelativeLayout>
+</RelativeLayout>
