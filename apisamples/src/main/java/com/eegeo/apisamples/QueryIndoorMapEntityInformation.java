@@ -3,10 +3,8 @@ package com.eegeo.apisamples;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.eegeo.indoors.IndoorMapView;
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
@@ -23,7 +21,6 @@ import java.util.List;
 public class QueryIndoorMapEntityInformation extends WrldExampleActivity {
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
-    private IndoorMapView m_interiorView = null;
     private IndoorMapEntityInformation m_indoorMapEntityInformation;
 
     @Override
@@ -36,11 +33,6 @@ public class QueryIndoorMapEntityInformation extends WrldExampleActivity {
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final EegeoMap map) {
-
-
-
-                RelativeLayout uiContainer = (RelativeLayout) findViewById(R.id.eegeo_ui_container);
-                m_interiorView = new IndoorMapView(m_mapView, uiContainer, map);
                 m_eegeoMap = map;
                 CameraPosition position = new CameraPosition.Builder()
                         .target(56.459801, -2.977928)
@@ -50,34 +42,8 @@ public class QueryIndoorMapEntityInformation extends WrldExampleActivity {
             }
         });
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        m_mapView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        m_mapView.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        m_mapView.onDestroy();
-    }
 
     public void onAddIndoorMapEntityInformationPressed(View view) {
-        AddIndoorMapEntitiyInformation();
-    }
-
-    public void onRemoveIndoorMapEntityInformationPressed(View view) {
-        m_eegeoMap.removeIndoorMapEntityInformation(m_indoorMapEntityInformation);
-    }
-
-    public void AddIndoorMapEntitiyInformation()
-    {
         OnIndoorMapEntityInformationChangedListener indoorMapEntityInformationChangedListener
                 = new OnIndoorMapEntityInformationChangedListener() {
             @Override
@@ -102,6 +68,10 @@ public class QueryIndoorMapEntityInformation extends WrldExampleActivity {
         m_indoorMapEntityInformation = m_eegeoMap.addIndoorMapEntityInformation(
                 "westport_house",
                 indoorMapEntityInformationChangedListener);
+    }
+
+    public void onRemoveIndoorMapEntityInformationPressed(View view) {
+        m_eegeoMap.removeIndoorMapEntityInformation(m_indoorMapEntityInformation);
     }
 
     public void printAllEntityIds()
