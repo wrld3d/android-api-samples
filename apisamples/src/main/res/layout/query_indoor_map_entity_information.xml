@@ -10,7 +10,7 @@ android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 tools:context="com.eegeo.apisamples.QueryIndoorMapEntityInformation">
 <com.eegeo.mapapi.MapView
-    android:id="@+id/get_inderior_highlights_mapview"
+    android:id="@+id/query_inderior_highlights_mapview"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     eegeo:camera_target_latitude="@string/indoor_start_lat"
