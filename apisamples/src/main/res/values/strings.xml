@@ -124,8 +124,11 @@
     <string name="highlight_indoor_entities_example_label">Highlighting indoor map entities</string>
     <string name="highlight_indoor_entities_example_description">Use the buttons to toggle some indoor entity highlights</string>
 
-    <string name="query_indoor_entities_example_label">Querying indoor map entities</string>
-    <string name="query_indoor_entities_example_description">Tap on the meeting rooms and desks to highlight them</string>
+    <string name="picking_indoor_entities_example_label">Picking indoor map entities</string>
+    <string name="picking_indoor_entities_example_description">Tap on the meeting rooms and desks to highlight them</string>
+
+    <string name="get_indoor_map_entity_information_example_label">Query indoor map entity information</string>
+    <string name="get_indoor_map_entity_information_example_description">Obtain information about the entities within an indoor map</string>
 
 
     <string name="exit_button_label">Exit</string>
@@ -138,6 +141,9 @@
 
     <string name="highlight_entities_button_label">Highlight Entities</string>
     <string name="clear_highlights_button_label">Clear Highlights</string>
+
+    <string name="add_indoor_map_entity_information">Add Entity Information</string>
+    <string name="remove_indoor_map_entity_information">Remove Entity Information</string>
 
     <string name="default_start_lat">37.7858</string>
     <string name="default_start_lon">-122.401</string>
