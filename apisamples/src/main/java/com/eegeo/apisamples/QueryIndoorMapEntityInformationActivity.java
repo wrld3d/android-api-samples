@@ -18,7 +18,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import java.util.List;
 
 
-public class QueryIndoorMapEntityInformation extends WrldExampleActivity {
+public class QueryIndoorMapEntityInformationActivity extends WrldExampleActivity {
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
     private IndoorMapEntityInformation m_indoorMapEntityInformation;
@@ -27,8 +27,8 @@ public class QueryIndoorMapEntityInformation extends WrldExampleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
-        setContentView(R.layout.query_indoor_map_entity_information);
-        m_mapView = (MapView) findViewById(R.id.query_inderior_highlights_mapview);
+        setContentView(R.layout.query_indoor_map_entity_information_activity);
+        m_mapView = (MapView) findViewById(R.id.query_indoor_map_entity_information__mapview);
         m_mapView.onCreate(savedInstanceState);
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -50,7 +50,7 @@ public class QueryIndoorMapEntityInformation extends WrldExampleActivity {
             public void onIndoorMapEntityInformationChanged(
                     IndoorMapEntityInformation indoorMapEntityInformation) {
                 Toast.makeText(
-                        QueryIndoorMapEntityInformation.this,
+                        QueryIndoorMapEntityInformationActivity.this,
                         String.format(  "IndoorMapEntityInformation for %s " + "\n " +
                                         "load state: %s \n " +
                                         "entities: %d",

@@ -501,9 +501,9 @@
         </activity>
 
         <activity
-            android:name="com.eegeo.apisamples.QueryIndoorMapEntityInformation"
+            android:name="com.eegeo.apisamples.QueryIndoorMapEntityInformationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/get_indoor_map_entity_information_example_label">
+            android:label="@string/query_indoor_map_entity_information_example_label">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
