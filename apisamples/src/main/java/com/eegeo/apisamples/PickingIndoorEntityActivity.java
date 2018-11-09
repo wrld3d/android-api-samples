@@ -15,7 +15,7 @@ import com.eegeo.mapapi.map.OnMapReadyCallback;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class QueryIndoorEntityActivity extends WrldExampleActivity {
+public class PickingIndoorEntityActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
@@ -35,8 +35,8 @@ public class QueryIndoorEntityActivity extends WrldExampleActivity {
 
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
 
-        setContentView(R.layout.query_indoor_entities_example_activity);
-        m_mapView = (MapView) findViewById(R.id.query_indoor_entities_mapview);
+        setContentView(R.layout.picking_indoor_entities_example_activity);
+        m_mapView = (MapView) findViewById(R.id.picking_indoor_entities_mapview);
         m_mapView.onCreate(savedInstanceState);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
