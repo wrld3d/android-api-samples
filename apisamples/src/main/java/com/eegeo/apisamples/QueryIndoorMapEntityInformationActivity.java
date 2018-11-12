@@ -28,7 +28,7 @@ public class QueryIndoorMapEntityInformationActivity extends WrldExampleActivity
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
         setContentView(R.layout.query_indoor_map_entity_information_activity);
-        m_mapView = (MapView) findViewById(R.id.query_indoor_map_entity_information__mapview);
+        m_mapView = (MapView) findViewById(R.id.query_indoor_map_entity_information_mapview);
         m_mapView.onCreate(savedInstanceState);
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
