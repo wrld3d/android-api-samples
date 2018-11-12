@@ -130,6 +130,8 @@
     <string name="query_indoor_map_entity_information_example_label">Query indoor map entity information</string>
     <string name="query_indoor_map_entity_information_example_description">Obtain information about the entities within an indoor map</string>
 
+    <string name="query_indoor_map_entity_information_and_add_marker_example_label">Query indoor map entity information and add marker</string>
+    <string name="query_indoor_map_entity_information_and_add_marker_example_description">Obtain information about the entities within an indoor map and add a marker for each</string>
 
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>
@@ -155,6 +157,9 @@
 
     <string name="indoor_start_lat">37.781871</string>
     <string name="indoor_start_lon">-122.404812</string>
+
+    <string name="indoor_dundee_start_lat">56.459801</string>
+    <string name="indoor_dundee_start_lon">-2.977928</string>
 
     <string name="point_on_path_start_lat">56.460456</string>
     <string name="point_on_path_start_lon">-2.979657</string>

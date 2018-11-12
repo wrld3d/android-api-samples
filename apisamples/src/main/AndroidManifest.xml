@@ -138,6 +138,23 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
+            android:name="com.eegeo.apisamples.QueryIndoorMapEntityInformationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/query_indoor_map_entity_information_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.QueryIndoorMapEntityInformationAndAddMarkerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/query_indoor_map_entity_information_and_add_marker_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
             android:name="com.eegeo.apisamples.AddMarkerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/add_marker_example_label">
@@ -495,15 +512,6 @@
             android:name="com.eegeo.apisamples.PickingIndoorEntityActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/picking_indoor_entities_example_label">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eegeo.apisamples.MainActivity"/>
-        </activity>
-
-        <activity
-            android:name="com.eegeo.apisamples.QueryIndoorMapEntityInformationActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/query_indoor_map_entity_information_example_label">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
