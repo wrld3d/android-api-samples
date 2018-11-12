@@ -132,9 +132,6 @@
     <string name="query_indoor_map_entity_information_example_label">Query indoor map entity information</string>
     <string name="query_indoor_map_entity_information_example_description">Obtain information about the entities within an indoor map</string>
 
-    <string name="query_indoor_map_entity_information_and_add_marker_example_label">Query indoor map entity information and add marker</string>
-    <string name="query_indoor_map_entity_information_and_add_marker_example_description">Obtain information about the entities within an indoor map and add a marker for each</string>
-
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>
     <string name="moveup_button_label">Move Up</string>
