@@ -2,6 +2,7 @@ package com.eegeo.apisamples;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -18,6 +19,7 @@ import com.eegeo.mapapi.markers.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class QueryIndoorMapEntityInformationAndAddMarkerActivity extends WrldExampleActivity {
     private MapView m_mapView;
@@ -29,7 +31,7 @@ public class QueryIndoorMapEntityInformationAndAddMarkerActivity extends WrldExa
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
         setContentView(R.layout.query_indoor_map_entity_information_and_add_marker_activity);
-        m_mapView = (MapView) findViewById(R.id.query_indoor_map_entity_information_and_add_marker_mapview);
+        m_mapView = this.findViewById(R.id.query_indoor_map_entity_information_and_add_marker_mapview);
         m_mapView.onCreate(savedInstanceState);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
@@ -41,6 +43,7 @@ public class QueryIndoorMapEntityInformationAndAddMarkerActivity extends WrldExa
                     new OnIndoorMapEntityInformationChangedListener() {
                         @Override
                         public void onIndoorMapEntityInformationChanged(IndoorMapEntityInformation indoorMapEntityInformation) {
+                            displayToastMessage(indoorMapEntityInformation);
                             removeMarkers();
                             addMarkers(indoorMapEntityInformation);
                         }
@@ -49,7 +52,6 @@ public class QueryIndoorMapEntityInformationAndAddMarkerActivity extends WrldExa
                 map.addInitialStreamingCompleteListener(new OnInitialStreamingCompleteListener() {
                     @Override
                     public void onInitialStreamingComplete() {
-
                         CameraPosition position = new CameraPosition.Builder()
                                 .target(56.459801, -2.977928)
                                 .indoor("westport_house", 2)
@@ -60,6 +62,16 @@ public class QueryIndoorMapEntityInformationAndAddMarkerActivity extends WrldExa
                 });
             }
         });
+    }
+
+    private void displayToastMessage(IndoorMapEntityInformation indoorMapEntityInformation) {
+        Toast.makeText(this,
+            String.format(Locale.getDefault(), "IndoorMapEntityInformation for %s \n load state: %s \n entities: %d",
+                indoorMapEntityInformation.getIndoorMapId(),
+                indoorMapEntityInformation.getLoadState(),
+                indoorMapEntityInformation.getIndoorMapEntities().size()),
+            Toast.LENGTH_LONG
+        ).show();
     }
 
     private void removeMarkers() {
