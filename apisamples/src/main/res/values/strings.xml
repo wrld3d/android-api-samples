@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WRLD Android API Samples</string>
     <string name="app_short_name">WRLD Samples</string>
-    <string name="eegeo_api_key">b86af39e14f31e5799970fd2f62226c6</string>
+    <string name="eegeo_api_key">obtain an api key by signing up at wrld3d.com and insert here</string>
     <string name="basic_example_label">Embed a 3D map</string>
     <string name="basic_example_description">How to embed a 3D map view in an Android App</string>
     <string name="position_view_on_map_example_label">Position a View on the map</string>
