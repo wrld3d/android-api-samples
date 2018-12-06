@@ -258,6 +258,14 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
+            android:name="com.eegeo.apisamples.AddPropIndoorsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_prop_indoors_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
             android:name="com.eegeo.apisamples.BlueSphereChangeLocationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/bluesphere_change_location_example_label">
