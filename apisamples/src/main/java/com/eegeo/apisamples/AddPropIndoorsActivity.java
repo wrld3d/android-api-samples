@@ -47,7 +47,7 @@ public class AddPropIndoorsActivity extends WrldExampleActivity {
                 final int numberOfFloors = 5;
                 for (int floorId = 0; floorId < numberOfFloors; ++floorId) {
                     Prop prop = m_eegeoMap.addProp(new PropOptions()
-                            .location(new LatLng(37.782084, -122.404578))
+                            .position(new LatLng(37.782084, -122.404578))
                             .indoor("intercontinental_hotel_8628", floorId)
                             .geometryId("duck")
                             .headingDegrees(90)
