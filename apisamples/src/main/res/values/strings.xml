@@ -132,6 +132,11 @@
     <string name="query_indoor_map_entity_information_example_label">Query indoor map entity information</string>
     <string name="query_indoor_map_entity_information_example_description">Obtain information about the entities within an indoor map</string>
 
+    <string name="indoor_map_loading_notification_label">Indoor map loading notification</string>
+    <string name="indoor_map_loading_notification_description">Obtain notification that an indoor map has been loaded or unloaded by the streaming system</string>
+
+
+
     <string name="exit_button_label">Exit</string>
     <string name="enter_button_label">Enter</string>
     <string name="moveup_button_label">Move Up</string>

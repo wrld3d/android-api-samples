@@ -355,6 +355,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
+
+        <activity
+            android:name="com.eegeo.apisamples.IndoorMapLoadingNotificationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/indoor_map_loading_notification_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
         <activity
             android:name="com.eegeo.apisamples.EegeoMapOptionsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
