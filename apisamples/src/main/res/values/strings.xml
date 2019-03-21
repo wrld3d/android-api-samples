@@ -64,6 +64,10 @@
     <string name="add_polyline_example_description">Display a polyline on the map</string>
     <string name="add_polyline_indoors_example_label">Add a polyline to an indoor map</string>
     <string name="add_polyline_indoors_example_description">Display a polyline inside an indoor map</string>
+    <string name="add_heatmap_example_label">Add a heatmap</string>
+    <string name="add_heatmap_example_description">Display a heatmap on the map</string>
+    <string name="add_heatmap_indoors_example_label">Add a heatmap to an indoor map</string>
+    <string name="add_heatmap_indoors_example_description">Display a heatmap inside an indoor map</string>
     <string name="add_prop_indoors_example_label">Add a prop to an indoor map</string>
     <string name="add_prop_indoors_example_description">Display a prop inside an indoor map</string>
     <string name="bluesphere_change_location_example_label">Change the location of a blue sphere</string>
