@@ -43,21 +43,21 @@ public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
 
-                RelativeLayout uiContainer = (RelativeLayout) findViewById(R.id.eegeo_ui_container);
-                m_indoorMapView = new IndoorMapView(m_mapView, uiContainer, m_eegeoMap);
-
-                final int numberOfFloors = 5;
-                for (int floorId = 0; floorId < numberOfFloors; ++floorId) {
-                    Heatmap heatmap = m_eegeoMap.addHeatmap(new HeatmapOptions()
-                            .add(
-                                    new LatLng(37.782084, -122.404578),
-                                    new LatLng(37.782126, -122.404530),
-                                    new LatLng(37.782057, -122.404440),
-                                    new LatLng(37.782012, -122.404491))
-                            .fillColor(transparentRed)
-                            .indoor("intercontinental_hotel_8628", floorId));
-                    m_heatmaps.add(heatmap);
-                }
+//                RelativeLayout uiContainer = (RelativeLayout) findViewById(R.id.eegeo_ui_container);
+//                m_indoorMapView = new IndoorMapView(m_mapView, uiContainer, m_eegeoMap);
+//
+//                final int numberOfFloors = 5;
+//                for (int floorId = 0; floorId < numberOfFloors; ++floorId) {
+//                    Heatmap heatmap = m_eegeoMap.addHeatmap(new HeatmapOptions()
+//                            .add(
+//                                    new LatLng(37.782084, -122.404578),
+//                                    new LatLng(37.782126, -122.404530),
+//                                    new LatLng(37.782057, -122.404440),
+//                                    new LatLng(37.782012, -122.404491))
+//                            .fillColor(transparentRed)
+//                            .indoor("intercontinental_hotel_8628", floorId));
+//                    m_heatmaps.add(heatmap);
+//                }
 
             }
         });
