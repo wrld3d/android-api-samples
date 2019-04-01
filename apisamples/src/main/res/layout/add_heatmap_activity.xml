@@ -15,8 +15,83 @@
         android:id="@+id/add_heatmap_mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        eegeo:environment_themes_manifest="@string/heatmap_theme_manifest"
         eegeo:camera_target_latitude="@string/polyline_start_lat"
         eegeo:camera_target_longitude="@string/polyline_start_lon"
         eegeo:camera_zoom="15"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/radius_decr_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickRadiusDecr"
+                android:text="Radius -"/>
+
+            <Button
+                android:id="@+id/radius_incr_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickRadiusIncr"
+                android:text="Radius +"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/intensity_decr_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickIntensityDecr"
+                android:text="Intensity -"/>
+
+            <Button
+                android:id="@+id/intensity_incr_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickIntensityIncr"
+                android:text="Intensity +"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/opacity_decr_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickOpacityDecr"
+                android:text="Opacity -"/>
+
+            <Button
+                android:id="@+id/opacity_incr_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickOpacityIncr"
+                android:text="Opacity +"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/occlusion_toggle_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickOcclusionToggle"
+                android:text="Occlusion Toggle"/>
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

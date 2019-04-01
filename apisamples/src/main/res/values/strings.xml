@@ -139,6 +139,8 @@
     <string name="indoor_map_loading_notification_label">Indoor map loading notification</string>
     <string name="indoor_map_loading_notification_description">Obtain notification that an indoor map has been loaded or unloaded by the streaming system</string>
 
+    <string name="heatmap_theme_manifest">http://cdn-resources.wrld3d.com/mobile-themes-new/v1427/ambientdark/manifest.bin.gz</string>
+
 
 
     <string name="exit_button_label">Exit</string>

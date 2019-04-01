@@ -1,10 +1,12 @@
 package com.eegeo.apisamples;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
+import com.eegeo.mapapi.camera.CameraUpdateFactory;
 import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.geometry.WeightedLatLngAlt;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
@@ -20,6 +22,11 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
     private Heatmap m_heatmap = null;
+    private double m_minIntensityScale = 0.2;
+    private double m_maxIntensityScale = 5.0;
+    private boolean m_occlusionEnabled = true;
+    private int m_occlusionFlags = HeatmapOptions.OCCLUSION_BUILDINGS | HeatmapOptions.OCCLUSION_TREES;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,26 +50,34 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         new LatLng(37.798962, -122.398260),
                         new LatLng(37.794299, -122.395234),
                         new LatLng(37.792201, -122.400580)
-                            )
-                    .fillColor(0);
+                            );
 
-                final int pointCount = 100000;
+                final int pointCount = 1000;
                 final LatLng sw = new LatLng(37.787, -122.4071);
                 final LatLng ne = new LatLng(37.799, -122.3952);
 
-                WeightedLatLngAlt[] data = generateRandomData(
+                WeightedLatLngAlt[] data = generateRandomDataDiverging(
                         pointCount,
                         sw,
                         ne,
-                        1.0,
-                        10.0
+                        -100.0,
+                        0,
+                        100.0
                 );
+
 
                 m_heatmap = m_eegeoMap.addHeatmap(
                     new HeatmapOptions()
                         .polygon(polygonOptions)
                         .resolution(512)
-                        .blurRadiusMeters(25.f)
+                        .weightMin(-100)
+                        .weightMax(100)
+                        .radiusMinMeters(5.0)
+                        .radiusMaxMeters(25.0)
+                        .radiusBlend(0.0)
+                        .opacity(1.0)
+                        .intensityScale(1.0)
+                        .occludedFeatures(m_occlusionFlags)
                         .add(data)
                 );
             }
@@ -70,7 +85,7 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     }
 
 
-    private WeightedLatLngAlt[] generateRandomData(int count, LatLng sw, LatLng ne, double minWeight, double maxWeight) {
+    private WeightedLatLngAlt[] generateRandomDataSequential(int count, LatLng sw, LatLng ne, double minWeight, double maxWeight) {
         Random random = new Random(1);
         ArrayList<WeightedLatLngAlt> points = new ArrayList<>();
 
@@ -82,6 +97,24 @@ public class AddHeatmapActivity extends WrldExampleActivity {
             double r = random.nextDouble();
             double weight = r * r * (maxWeight - minWeight) + minWeight;
 
+            points.add(new WeightedLatLngAlt(lat, lng, weight));
+        }
+
+        return points.toArray(new WeightedLatLngAlt[0]);
+
+    }
+
+    private WeightedLatLngAlt[] generateRandomDataDiverging(int count, LatLng sw, LatLng ne, double minWeight, double mid, double maxWeight) {
+        Random random = new Random(1);
+        ArrayList<WeightedLatLngAlt> points = new ArrayList<>();
+
+        for (int i = 0; i < count; ++i) {
+
+            double lat = random.nextDouble() * (ne.latitude - sw.latitude) + sw.latitude;
+            double lng = random.nextDouble() * (ne.longitude - sw.longitude) + sw.longitude;
+            double r = random.nextDouble();
+            double extreme = random.nextBoolean() ? maxWeight : minWeight;
+            double weight = r * r * (extreme - mid) + mid;
             points.add(new WeightedLatLngAlt(lat, lng, weight));
         }
 
@@ -120,6 +153,45 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         };
         return data;
     }
+
+
+    public void onClickRadiusIncr(View view) {
+        double radiusBlend = Math.min(m_heatmap.getRadiusBlend() + 0.05, 1.0);
+        m_heatmap.setRadiusBlend(radiusBlend);
+    }
+
+    public void onClickRadiusDecr(View view) {
+        double radiusBlend = Math.max(m_heatmap.getRadiusBlend() - 0.05, 0.0);
+        m_heatmap.setRadiusBlend(radiusBlend);
+    }
+
+    public void onClickIntensityIncr(View view) {
+        double intensityScale = Math.min(m_heatmap.getIntensityScale() + 0.1, m_maxIntensityScale);
+        m_heatmap.setIntensityScale(intensityScale);
+    }
+
+    public void onClickIntensityDecr(View view) {
+        double intensityScale = Math.max(m_heatmap.getIntensityScale() - 0.1, m_minIntensityScale);
+        m_heatmap.setIntensityScale(intensityScale);
+    }
+
+    public void onClickOpacityIncr(View view) {
+        double opacity = Math.min(m_heatmap.getOpacity() + 0.1, 1.0);
+        m_heatmap.setOpacity(opacity);
+    }
+
+    public void onClickOpacityDecr(View view) {
+        double opacity = Math.max(m_heatmap.getOpacity() - 0.1, 0.0);
+        m_heatmap.setOpacity(opacity);
+    }
+
+    public void onClickOcclusionToggle(View view) {
+        m_occlusionEnabled = !m_occlusionEnabled;
+        final int occludedFeatures = m_occlusionEnabled ? m_occlusionFlags : HeatmapOptions.OCCLUSION_NONE;
+        m_heatmap.setOccludedFeatures(occludedFeatures);
+    }
+
+
     @Override
     protected void onResume() {
         super.onResume();
