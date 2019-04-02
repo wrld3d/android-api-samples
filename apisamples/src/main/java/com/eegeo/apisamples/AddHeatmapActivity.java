@@ -56,28 +56,39 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                 final LatLng sw = new LatLng(37.787, -122.4071);
                 final LatLng ne = new LatLng(37.799, -122.3952);
 
-                WeightedLatLngAlt[] data = generateRandomDataDiverging(
+//                WeightedLatLngAlt[] data = generateRandomDataDiverging(
+//                        pointCount,
+//                        sw,
+//                        ne,
+//                        -100.0,
+//                        0,
+//                        100.0
+//                );
+
+                WeightedLatLngAlt[] data = generateRandomDataSequential(
                         pointCount,
                         sw,
                         ne,
-                        -100.0,
                         0,
-                        100.0
+                        50.0
                 );
-
 
                 m_heatmap = m_eegeoMap.addHeatmap(
                     new HeatmapOptions()
                         .polygon(polygonOptions)
                         .resolution(512)
-                        .weightMin(-100)
-                        .weightMax(100)
+                        .weightMin(0)
+                        .weightMax(50)
                         .radiusMinMeters(5.0)
                         .radiusMaxMeters(25.0)
                         .radiusBlend(0.0)
                         .opacity(1.0)
                         .intensityScale(1.0)
                         .occludedFeatures(m_occlusionFlags)
+                        .gradient(
+                                new int[]{0xffffff00, 0xf0f9e8ff,0xbae4bcff,0x7bccc4ff,0x43a2caff,0x0868acff},
+                                new float[]{0.f, 0.2f, 0.4f, 0.6f, 0.8f, 1.f}
+                                )
                         .add(data)
                 );
             }
