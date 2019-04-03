@@ -30,68 +30,81 @@
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/radius_decr_button"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:onClick="onClickRadiusDecr"
-                android:text="Radius -"/>
+                android:text="R -"/>
 
             <Button
                 android:id="@+id/radius_incr_button"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:onClick="onClickRadiusIncr"
-                android:text="Radius +"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                android:text="R +"/>
             <Button
                 android:id="@+id/intensity_decr_button"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:onClick="onClickIntensityDecr"
-                android:text="Intensity -"/>
+                android:text="I -"/>
 
             <Button
                 android:id="@+id/intensity_incr_button"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:onClick="onClickIntensityIncr"
-                android:text="Intensity +"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                android:text="I +"/>
             <Button
                 android:id="@+id/opacity_decr_button"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:onClick="onClickOpacityDecr"
-                android:text="Opacity -"/>
+                android:text="A -"/>
 
             <Button
                 android:id="@+id/opacity_incr_button"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:onClick="onClickOpacityIncr"
-                android:text="Opacity +"/>
+                android:text="A +"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/data_cycle_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickDataCycle"
+                android:text="Data"/>
+            <Button
+                android:id="@+id/gradient_cycle_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickGradientCycle"
+                android:text="Grad"/>
             <Button
                 android:id="@+id/occlusion_toggle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:onClick="onClickOcclusionToggle"
-                android:text="Occlusion Toggle"/>
+                android:text="Occlusion"/>
         </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>
