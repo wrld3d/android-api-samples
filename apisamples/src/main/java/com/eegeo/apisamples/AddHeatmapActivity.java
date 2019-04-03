@@ -42,22 +42,25 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     {
         final int[] Colors;
         final float[] StartParams;
+        final float IntensityBias;
 
         Gradient(
             int[] colors,
-            float[] startParams
+            float[] startParams,
+            float intensityBias
         )
         {
             Colors = colors;
             StartParams = startParams;
+            IntensityBias = intensityBias;
         }
     }
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
     private Heatmap m_heatmap = null;
-    private double m_minIntensityScale = 0.2;
-    private double m_maxIntensityScale = 5.0;
+    private float m_minIntensityScale = 0.2f;
+    private float m_maxIntensityScale = 5.0f;
     private boolean m_occlusionEnabled = true;
     private int m_occlusionFlags = HeatmapOptions.OCCLUSION_BUILDINGS | HeatmapOptions.OCCLUSION_TREES;
     private List<DataSet> m_dataSets = new ArrayList<>();
@@ -116,21 +119,24 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                 // http://colorbrewer2.org/#type=sequential&scheme=GnBu&n=5
                 m_gradients.add(new Gradient(
                     new int[]{0xffffff00, 0xf0f9e8ff,0xbae4bcff,0x7bccc4ff,0x43a2caff,0x0868acff},
-                    new float[]{0.f, 0.2f, 0.4f, 0.6f, 0.8f, 1.f}
+                    new float[]{0.f, 0.2f, 0.4f, 0.6f, 0.8f, 1.f},
+                    0.0f
                 ));
 
                 // Suitable for sequential data, with transparency near zero, similar to
                 // http://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=5
                 m_gradients.add(new Gradient(
                     new int[]{0xffffff00,0xffffb2ff,0xfecc5cff,0xfd8d3cff,0xf03b20ff,0xbd0026ff},
-                    new float[]{0.f, 0.2f, 0.4f, 0.6f, 0.8f, 1.f}
+                    new float[]{0.f, 0.2f, 0.4f, 0.6f, 0.8f, 1.f},
+                    0.0f
                 ));
 
                 // Suitable for diverging data, with transparency around center, similar to
                 // http://colorbrewer2.org/#type=diverging&scheme=RdYlBu&n=6
                 m_gradients.add(new Gradient(
                     new int[]{0xd73027ff,0xfc8d59ff,0xfee090ff,0xffffff00,0xe0f3f8ff,0x91bfdbff,0x4575b4ff},
-                    new float[]{0.f, 0.2f, 0.4f, 0.5f, 0.6f, 0.8f, 1.f}
+                    new float[]{0.f, 0.2f, 0.4f, 0.5f, 0.6f, 0.8f, 1.f},
+                    0.5f
                 ));
 
 
@@ -143,11 +149,12 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         .weightMax(m_dataSets.get(m_currentDataIndex).WeightMax)
                         .radiusMinMeters(5.0)
                         .radiusMaxMeters(25.0)
-                        .radiusBlend(0.0)
-                        .opacity(1.0)
-                        .intensityScale(1.0)
+                        .radiusBlend(0.0f)
+                        .opacity(1.0f)
                         .occludedFeatures(m_occlusionFlags)
                         .gradient(m_gradients.get(m_currentGradientIndex).Colors, m_gradients.get(m_currentGradientIndex).StartParams)
+                        .intensityScale(1.0f)
+                        .intensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias)
                 );
 
                 // todo_heatmap mutators
@@ -229,32 +236,32 @@ public class AddHeatmapActivity extends WrldExampleActivity {
 
 
     public void onClickRadiusIncr(View view) {
-        double radiusBlend = Math.min(m_heatmap.getRadiusBlend() + 0.05, 1.0);
+        float radiusBlend = Math.min(m_heatmap.getRadiusBlend() + 0.05f, 1.0f);
         m_heatmap.setRadiusBlend(radiusBlend);
     }
 
     public void onClickRadiusDecr(View view) {
-        double radiusBlend = Math.max(m_heatmap.getRadiusBlend() - 0.05, 0.0);
+        float radiusBlend = Math.max(m_heatmap.getRadiusBlend() - 0.05f, 0.0f);
         m_heatmap.setRadiusBlend(radiusBlend);
     }
 
     public void onClickIntensityIncr(View view) {
-        double intensityScale = Math.min(m_heatmap.getIntensityScale() + 0.1, m_maxIntensityScale);
+        float intensityScale = Math.min(m_heatmap.getIntensityScale() + 0.1f, m_maxIntensityScale);
         m_heatmap.setIntensityScale(intensityScale);
     }
 
     public void onClickIntensityDecr(View view) {
-        double intensityScale = Math.max(m_heatmap.getIntensityScale() - 0.1, m_minIntensityScale);
+        float intensityScale = Math.max(m_heatmap.getIntensityScale() - 0.1f, m_minIntensityScale);
         m_heatmap.setIntensityScale(intensityScale);
     }
 
     public void onClickOpacityIncr(View view) {
-        double opacity = Math.min(m_heatmap.getOpacity() + 0.1, 1.0);
+        float opacity = Math.min(m_heatmap.getOpacity() + 0.1f, 1.0f);
         m_heatmap.setOpacity(opacity);
     }
 
     public void onClickOpacityDecr(View view) {
-        double opacity = Math.max(m_heatmap.getOpacity() - 0.1, 0.0);
+        float opacity = Math.max(m_heatmap.getOpacity() - 0.1f, 0.0f);
         m_heatmap.setOpacity(opacity);
     }
 
@@ -280,6 +287,8 @@ public class AddHeatmapActivity extends WrldExampleActivity {
             m_gradients.get(m_currentGradientIndex).Colors,
             m_gradients.get(m_currentGradientIndex).StartParams
         );
+
+        m_heatmap.setIntensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias);
     }
 
     public void onClickOcclusionToggle(View view) {
