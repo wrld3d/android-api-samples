@@ -65,8 +65,15 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     private int m_occlusionFlags = HeatmapOptions.OCCLUSION_BUILDINGS | HeatmapOptions.OCCLUSION_TREES;
     private List<DataSet> m_dataSets = new ArrayList<>();
     private List<Gradient> m_gradients = new ArrayList<>();
+
     private int m_currentDataIndex = 0;
     private int m_currentGradientIndex = 0;
+    private int m_currentResolutionIndex = 2;
+    private int[] m_resolutions = { 64, 128, 256, 512, 1024 };
+
+    private int m_currentRadiusIndex = 2;
+    private double[] m_radii = { 1.0, 2.0, 5.0, 10.0 };
+    private double m_radiusRatio = 2.5;
 
 
     @Override
@@ -103,10 +110,16 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                 ));
 
                 m_dataSets.add(new DataSet(
-                    generateRandomDataSequential(100000, sw, ne,-20.0,35.0),
-                    // saturate outliers
-                    -10.0,
-                    30.0
+                    generateRandomDataSequential(1000, sw, ne,1.0,1.0),
+                    0.0,
+                    3.0
+                ));
+
+                // dense, false origin to visualise peaks
+                m_dataSets.add(new DataSet(
+                        generateRandomDataSequential(500000, sw, ne,0.0,1.0),
+                        130.0,
+                        160.0
                 ));
 
                 m_dataSets.add(new DataSet(
@@ -139,16 +152,22 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                     0.5f
                 ));
 
+                m_gradients.add(new Gradient(
+                    new int[]{0x000000ff,0xffffffff},
+                    new float[]{0.f, 1.f},
+                    0.0f
+                ));
+
 
                 m_heatmap = m_eegeoMap.addHeatmap(
                     new HeatmapOptions()
                         .polygon(polygonOptions)
-                        .resolution(512)
+                        .resolution(getResolution())
                         .add(m_dataSets.get(m_currentDataIndex).WeightedPoints)
                         .weightMin(m_dataSets.get(m_currentDataIndex).WeightMin)
                         .weightMax(m_dataSets.get(m_currentDataIndex).WeightMax)
-                        .radiusMinMeters(5.0)
-                        .radiusMaxMeters(25.0)
+                        .radiusMinMeters(getRadiusMin())
+                        .radiusMaxMeters(getRadiusMax())
                         .radiusBlend(0.0f)
                         .opacity(1.0f)
                         .occludedFeatures(m_occlusionFlags)
@@ -156,14 +175,17 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         .intensityScale(1.0f)
                         .intensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias)
                 );
-
-                // todo_heatmap mutators
-                // resolution
-                // radiusMin/max
             }
         });
     }
 
+    private int getResolution() {
+        return m_resolutions[m_currentResolutionIndex];
+    }
+
+    private double getRadiusMin() { return m_radii[m_currentRadiusIndex]; }
+
+    private double getRadiusMax() { return getRadiusMin()*m_radiusRatio; }
 
     private WeightedLatLngAlt[] generateRandomDataSequential(int count, LatLng sw, LatLng ne, double minWeight, double maxWeight) {
         Random random = new Random(1);
@@ -199,48 +221,14 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         }
 
         return points.toArray(new WeightedLatLngAlt[0]);
-
     }
 
-    private WeightedLatLngAlt[] getData() {
-        WeightedLatLngAlt data[] = {
-                // transamerica
-                //new WeightedLatLngAlt(37.795109, -122.402789)
-
-                new WeightedLatLngAlt(37.795538, -122.403318),
-                new WeightedLatLngAlt(37.795550, -122.403191),
-                new WeightedLatLngAlt(37.795566, -122.403061),
-                new WeightedLatLngAlt(37.795594, -122.402902),
-                new WeightedLatLngAlt(37.795610, -122.402810),
-                new WeightedLatLngAlt(37.795606, -122.402647),
-                new WeightedLatLngAlt(37.795645, -122.403457),
-                new WeightedLatLngAlt(37.795659, -122.403345),
-                new WeightedLatLngAlt(37.795874, -122.403793),
-                new WeightedLatLngAlt(37.795792, -122.403661),
-                new WeightedLatLngAlt(37.795519, -122.403466),
-                new WeightedLatLngAlt(37.795515, -122.403513),
-                new WeightedLatLngAlt(37.795508, -122.403614),
-                new WeightedLatLngAlt(37.795447, -122.403303),
-                new WeightedLatLngAlt(37.795368, -122.403292),
-                new WeightedLatLngAlt(37.795288, -122.403295),
-                new WeightedLatLngAlt(37.795148, -122.403229),
-                new WeightedLatLngAlt(37.795876, -122.400523),
-                new WeightedLatLngAlt(37.795866, -122.400603),
-                new WeightedLatLngAlt(37.795883, -122.400431),
-                new WeightedLatLngAlt(37.795837, -122.400499),
-                new WeightedLatLngAlt(37.795947, -122.400537),
-                new WeightedLatLngAlt(37.795907, -122.400502)
-        };
-        return data;
-    }
-
-
-    public void onClickRadiusIncr(View view) {
+    public void onClickRadiusBlendIncr(View view) {
         float radiusBlend = Math.min(m_heatmap.getRadiusBlend() + 0.05f, 1.0f);
         m_heatmap.setRadiusBlend(radiusBlend);
     }
 
-    public void onClickRadiusDecr(View view) {
+    public void onClickRadiusBlendDecr(View view) {
         float radiusBlend = Math.max(m_heatmap.getRadiusBlend() - 0.05f, 0.0f);
         m_heatmap.setRadiusBlend(radiusBlend);
     }
@@ -296,6 +284,41 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         final int occludedFeatures = m_occlusionEnabled ? m_occlusionFlags : HeatmapOptions.OCCLUSION_NONE;
         m_heatmap.setOccludedFeatures(occludedFeatures);
     }
+
+    public void onClickResolutionCycleDown(View view) {
+        m_currentResolutionIndex--;
+        if (m_currentResolutionIndex < 0) {
+            m_currentResolutionIndex = m_resolutions.length - 1;
+        }
+        m_heatmap.setResolution(getResolution());
+    }
+
+    public void onClickResolutionCycleUp(View view) {
+        m_currentResolutionIndex++;
+        if (m_currentResolutionIndex >= m_resolutions.length) {
+            m_currentResolutionIndex = 0;
+        }
+        m_heatmap.setResolution(getResolution());
+    }
+
+    public void onClickRadiusCycleDown(View view) {
+        m_currentRadiusIndex--;
+        if (m_currentRadiusIndex < 0) {
+            m_currentRadiusIndex = m_radii.length - 1;
+        }
+
+        m_heatmap.setRadii(getRadiusMin(), getRadiusMax());
+    }
+
+    public void onClickRadiusCycleUp(View view) {
+        m_currentRadiusIndex++;
+        if (m_currentRadiusIndex >= m_radii.length) {
+            m_currentRadiusIndex = 0;
+        }
+
+        m_heatmap.setRadii(getRadiusMin(), getRadiusMax());
+    }
+
 
 
     @Override

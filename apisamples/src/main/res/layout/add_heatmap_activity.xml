@@ -29,22 +29,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-                android:id="@+id/radius_decr_button"
+                android:id="@+id/radius_blend_decr_button"
                 android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
-                android:onClick="onClickRadiusDecr"
-                android:text="R -"/>
-
+                android:onClick="onClickRadiusBlendDecr"
+                android:text="Rt -"/>
             <Button
-                android:id="@+id/radius_incr_button"
+                android:id="@+id/radius_blend_incr_button"
                 android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
-                android:onClick="onClickRadiusIncr"
-                android:text="R +"/>
+                android:onClick="onClickRadiusBlendIncr"
+                android:text="Rt +"/>
             <Button
                 android:id="@+id/intensity_decr_button"
                 android:minWidth="0dp"
@@ -85,6 +84,7 @@
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/data_cycle_button"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
@@ -92,6 +92,7 @@
                 android:text="Data"/>
             <Button
                 android:id="@+id/gradient_cycle_button"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
@@ -99,11 +100,49 @@
                 android:text="Grad"/>
             <Button
                 android:id="@+id/occlusion_toggle_button"
+                android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
                 android:onClick="onClickOcclusionToggle"
                 android:text="Occlusion"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/resolution_cycle_down_button"
+                android:minWidth="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickResolutionCycleDown"
+                android:text="Res -"/>
+            <Button
+                android:id="@+id/resolution_cycle_up_button"
+                android:minWidth="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickResolutionCycleUp"
+                android:text="Res +"/>
+            <Button
+                android:id="@+id/radius_cycle_down_button"
+                android:minWidth="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickRadiusCycleDown"
+                android:text="R -"/>
+            <Button
+                android:id="@+id/radius_cycle_up_button"
+                android:minWidth="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickRadiusCycleUp"
+                android:text="R +"/>
+
         </LinearLayout>
 
     </LinearLayout>
