@@ -57,6 +57,22 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         }
     }
 
+    class HeatmapRadiusSet
+    {
+        final double[] Radii;
+        final float[] StartParams;
+
+        HeatmapRadiusSet(
+            double[] radii,
+            float[] startParams
+        )
+        {
+            Radii = radii;
+            StartParams = startParams;
+        }
+
+    }
+
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
     private Heatmap m_heatmap = null;
@@ -73,9 +89,8 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     private int m_currentResolutionIndex = 4;
     private int[] m_resolutions = { 32, 64, 128, 256, 512, 1024 };
 
-    private int m_currentRadiusIndex = 3;
-    private double[] m_radii = { 1.0, 2.0, 3.0, 5.0, 8.0, 13.0 };
-    private double m_radiusRatio = 2.5;
+    private int m_currentRadiusIndex = 0;
+    private List<HeatmapRadiusSet> m_heatmapRadiusSets = new ArrayList<>();
 
     private TextView m_intensityScaleLabel;
 
@@ -137,8 +152,9 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         1.0
                 ));
 
+                // > 8 bit dynamic range
                 m_dataSets.add(new DataSet(
-                        generateRandomDataFromSet(1000, sw, ne,new double[]{0.1,1.0,10.0,100.0,1000.0}),
+                        generateRandomDataFromSet(1000, sw, ne,new double[]{0.0001,0.001,0.1,1.0,10.0}),
                         0.0,
                         1.0
                 ));
@@ -192,6 +208,16 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         0.5f
                 ));
 
+                m_heatmapRadiusSets.add(new HeatmapRadiusSet(
+                        new double[]{ 5.0, 25.0 },
+                        new float[]{0.f, 1.0f}
+                ));
+
+                m_heatmapRadiusSets.add(new HeatmapRadiusSet(
+                    new double[]{ 3.0, 5.0, 8.0, 13.0, 21.f },
+                    new float[]{0.f, 0.25f, 0.5f, 0.75f, 1.0f}
+                ));
+
                 m_heatmap = m_eegeoMap.addHeatmap(
                     new HeatmapOptions()
                         //.polygon(polygonOptions)
@@ -199,8 +225,13 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         .add(m_dataSets.get(m_currentDataIndex).WeightedPoints)
                         .weightMin(m_dataSets.get(m_currentDataIndex).WeightMin)
                         .weightMax(m_dataSets.get(m_currentDataIndex).WeightMax)
-                        .radiusMinMeters(getRadiusMin())
-                        .radiusMaxMeters(getRadiusMax())
+                        .setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().StartParams)
+//                            .heatmapRadius(20.0)
+//                        .addHeatmapRadius(13.0, 0.75f)
+//                        .addHeatmapRadius(3.0, 0.0f)
+//                        .addHeatmapRadius(5.0, 0.25f)
+//                        .addHeatmapRadius(8.0, 0.5f)
+//                        .addHeatmapRadius(21.0, 1.0f)
                         .radiusBlend(0.0f)
                         .opacity(1.0f)
                             //.textureBorder(0.3f)
@@ -217,12 +248,8 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         return m_resolutions[m_currentResolutionIndex];
     }
 
-    private double getRadiusMin() {
-        return m_radii[m_currentRadiusIndex];
-    }
-
-    private double getRadiusMax() {
-        return getRadiusMin()*m_radiusRatio;
+    private HeatmapRadiusSet getRadiusSet() {
+        return m_heatmapRadiusSets.get(m_currentRadiusIndex);
     }
 
     private float getIntensityScale() {
@@ -370,19 +397,19 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     public void onClickRadiusCycleDown(View view) {
         m_currentRadiusIndex--;
         if (m_currentRadiusIndex < 0) {
-            m_currentRadiusIndex = m_radii.length - 1;
+            m_currentRadiusIndex = m_heatmapRadiusSets.size() - 1;
         }
 
-        m_heatmap.setRadii(getRadiusMin(), getRadiusMax());
+        m_heatmap.setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().StartParams);
     }
 
     public void onClickRadiusCycleUp(View view) {
         m_currentRadiusIndex++;
-        if (m_currentRadiusIndex >= m_radii.length) {
+        if (m_currentRadiusIndex >= m_heatmapRadiusSets.size()) {
             m_currentRadiusIndex = 0;
         }
 
-        m_heatmap.setRadii(getRadiusMin(), getRadiusMax());
+        m_heatmap.setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().StartParams);
     }
 
 
