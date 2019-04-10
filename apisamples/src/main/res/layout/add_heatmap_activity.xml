@@ -52,7 +52,16 @@
                 android:enabled="true"
                 android:onClick="onClickIntensityDecr"
                 android:text="I -"/>
-
+            <TextView
+                android:id="@+id/intensity_scale_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:padding="6px"
+                android:background="#8000"
+                android:text="000.000"
+                android:enabled="true"
+                />
             <Button
                 android:id="@+id/intensity_incr_button"
                 android:minWidth="0dp"

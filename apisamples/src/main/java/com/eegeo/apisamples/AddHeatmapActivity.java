@@ -2,6 +2,7 @@ package com.eegeo.apisamples;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
@@ -59,22 +60,24 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
     private Heatmap m_heatmap = null;
-    private float m_minIntensityScale = 0.2f;
-    private float m_maxIntensityScale = 5.0f;
-    private boolean m_occlusionEnabled = true;
+    private float m_minIntensityScalePower = -12.f;
+    private float m_maxIntensityScalePower = 12.f;
+    private float m_intensityScalePower = 0.f;
+    private boolean m_occlusionEnabled = false;
     private int m_occlusionFlags = HeatmapOptions.OCCLUSION_BUILDINGS | HeatmapOptions.OCCLUSION_TREES;
     private List<DataSet> m_dataSets = new ArrayList<>();
     private List<Gradient> m_gradients = new ArrayList<>();
 
     private int m_currentDataIndex = 0;
     private int m_currentGradientIndex = 0;
-    private int m_currentResolutionIndex = 2;
-    private int[] m_resolutions = { 64, 128, 256, 512, 1024 };
+    private int m_currentResolutionIndex = 4;
+    private int[] m_resolutions = { 32, 64, 128, 256, 512, 1024 };
 
-    private int m_currentRadiusIndex = 2;
-    private double[] m_radii = { 1.0, 2.0, 5.0, 10.0 };
+    private int m_currentRadiusIndex = 3;
+    private double[] m_radii = { 1.0, 2.0, 3.0, 5.0, 8.0, 13.0 };
     private double m_radiusRatio = 2.5;
 
+    private TextView m_intensityScaleLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,12 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         setContentView(R.layout.add_heatmap_activity);
         m_mapView = (MapView) findViewById(R.id.add_heatmap_mapview);
         m_mapView.onCreate(savedInstanceState);
+
+
+        m_intensityScaleLabel = (TextView)findViewById(R.id.intensity_scale_label);
+
+        incrementIntensityScalePower(0.f);
+
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -103,29 +112,42 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                 final LatLng sw = new LatLng(37.787, -122.4071);
                 final LatLng ne = new LatLng(37.799, -122.3952);
 
+
                 m_dataSets.add(new DataSet(
-                    generateRandomDataSequential(1000, sw, ne,0.0,50.0),
+                    generateRandomDataSequential(1000, sw, ne,0.0,1.0),
                     0.0,
-                    50.0
+                    3.0
                 ));
 
                 m_dataSets.add(new DataSet(
-                    generateRandomDataSequential(1000, sw, ne,1.0,1.0),
+                    generateRandomDataSequential(1000, sw, ne,1.0,100.0),
                     0.0,
-                    3.0
+                    1000.0
+                ));
+
+                m_dataSets.add(new DataSet(
+                        generateRandomDataDiverging(1000, sw, ne,-1.0,0.0, 1.0),
+                        -1.0,
+                        1.0
+                ));
+
+                m_dataSets.add(new DataSet(
+                        generateRandomDataFromSet(1000, sw, ne,new double[]{-1.0, 1.0}),
+                        -1.0,
+                        1.0
+                ));
+
+                m_dataSets.add(new DataSet(
+                        generateRandomDataFromSet(1000, sw, ne,new double[]{0.1,1.0,10.0,100.0,1000.0}),
+                        0.0,
+                        1.0
                 ));
 
                 // dense, false origin to visualise peaks
                 m_dataSets.add(new DataSet(
                         generateRandomDataSequential(500000, sw, ne,0.0,1.0),
-                        130.0,
-                        160.0
-                ));
-
-                m_dataSets.add(new DataSet(
-                        generateRandomDataDiverging(1000, sw, ne,-100.0,0.0, 100.0),
-                        -100.0,
-                        100.0
+                        2.0,
+                        50.0
                 ));
 
                 // Suitable for sequential data, with transparency near zero, similar to
@@ -153,15 +175,26 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                 ));
 
                 m_gradients.add(new Gradient(
-                    new int[]{0x000000ff,0xffffffff},
-                    new float[]{0.f, 1.f},
-                    0.0f
+                        new int[]{0x000000ff,0xffffffff},
+                        new float[]{0.f, 1.f},
+                        0.0f
                 ));
 
+                m_gradients.add(new Gradient(
+                        new int[]{0x000000ff,0xffffffff,0x000000ff},
+                        new float[]{0.f, 0.5f, 1.f},
+                        0.5f
+                ));
+
+                m_gradients.add(new Gradient(
+                        new int[]{0x0000ffff,0x000000ff,0xff0000ff},
+                        new float[]{0.f, 0.5f, 1.f},
+                        0.5f
+                ));
 
                 m_heatmap = m_eegeoMap.addHeatmap(
                     new HeatmapOptions()
-                        .polygon(polygonOptions)
+                        //.polygon(polygonOptions)
                         .resolution(getResolution())
                         .add(m_dataSets.get(m_currentDataIndex).WeightedPoints)
                         .weightMin(m_dataSets.get(m_currentDataIndex).WeightMin)
@@ -170,10 +203,11 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         .radiusMaxMeters(getRadiusMax())
                         .radiusBlend(0.0f)
                         .opacity(1.0f)
-                        .occludedFeatures(m_occlusionFlags)
+                            //.textureBorder(0.3f)
+                        .occludedFeatures(getOccludedFeatures())
                         .gradient(m_gradients.get(m_currentGradientIndex).Colors, m_gradients.get(m_currentGradientIndex).StartParams)
-                        .intensityScale(1.0f)
                         .intensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias)
+                        .intensityScale(getIntensityScale())
                 );
             }
         });
@@ -183,9 +217,17 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         return m_resolutions[m_currentResolutionIndex];
     }
 
-    private double getRadiusMin() { return m_radii[m_currentRadiusIndex]; }
+    private double getRadiusMin() {
+        return m_radii[m_currentRadiusIndex];
+    }
 
-    private double getRadiusMax() { return getRadiusMin()*m_radiusRatio; }
+    private double getRadiusMax() {
+        return getRadiusMin()*m_radiusRatio;
+    }
+
+    private float getIntensityScale() {
+        return (float)Math.pow(2.0, m_intensityScalePower);
+    }
 
     private WeightedLatLngAlt[] generateRandomDataSequential(int count, LatLng sw, LatLng ne, double minWeight, double maxWeight) {
         Random random = new Random(1);
@@ -203,7 +245,6 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         }
 
         return points.toArray(new WeightedLatLngAlt[0]);
-
     }
 
     private WeightedLatLngAlt[] generateRandomDataDiverging(int count, LatLng sw, LatLng ne, double minWeight, double mid, double maxWeight) {
@@ -223,6 +264,23 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         return points.toArray(new WeightedLatLngAlt[0]);
     }
 
+    private WeightedLatLngAlt[] generateRandomDataFromSet(int count, LatLng sw, LatLng ne, double[] weights) {
+        Random random = new Random(1);
+        ArrayList<WeightedLatLngAlt> points = new ArrayList<>();
+
+        for (int i = 0; i < count; ++i) {
+
+            double lat = random.nextDouble() * (ne.latitude - sw.latitude) + sw.latitude;
+            double lng = random.nextDouble() * (ne.longitude - sw.longitude) + sw.longitude;
+            int index = random.nextInt(weights.length);
+            points.add(new WeightedLatLngAlt(lat, lng, weights[index]));
+        }
+
+        return points.toArray(new WeightedLatLngAlt[0]);
+
+    }
+
+
     public void onClickRadiusBlendIncr(View view) {
         float radiusBlend = Math.min(m_heatmap.getRadiusBlend() + 0.05f, 1.0f);
         m_heatmap.setRadiusBlend(radiusBlend);
@@ -233,14 +291,20 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         m_heatmap.setRadiusBlend(radiusBlend);
     }
 
+    public void incrementIntensityScalePower(float powerDelta) {
+        m_intensityScalePower = Math.max(Math.min(m_intensityScalePower + powerDelta, m_maxIntensityScalePower), m_minIntensityScalePower);
+        String text = String.format("x%.3f", getIntensityScale());
+        m_intensityScaleLabel.setText(text);
+    }
+
     public void onClickIntensityIncr(View view) {
-        float intensityScale = Math.min(m_heatmap.getIntensityScale() + 0.1f, m_maxIntensityScale);
-        m_heatmap.setIntensityScale(intensityScale);
+        incrementIntensityScalePower(0.25f);
+        m_heatmap.setIntensityScale(getIntensityScale());
     }
 
     public void onClickIntensityDecr(View view) {
-        float intensityScale = Math.max(m_heatmap.getIntensityScale() - 0.1f, m_minIntensityScale);
-        m_heatmap.setIntensityScale(intensityScale);
+        incrementIntensityScalePower(-0.25f);
+        m_heatmap.setIntensityScale(getIntensityScale());
     }
 
     public void onClickOpacityIncr(View view) {
@@ -279,10 +343,12 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         m_heatmap.setIntensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias);
     }
 
+    private int getOccludedFeatures() {
+        return m_occlusionEnabled ? m_occlusionFlags : HeatmapOptions.OCCLUSION_NONE;
+    }
     public void onClickOcclusionToggle(View view) {
         m_occlusionEnabled = !m_occlusionEnabled;
-        final int occludedFeatures = m_occlusionEnabled ? m_occlusionFlags : HeatmapOptions.OCCLUSION_NONE;
-        m_heatmap.setOccludedFeatures(occludedFeatures);
+        m_heatmap.setOccludedFeatures(getOccludedFeatures());
     }
 
     public void onClickResolutionCycleDown(View view) {
