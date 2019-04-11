@@ -2,6 +2,7 @@ package com.eegeo.apisamples;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.eegeo.mapapi.EegeoApi;
@@ -89,10 +90,13 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     private int m_currentResolutionIndex = 4;
     private int[] m_resolutions = { 32, 64, 128, 256, 512, 1024 };
 
+    private boolean m_useApproximation = true;
+
     private int m_currentRadiusIndex = 0;
     private List<HeatmapRadiusSet> m_heatmapRadiusSets = new ArrayList<>();
 
     private TextView m_intensityScaleLabel;
+    private Button m_useApproximationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +109,7 @@ public class AddHeatmapActivity extends WrldExampleActivity {
 
 
         m_intensityScaleLabel = (TextView)findViewById(R.id.intensity_scale_label);
+        m_useApproximationButton = (Button) findViewById(R.id.approximation_toggle_button);
 
         incrementIntensityScalePower(0.f);
 
@@ -376,6 +381,14 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     public void onClickOcclusionToggle(View view) {
         m_occlusionEnabled = !m_occlusionEnabled;
         m_heatmap.setOccludedFeatures(getOccludedFeatures());
+    }
+
+    public void onClickApproximationToggle(View view) {
+        m_useApproximation = !m_useApproximation;
+        m_heatmap.setUseApproximation(m_useApproximation);
+
+        m_useApproximationButton.setText(m_useApproximation ? "Approx" : "Exact");
+
     }
 
     public void onClickResolutionCycleDown(View view) {

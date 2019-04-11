@@ -115,6 +115,15 @@
                 android:enabled="true"
                 android:onClick="onClickOcclusionToggle"
                 android:text="Occlusion"/>
+            <Button
+                android:id="@+id/approximation_toggle_button"
+                android:minWidth="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:onClick="onClickApproximationToggle"
+                android:text="Approx"/>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
