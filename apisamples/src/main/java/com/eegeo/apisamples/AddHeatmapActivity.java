@@ -42,34 +42,34 @@ public class AddHeatmapActivity extends WrldExampleActivity {
 
     class Gradient
     {
+        final float[] Stops;
         final int[] Colors;
-        final float[] StartParams;
         final float IntensityBias;
 
         Gradient(
+            float[] stops,
             int[] colors,
-            float[] startParams,
             float intensityBias
         )
         {
+            Stops = stops;
             Colors = colors;
-            StartParams = startParams;
             IntensityBias = intensityBias;
         }
     }
 
     class HeatmapRadiusSet
     {
+        final float[] Stops;
         final double[] Radii;
-        final float[] StartParams;
 
         HeatmapRadiusSet(
-            double[] radii,
-            float[] startParams
+            float[] stops,
+            double[] radii
         )
         {
+            Stops = stops;
             Radii = radii;
-            StartParams = startParams;
         }
 
     }
@@ -174,53 +174,53 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                 // Suitable for sequential data, with transparency near zero, similar to
                 // http://colorbrewer2.org/#type=sequential&scheme=GnBu&n=5
                 m_gradients.add(new Gradient(
-                    new int[]{0xffffff00, 0xf0f9e8ff,0xbae4bcff,0x7bccc4ff,0x43a2caff,0x0868acff},
                     new float[]{0.f, 0.2f, 0.4f, 0.6f, 0.8f, 1.f},
+                    new int[]{0xffffff00, 0xf0f9e8ff,0xbae4bcff,0x7bccc4ff,0x43a2caff,0x0868acff},
                     0.0f
                 ));
 
                 // Suitable for sequential data, with transparency near zero, similar to
                 // http://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=5
                 m_gradients.add(new Gradient(
-                    new int[]{0xffffff00,0xffffb2ff,0xfecc5cff,0xfd8d3cff,0xf03b20ff,0xbd0026ff},
                     new float[]{0.f, 0.2f, 0.4f, 0.6f, 0.8f, 1.f},
+                    new int[]{0xffffff00,0xffffb2ff,0xfecc5cff,0xfd8d3cff,0xf03b20ff,0xbd0026ff},
                     0.0f
                 ));
 
                 // Suitable for diverging data, with transparency around center, similar to
                 // http://colorbrewer2.org/#type=diverging&scheme=RdYlBu&n=6
                 m_gradients.add(new Gradient(
-                    new int[]{0xd73027ff,0xfc8d59ff,0xfee090ff,0xffffff00,0xe0f3f8ff,0x91bfdbff,0x4575b4ff},
                     new float[]{0.f, 0.2f, 0.4f, 0.5f, 0.6f, 0.8f, 1.f},
+                    new int[]{0xd73027ff,0xfc8d59ff,0xfee090ff,0xffffff00,0xe0f3f8ff,0x91bfdbff,0x4575b4ff},
                     0.5f
                 ));
 
                 m_gradients.add(new Gradient(
-                        new int[]{0x000000ff,0xffffffff},
                         new float[]{0.f, 1.f},
+                        new int[]{0x000000ff,0xffffffff},
                         0.0f
                 ));
 
                 m_gradients.add(new Gradient(
-                        new int[]{0x000000ff,0xffffffff,0x000000ff},
                         new float[]{0.f, 0.5f, 1.f},
+                        new int[]{0x000000ff,0xffffffff,0x000000ff},
                         0.5f
                 ));
 
                 m_gradients.add(new Gradient(
-                        new int[]{0x0000ffff,0x000000ff,0xff0000ff},
                         new float[]{0.f, 0.5f, 1.f},
+                        new int[]{0x0000ffff,0x000000ff,0xff0000ff},
                         0.5f
                 ));
 
                 m_heatmapRadiusSets.add(new HeatmapRadiusSet(
-                        new double[]{ 5.0, 25.0 },
-                        new float[]{0.f, 1.0f}
+                        new float[]{0.f, 1.0f},
+                        new double[]{ 5.0, 25.0 }
                 ));
 
                 m_heatmapRadiusSets.add(new HeatmapRadiusSet(
-                    new double[]{ 3.0, 5.0, 8.0, 13.0, 21.f },
-                    new float[]{0.f, 0.25f, 0.5f, 0.75f, 1.0f}
+                    new float[]{0.f, 0.25f, 0.5f, 0.75f, 1.0f},
+                    new double[]{ 3.0, 5.0, 8.0, 13.0, 21.f }
                 ));
 
                 m_heatmap = m_eegeoMap.addHeatmap(
@@ -230,7 +230,7 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         .add(m_dataSets.get(m_currentDataIndex).WeightedPoints)
                         .weightMin(m_dataSets.get(m_currentDataIndex).WeightMin)
                         .weightMax(m_dataSets.get(m_currentDataIndex).WeightMax)
-                        .setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().StartParams)
+                        .setHeatmapRadii(getRadiusSet().Stops, getRadiusSet().Radii)
 //                            .heatmapRadius(20.0)
 //                        .addHeatmapRadius(13.0, 0.75f)
 //                        .addHeatmapRadius(3.0, 0.0f)
@@ -241,7 +241,7 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         .opacity(1.0f)
                             //.textureBorder(0.3f)
                         .occludedFeatures(getOccludedFeatures())
-                        .gradient(m_gradients.get(m_currentGradientIndex).Colors, m_gradients.get(m_currentGradientIndex).StartParams)
+                        .gradient(m_gradients.get(m_currentGradientIndex).Stops, m_gradients.get(m_currentGradientIndex).Colors)
                         .intensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias)
                         .intensityScale(getIntensityScale())
                 );
@@ -369,7 +369,7 @@ public class AddHeatmapActivity extends WrldExampleActivity {
 
         m_heatmap.setGradient(
             m_gradients.get(m_currentGradientIndex).Colors,
-            m_gradients.get(m_currentGradientIndex).StartParams
+            m_gradients.get(m_currentGradientIndex).Stops
         );
 
         m_heatmap.setIntensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias);
@@ -413,7 +413,7 @@ public class AddHeatmapActivity extends WrldExampleActivity {
             m_currentRadiusIndex = m_heatmapRadiusSets.size() - 1;
         }
 
-        m_heatmap.setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().StartParams);
+        m_heatmap.setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().Stops);
     }
 
     public void onClickRadiusCycleUp(View view) {
@@ -422,7 +422,7 @@ public class AddHeatmapActivity extends WrldExampleActivity {
             m_currentRadiusIndex = 0;
         }
 
-        m_heatmap.setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().StartParams);
+        m_heatmap.setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().Stops);
     }
 
 

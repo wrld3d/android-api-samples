@@ -89,12 +89,12 @@ public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
                                 .weightMax(12.0)
                                 // aligns normative value with mid-point of color gradient
                                 .intensityBias(0.5f)
-                                .addHeatmapRadius(0.6, 0.0f)
-                                .addHeatmapRadius(1.3, 0.5f)
-                                .addHeatmapRadius(2.1, 1.0f)
+                                .addHeatmapRadius(0.0f, 0.6)
+                                .addHeatmapRadius(0.5f, 1.3)
+                                .addHeatmapRadius(1.0f, 2.1)
                                 .gradient(
-                                        new int[]{0x4575b4ff,0x91bfdbff,0xe0f3f8ff,0xffffff00,0xfee090ff,0xfc8d59ff,0xd73027ff},
-                                        new float[]{0.f, 0.1f, 0.4f, 0.5f, 0.6f, 0.9f, 1.f})
+                                        new float[]{0.f, 0.1f, 0.4f, 0.5f, 0.6f, 0.9f, 1.f},
+                                        new int[]{0x4575b4ff,0x91bfdbff,0xe0f3f8ff,0xffffff00,0xfee090ff,0xfc8d59ff,0xd73027ff})
                                 .opacity(0.8f)
                 );
                 m_heatmaps.add(heatmap);
