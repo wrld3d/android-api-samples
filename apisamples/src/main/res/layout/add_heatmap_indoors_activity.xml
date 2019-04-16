@@ -15,8 +15,8 @@
         android:id="@+id/add_heatmap_indoors_mapview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        eegeo:camera_target_latitude="@string/indoor_start_lat"
-        eegeo:camera_target_longitude="@string/indoor_start_lon"
+        eegeo:camera_target_latitude="@string/indoor_dundee_start_lat"
+        eegeo:camera_target_longitude="@string/indoor_dundee_start_lon"
         eegeo:camera_zoom="@string/default_start_zoom"/>
 
 </RelativeLayout>
