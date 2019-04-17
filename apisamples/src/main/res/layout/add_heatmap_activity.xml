@@ -29,21 +29,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
-                android:id="@+id/radius_blend_decr_button"
+                android:id="@+id/density_blend_decr_button"
                 android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
-                android:onClick="onClickRadiusBlendDecr"
-                android:text="Rt -"/>
+                android:onClick="onClickDensityBlendDecr"
+                android:text="Dt -"/>
             <Button
-                android:id="@+id/radius_blend_incr_button"
+                android:id="@+id/density_blend_incr_button"
                 android:minWidth="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="true"
-                android:onClick="onClickRadiusBlendIncr"
-                android:text="Rt +"/>
+                android:onClick="onClickDensityBlendIncr"
+                android:text="Dt +"/>
             <Button
                 android:id="@+id/intensity_decr_button"
                 android:minWidth="0dp"

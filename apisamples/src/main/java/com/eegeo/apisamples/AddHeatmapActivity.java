@@ -58,18 +58,22 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         }
     }
 
-    class HeatmapRadiusSet
+    class HeatmapDensitySet
     {
         final float[] Stops;
         final double[] Radii;
+        final double[] Densities;
 
-        HeatmapRadiusSet(
+        HeatmapDensitySet(
             float[] stops,
-            double[] radii
+            double[] radii,
+            double[] densities
+
         )
         {
             Stops = stops;
             Radii = radii;
+            Densities = densities;
         }
 
     }
@@ -93,7 +97,7 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     private boolean m_useApproximation = true;
 
     private int m_currentRadiusIndex = 0;
-    private List<HeatmapRadiusSet> m_heatmapRadiusSets = new ArrayList<>();
+    private List<HeatmapDensitySet> m_heatmapDensitySets = new ArrayList<>();
 
     private TextView m_intensityScaleLabel;
     private Button m_useApproximationButton;
@@ -213,14 +217,16 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         0.5f
                 ));
 
-                m_heatmapRadiusSets.add(new HeatmapRadiusSet(
+                m_heatmapDensitySets.add(new HeatmapDensitySet(
                         new float[]{0.f, 1.0f},
-                        new double[]{ 5.0, 25.0 }
+                        new double[]{ 5.0, 25.0 },
+                        new double[]{ 1.0, 1.0 }
                 ));
 
-                m_heatmapRadiusSets.add(new HeatmapRadiusSet(
+                m_heatmapDensitySets.add(new HeatmapDensitySet(
                     new float[]{0.f, 0.25f, 0.5f, 0.75f, 1.0f},
-                    new double[]{ 3.0, 5.0, 8.0, 13.0, 21.f }
+                    new double[]{ 3.0, 5.0, 8.0, 13.0, 21.f },
+                    new double[]{ 1.0, 1.0, 1.0, 1.0, 1.f }
                 ));
 
                 m_heatmap = m_eegeoMap.addHeatmap(
@@ -230,14 +236,14 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                         .add(m_dataSets.get(m_currentDataIndex).WeightedPoints)
                         .weightMin(m_dataSets.get(m_currentDataIndex).WeightMin)
                         .weightMax(m_dataSets.get(m_currentDataIndex).WeightMax)
-                        .setHeatmapRadii(getRadiusSet().Stops, getRadiusSet().Radii)
+                        .setDensityStops(getDensitySet().Stops, getDensitySet().Radii, getDensitySet().Densities)
 //                            .heatmapRadius(20.0)
-//                        .addHeatmapRadius(13.0, 0.75f)
-//                        .addHeatmapRadius(3.0, 0.0f)
-//                        .addHeatmapRadius(5.0, 0.25f)
-//                        .addHeatmapRadius(8.0, 0.5f)
-//                        .addHeatmapRadius(21.0, 1.0f)
-                        .radiusBlend(0.0f)
+//                        .addDensityStop(0.75f, 13.0, 1.0)
+//                        .addDensityStop(0.0f, 3.0, 1.0)
+//                        .addDensityStop(0.25f, 5.0, 1.0)
+//                        .addDensityStop(0.5f, 8.0, 1.0)
+//                        .addDensityStop(1.0f, 21.0, 1.0)
+                        .densityBlend(0.0f)
                         .opacity(1.0f)
                             //.textureBorder(0.3f)
                         .occludedFeatures(getOccludedFeatures())
@@ -253,8 +259,8 @@ public class AddHeatmapActivity extends WrldExampleActivity {
         return m_resolutions[m_currentResolutionIndex];
     }
 
-    private HeatmapRadiusSet getRadiusSet() {
-        return m_heatmapRadiusSets.get(m_currentRadiusIndex);
+    private HeatmapDensitySet getDensitySet() {
+        return m_heatmapDensitySets.get(m_currentRadiusIndex);
     }
 
     private float getIntensityScale() {
@@ -313,14 +319,14 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     }
 
 
-    public void onClickRadiusBlendIncr(View view) {
-        float radiusBlend = Math.min(m_heatmap.getRadiusBlend() + 0.05f, 1.0f);
-        m_heatmap.setRadiusBlend(radiusBlend);
+    public void onClickDensityBlendIncr(View view) {
+        float densityBlend = Math.min(m_heatmap.getDensityBlend() + 0.05f, 1.0f);
+        m_heatmap.setDensityBlend(densityBlend);
     }
 
-    public void onClickRadiusBlendDecr(View view) {
-        float radiusBlend = Math.max(m_heatmap.getRadiusBlend() - 0.05f, 0.0f);
-        m_heatmap.setRadiusBlend(radiusBlend);
+    public void onClickDensityBlendDecr(View view) {
+        float densityBlend = Math.max(m_heatmap.getDensityBlend() - 0.05f, 0.0f);
+        m_heatmap.setDensityBlend(densityBlend);
     }
 
     public void incrementIntensityScalePower(float powerDelta) {
@@ -410,19 +416,19 @@ public class AddHeatmapActivity extends WrldExampleActivity {
     public void onClickRadiusCycleDown(View view) {
         m_currentRadiusIndex--;
         if (m_currentRadiusIndex < 0) {
-            m_currentRadiusIndex = m_heatmapRadiusSets.size() - 1;
+            m_currentRadiusIndex = m_heatmapDensitySets.size() - 1;
         }
 
-        m_heatmap.setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().Stops);
+        m_heatmap.setHeatmapDensities(getDensitySet().Stops, getDensitySet().Radii, getDensitySet().Densities);
     }
 
     public void onClickRadiusCycleUp(View view) {
         m_currentRadiusIndex++;
-        if (m_currentRadiusIndex >= m_heatmapRadiusSets.size()) {
+        if (m_currentRadiusIndex >= m_heatmapDensitySets.size()) {
             m_currentRadiusIndex = 0;
         }
 
-        m_heatmap.setHeatmapRadii(getRadiusSet().Radii, getRadiusSet().Stops);
+        m_heatmap.setHeatmapDensities(getDensitySet().Stops, getDensitySet().Radii, getDensitySet().Densities);
     }
 
 

@@ -1,10 +1,7 @@
 package com.eegeo.apisamples;
 
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.graphics.ColorUtils;
-import android.util.Log;
 import android.widget.RelativeLayout;
 
 import com.eegeo.indoors.IndoorMapView;
@@ -13,7 +10,6 @@ import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.camera.CameraPosition;
 import com.eegeo.mapapi.camera.CameraUpdateFactory;
-import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.geometry.WeightedLatLngAlt;
 import com.eegeo.mapapi.map.OnInitialStreamingCompleteListener;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
@@ -23,7 +19,6 @@ import com.eegeo.mapapi.polygons.PolygonOptions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
 
@@ -73,7 +68,7 @@ public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
                         t = Math.min(Math.max(t, 0.0), 1.0);
 
                         for (Heatmap heatmap : m_heatmaps) {
-                            heatmap.setRadiusBlend((float)(1.0 - t));
+                            heatmap.setDensityBlend((float)(1.0 - t));
                         }
 
                     }
@@ -85,13 +80,13 @@ public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
                                 .polygon(new PolygonOptions().indoor("westport_house", 2))
                                 .add(getExampleOccupancyPerDayData())
                                 .textureBorder(0.2f)
-                                .weightMin(-4.0)
-                                .weightMax(12.0)
+                                .weightMin(0.0)
+                                .weightMax(8.0)
                                 // aligns normative value with mid-point of color gradient
                                 .intensityBias(0.5f)
-                                .addHeatmapRadius(0.0f, 0.6)
-                                .addHeatmapRadius(0.5f, 1.3)
-                                .addHeatmapRadius(1.0f, 2.1)
+                                .addDensityStop(0.0f, 0.6, 1.0)
+                                .addDensityStop(0.5f, 1.3, 0.75)
+                                .addDensityStop(1.0f, 2.1, 0.5)
                                 .gradient(
                                         new float[]{0.f, 0.1f, 0.4f, 0.5f, 0.6f, 0.9f, 1.f},
                                         new int[]{0x4575b4ff,0x91bfdbff,0xe0f3f8ff,0xffffff00,0xfee090ff,0xfc8d59ff,0xd73027ff})
