@@ -18,5 +18,5 @@
         eegeo:environment_themes_manifest="@string/heatmap_theme_manifest"
         eegeo:camera_target_latitude="@string/heatmap_start_lat"
         eegeo:camera_target_longitude="@string/heatmap_start_lon"
-        eegeo:camera_zoom="16"/>
+        eegeo:camera_zoom="13.5"/>
 </RelativeLayout>

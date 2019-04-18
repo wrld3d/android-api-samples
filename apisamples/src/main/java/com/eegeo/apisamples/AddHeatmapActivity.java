@@ -59,21 +59,21 @@ public class AddHeatmapActivity extends WrldExampleActivity {
                 final LatLng sw = new LatLng(51.493606, -0.105091);
                 final LatLng ne = new LatLng(51.508994, -0.068091);
 
-                final WeightedLatLngAlt[] data = generateRandomDataSequential(1000, sw, ne);
+                final WeightedLatLngAlt[] data = generateRandomData(1000, sw, ne);
 
                 m_heatmap = m_eegeoMap.addHeatmap(
                     new HeatmapOptions()
                         .polygon(polygonOptions)
                         .add(data)
-                        .addDensityStop(0.0f, 10.0, 1.0)
-                        .addDensityStop(1.0f, 20.0, 1.0)
+                        .addDensityStop(0.0f, 15.0, 1.0)
+                        .addDensityStop(1.0f, 45.0, 0.2)
                         .interpolateDensityByZoom(14.0, 17.0)
                 );
             }
         });
     }
 
-    private WeightedLatLngAlt[] generateRandomDataSequential(int count, LatLng sw, LatLng ne) {
+    private WeightedLatLngAlt[] generateRandomData(int count, LatLng sw, LatLng ne) {
         Random random = new Random(1);
         WeightedLatLngAlt points[] = new WeightedLatLngAlt[count];
 
