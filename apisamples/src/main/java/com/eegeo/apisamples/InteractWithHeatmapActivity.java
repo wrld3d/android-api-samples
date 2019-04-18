@@ -10,6 +10,7 @@ import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
 import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.geometry.WeightedLatLngAlt;
+import com.eegeo.mapapi.heatmaps.HeatmapOcclusionMapFeature;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.heatmaps.Heatmap;
 import com.eegeo.mapapi.heatmaps.HeatmapOptions;
@@ -85,7 +86,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
     private float m_maxIntensityScalePower = 12.f;
     private float m_intensityScalePower = 0.f;
     private boolean m_occlusionEnabled = false;
-    private int m_occlusionFlags = HeatmapOptions.OCCLUSION_BUILDINGS | HeatmapOptions.OCCLUSION_TREES;
+    private HeatmapOcclusionMapFeature[] m_occludedFeatures = {HeatmapOcclusionMapFeature.buildings, HeatmapOcclusionMapFeature.trees};
     private List<DataSet> m_dataSets = new ArrayList<>();
     private List<Gradient> m_gradients = new ArrayList<>();
 
@@ -381,8 +382,8 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
         m_heatmap.setIntensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias);
     }
 
-    private int getOccludedFeatures() {
-        return m_occlusionEnabled ? m_occlusionFlags : HeatmapOptions.OCCLUSION_NONE;
+    private HeatmapOcclusionMapFeature[] getOccludedFeatures() {
+        return m_occlusionEnabled ? m_occludedFeatures : new HeatmapOcclusionMapFeature[]{};
     }
     public void onClickOcclusionToggle(View view) {
         m_occlusionEnabled = !m_occlusionEnabled;
