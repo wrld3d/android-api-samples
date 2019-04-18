@@ -25,7 +25,7 @@ public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
     private IndoorMapView m_indoorMapView = null;
-    private List<Heatmap> m_heatmaps = new ArrayList<>();
+    private Heatmap m_heatmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,42 +57,29 @@ public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
                         map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
                     }
                 });
-                map.addOnCameraMoveListener(new EegeoMap.OnCameraMoveListener() {
-                    @Override
-                    public void onCameraMove() {
-                        final double zoom = map.getCameraPosition().zoom;
-                        final double zoomMax = 21.0;
-                        final double zoomMin = 18.5;
-
-                        double t = (zoom - zoomMin) / (zoomMax - zoomMin);
-                        t = Math.min(Math.max(t, 0.0), 1.0);
-
-                        for (Heatmap heatmap : m_heatmaps) {
-                            heatmap.setDensityBlend((float)(1.0 - t));
-                        }
-
-                    }
-                });
 
 
-                Heatmap heatmap = m_eegeoMap.addHeatmap(
-                        new HeatmapOptions()
-                                .polygon(new PolygonOptions().indoor("westport_house", 2))
-                                .add(getExampleOccupancyPerDayData())
-                                .textureBorder(0.2f)
-                                .weightMin(0.0)
-                                .weightMax(8.0)
-                                // aligns normative value with mid-point of color gradient
-                                .intensityBias(0.5f)
-                                .addDensityStop(0.0f, 0.6, 1.0)
-                                .addDensityStop(0.5f, 1.3, 0.75)
-                                .addDensityStop(1.0f, 2.1, 0.5)
-                                .gradient(
-                                        new float[]{0.f, 0.1f, 0.4f, 0.5f, 0.6f, 0.9f, 1.f},
-                                        new int[]{0x4575b4ff,0x91bfdbff,0xe0f3f8ff,0xffffff00,0xfee090ff,0xfc8d59ff,0xd73027ff})
-                                .opacity(0.8f)
+                m_heatmap = m_eegeoMap.addHeatmap(
+                    new HeatmapOptions()
+                        .polygon(new PolygonOptions().indoor("westport_house", 2))
+                        .add(getExampleOccupancyPerDayData())
+                        .weightMin(2.0)
+                        .weightMax(8.0)
+                        // sets normative value to be mid-point between weightMin and weightMax,
+                        // to align with transparent mid-point of color gradient
+                        .intensityBias(0.5f)
+                        .interpolateDensityByZoom(18.5, 21.0)
+                        .addDensityStop(0.0f, 0.6, 1.0)
+                        .addDensityStop(0.5f, 1.3, 0.75)
+                        .addDensityStop(1.0f, 2.1, 0.5)
+                        .gradient(
+                                // transparent at mid-point, with differing hues either side,
+                                // suitable for diverging data set. Similar to:
+                                // http://colorbrewer2.org/#type=diverging&scheme=RdYlBu&n=6
+                                new float[]{0.f, 0.1f, 0.4f, 0.5f, 0.6f, 0.9f, 1.f},
+                                new int[]{0x4575b4ff, 0x91bfdbff, 0xe0f3f8ff, 0xffffff00, 0xfee090ff, 0xfc8d59ff, 0xd73027ff})
+                        .opacity(0.8f)
                 );
-                m_heatmaps.add(heatmap);
             }
         });
     }
@@ -113,11 +100,7 @@ public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (m_eegeoMap != null) {
-            for (Heatmap heatmap : m_heatmaps) {
-                m_eegeoMap.removeHeatmap(heatmap);
-            }
-        }
+        m_eegeoMap.removeHeatmap(m_heatmap);
 
         m_mapView.onDestroy();
     }

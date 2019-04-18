@@ -13,6 +13,9 @@ public final class ExamplesList {
             new ExampleContainer(R.string.add_heatmap_indoors_example_label,
                     R.string.add_heatmap_indoors_example_description,
                     AddHeatmapIndoorsActivity.class),
+            new ExampleContainer(R.string.interact_with_heatmap_example_label,
+                    R.string.interact_with_heatmap_example_description,
+                    InteractWithHeatmapActivity.class),
 
             new ExampleContainer(R.string.basic_example_label,
                     R.string.basic_example_description,
