@@ -50,9 +50,9 @@ public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
                     @Override
                     public void onInitialStreamingComplete() {
                         CameraPosition position = new CameraPosition.Builder()
-                                .target(56.459801, -2.977928)
+                                .target(56.460075, -2.978326)
                                 .indoor("westport_house", 2)
-                                .zoom(18)
+                                .zoom(19)
                                 .build();
                         map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
                     }
