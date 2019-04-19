@@ -33,14 +33,6 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
-            android:name="com.eegeo.apisamples.InteractWithHeatmapActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/interact_with_heatmap_example_label">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eegeo.apisamples.MainActivity"/>
-        </activity>
-        <activity
             android:name="com.eegeo.apisamples.MainActivity"
             android:label="@string/app_short_name">
             <intent-filter>

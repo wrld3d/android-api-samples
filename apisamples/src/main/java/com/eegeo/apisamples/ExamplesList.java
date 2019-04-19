@@ -7,16 +7,6 @@ public final class ExamplesList {
 
     public static final ExampleContainer[] Examples = {
 
-            new ExampleContainer(R.string.add_heatmap_example_label,
-                    R.string.add_heatmap_example_description,
-                    AddHeatmapActivity.class),
-            new ExampleContainer(R.string.add_heatmap_indoors_example_label,
-                    R.string.add_heatmap_indoors_example_description,
-                    AddHeatmapIndoorsActivity.class),
-            new ExampleContainer(R.string.interact_with_heatmap_example_label,
-                    R.string.interact_with_heatmap_example_description,
-                    InteractWithHeatmapActivity.class),
-
             new ExampleContainer(R.string.basic_example_label,
                     R.string.basic_example_description,
                     BasicMapActivity.class),
@@ -113,6 +103,12 @@ public final class ExamplesList {
             new ExampleContainer(R.string.add_polyline_indoors_example_label,
                     R.string.add_polyline_indoors_example_description,
                     AddPolylineIndoorsActivity.class),
+            new ExampleContainer(R.string.add_heatmap_example_label,
+                    R.string.add_heatmap_example_description,
+                    AddHeatmapActivity.class),
+            new ExampleContainer(R.string.add_heatmap_indoors_example_label,
+                    R.string.add_heatmap_indoors_example_description,
+                    AddHeatmapIndoorsActivity.class),
             new ExampleContainer(R.string.add_prop_indoors_example_label,
                     R.string.add_prop_indoors_example_description,
                     AddPropIndoorsActivity.class),
