@@ -420,7 +420,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
             m_currentRadiusIndex = m_heatmapDensitySets.size() - 1;
         }
 
-        m_heatmap.setHeatmapDensities(getDensitySet().Stops, getDensitySet().Radii, getDensitySet().Densities);
+        m_heatmap.setDensityStops(getDensitySet().Stops, getDensitySet().Radii, getDensitySet().Densities);
     }
 
     public void onClickRadiusCycleUp(View view) {
@@ -429,7 +429,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
             m_currentRadiusIndex = 0;
         }
 
-        m_heatmap.setHeatmapDensities(getDensitySet().Stops, getDensitySet().Radii, getDensitySet().Densities);
+        m_heatmap.setDensityStops(getDensitySet().Stops, getDensitySet().Radii, getDensitySet().Densities);
     }
 
 
