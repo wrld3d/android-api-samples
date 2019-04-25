@@ -76,8 +76,8 @@ public class AddHeatmapIndoorsActivity extends WrldExampleActivity {
                                 // transparent at mid-point, with differing hues either side,
                                 // suitable for diverging data set. Similar to:
                                 // http://colorbrewer2.org/#type=diverging&scheme=RdYlBu&n=6
-                                new float[]{0.f, 0.1f, 0.4f, 0.5f, 0.6f, 0.9f, 1.f},
-                                new int[]{0x4575b4ff, 0x91bfdbff, 0xe0f3f8ff, 0xffffff00, 0xfee090ff, 0xfc8d59ff, 0xd73027ff})
+                                new float[]{0.f, 0.1f, 0.4f, 0.49f, 0.51f, 0.6f, 0.9f, 1.f},
+                                new int[]{0x4575b4ff, 0x91bfdbff, 0xe0f3f8ff, 0xffffff00, 0xffffff00, 0xfee090ff, 0xfc8d59ff, 0xd73027ff})
                         .opacity(0.8f)
                 );
             }
