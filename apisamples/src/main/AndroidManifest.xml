@@ -17,22 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.eegeo.apisamples.AddHeatmapActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/add_heatmap_example_label">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eegeo.apisamples.MainActivity"/>
-        </activity>
-        <activity
-            android:name="com.eegeo.apisamples.AddHeatmapIndoorsActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/add_heatmap_indoors_example_label">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eegeo.apisamples.MainActivity"/>
-        </activity>
-        <activity
             android:name="com.eegeo.apisamples.MainActivity"
             android:label="@string/app_short_name">
             <intent-filter>
@@ -278,6 +262,22 @@
             android:name="com.eegeo.apisamples.AddPolylineIndoorsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/add_polyline_indoors_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.AddHeatmapActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_heatmap_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.eegeo.apisamples.AddHeatmapIndoorsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/add_heatmap_indoors_example_label">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eegeo.apisamples.MainActivity"/>
