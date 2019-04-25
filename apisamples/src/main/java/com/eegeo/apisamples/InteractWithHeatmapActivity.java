@@ -93,7 +93,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
     private int m_currentDataIndex = 0;
     private int m_currentGradientIndex = 0;
     private int m_currentResolutionIndex = 4;
-    private int[] m_resolutions = { 32, 64, 128, 256, 512, 1024 };
+    private int[] m_resolutions = { 32, 64, 128, 256, 512, 1024, 2048 };
 
     private boolean m_useApproximation = true;
 
@@ -233,7 +233,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
                 m_heatmap = m_eegeoMap.addHeatmap(
                     new HeatmapOptions()
                         //.polygon(polygonOptions)
-                        .resolution(getResolution())
+                        .resolutionPixels(getResolution())
                         .add(m_dataSets.get(m_currentDataIndex).WeightedPoints)
                         .weightMin(m_dataSets.get(m_currentDataIndex).WeightMin)
                         .weightMax(m_dataSets.get(m_currentDataIndex).WeightMax)
@@ -247,7 +247,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
                         .densityBlend(0.0f)
                         .opacity(1.0f)
                             //.textureBorder(0.3f)
-                        .occludedFeatures(getOccludedFeatures())
+                        .occludedMapFeatures(getOccludedFeatures())
                         .gradient(m_gradients.get(m_currentGradientIndex).Stops, m_gradients.get(m_currentGradientIndex).Colors)
                         .intensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias)
                         .intensityScale(getIntensityScale())
@@ -375,8 +375,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
         }
 
         m_heatmap.setGradient(
-            m_gradients.get(m_currentGradientIndex).Colors,
-            m_gradients.get(m_currentGradientIndex).Stops
+                m_gradients.get(m_currentGradientIndex).Stops, m_gradients.get(m_currentGradientIndex).Colors
         );
 
         m_heatmap.setIntensityBias(m_gradients.get(m_currentGradientIndex).IntensityBias);
@@ -387,7 +386,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
     }
     public void onClickOcclusionToggle(View view) {
         m_occlusionEnabled = !m_occlusionEnabled;
-        m_heatmap.setOccludedFeatures(getOccludedFeatures());
+        m_heatmap.setOccludedMapFeatures(getOccludedFeatures());
     }
 
     public void onClickApproximationToggle(View view) {
@@ -403,7 +402,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
         if (m_currentResolutionIndex < 0) {
             m_currentResolutionIndex = m_resolutions.length - 1;
         }
-        m_heatmap.setResolution(getResolution());
+        m_heatmap.setResolutionPixels(getResolution());
     }
 
     public void onClickResolutionCycleUp(View view) {
@@ -411,7 +410,7 @@ public class InteractWithHeatmapActivity extends WrldExampleActivity {
         if (m_currentResolutionIndex >= m_resolutions.length) {
             m_currentResolutionIndex = 0;
         }
-        m_heatmap.setResolution(getResolution());
+        m_heatmap.setResolutionPixels(getResolution());
     }
 
     public void onClickRadiusCycleDown(View view) {
