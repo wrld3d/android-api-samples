@@ -138,6 +138,9 @@
     <string name="query_indoor_map_entity_information_example_label">Query indoor map entity information</string>
     <string name="query_indoor_map_entity_information_example_description">Obtain information about the entities within an indoor map</string>
 
+    <string name="query_indoor_map_floor_outline_information_example_label">Query indoor map floor outline information</string>
+    <string name="query_indoor_map_floor_outline_information_example_description">Obtain information about the outline for a floor in an indoor map</string>
+
     <string name="indoor_map_loading_notification_label">Indoor map loading notification</string>
     <string name="indoor_map_loading_notification_description">Obtain notification that an indoor map has been loaded or unloaded by the streaming system</string>
 
