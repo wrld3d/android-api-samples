@@ -117,7 +117,7 @@ public final class ExamplesList {
                     AddPropIndoorsActivity.class),
             new ExampleContainer(R.string.bluesphere_accuracy_ring_example_label,
                     R.string.bluesphere_accuracy_ring_example_description,
-                    AccuracyRingArroundBlueSphereActivity.class),
+                    AccuracyRingAroundBlueSphereActivity.class),
             new ExampleContainer(R.string.bluesphere_change_location_example_label,
                     R.string.bluesphere_change_location_example_description,
                     BlueSphereChangeLocationActivity.class),

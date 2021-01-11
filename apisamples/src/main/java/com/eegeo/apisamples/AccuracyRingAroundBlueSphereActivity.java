@@ -10,12 +10,12 @@ import com.eegeo.mapapi.geometry.LatLng;
 import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.bluesphere.BlueSphere;
 
-public class AccuracyRingArroundBlueSphereActivity extends WrldExampleActivity {
+public class AccuracyRingAroundBlueSphereActivity extends WrldExampleActivity {
 
     private MapView m_mapView;
     private EegeoMap m_eegeoMap = null;
     private BlueSphere m_bluesphere = null;
-    private boolean m_locationToggle = false;
+    private boolean m_accuracyRingToggle = false;
     private Handler m_timerHandler = new Handler();
 
     @Override
@@ -33,21 +33,22 @@ public class AccuracyRingArroundBlueSphereActivity extends WrldExampleActivity {
                 m_eegeoMap = map;
 
                 final LatLng locationA = new LatLng(56.459811, -2.977928);
-                final LatLng locationB = new LatLng(56.459675, -2.977205);
+                final float initialAccuracyRingRadius = 5;
+                final float alteredAccuracyRingRadius = 10;
 
                 m_bluesphere = m_eegeoMap.getBlueSphere();
                 m_bluesphere.setEnabled(true);
                 m_bluesphere.setPosition(locationA);
                 m_bluesphere.setAccuracyRingEnabled(true);
-                m_bluesphere.setCurrentLocationAccuracy(10);
+                m_bluesphere.setCurrentLocationAccuracy(initialAccuracyRingRadius);
 
                 m_timerHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if (m_eegeoMap != null) {
-                            m_locationToggle = !m_locationToggle;
-                            LatLng newLocation = m_locationToggle ? locationB : locationA;
-                            m_bluesphere.setPosition(newLocation);
+                            m_accuracyRingToggle = !m_accuracyRingToggle;
+                            float accuracyRadius = m_accuracyRingToggle ? alteredAccuracyRingRadius : initialAccuracyRingRadius;
+                            m_bluesphere.setCurrentLocationAccuracy(accuracyRadius);
                             m_timerHandler.postDelayed(this, 2000);
                         }
                     }

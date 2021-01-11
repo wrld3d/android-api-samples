@@ -299,7 +299,7 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
         <activity
-            android:name="com.eegeo.apisamples.AccuracyRingArroundBlueSphereActivity"
+            android:name="com.eegeo.apisamples.AccuracyRingAroundBlueSphereActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/bluesphere_change_location_example_label">
             <meta-data
