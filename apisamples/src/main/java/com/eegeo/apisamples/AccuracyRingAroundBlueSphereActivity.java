@@ -23,8 +23,8 @@ public class AccuracyRingAroundBlueSphereActivity extends WrldExampleActivity {
         super.onCreate(savedInstanceState);
         EegeoApi.init(this, getString(R.string.eegeo_api_key));
 
-        setContentView(R.layout.bluesphere_change_location_activity);
-        m_mapView = (MapView) findViewById(R.id.bluesphere_change_location_mapview);
+        setContentView(R.layout.show_accuracy_ring_around_bluesphere_activity);
+        m_mapView = (MapView) findViewById(R.id.show_accuracy_ring_bluesphere_mapview);
         m_mapView.onCreate(savedInstanceState);
 
         m_mapView.getMapAsync(new OnMapReadyCallback() {
@@ -32,13 +32,13 @@ public class AccuracyRingAroundBlueSphereActivity extends WrldExampleActivity {
             public void onMapReady(final EegeoMap map) {
                 m_eegeoMap = map;
 
-                final LatLng locationA = new LatLng(56.459811, -2.977928);
+                final LatLng location = new LatLng(56.459811, -2.977928);
                 final float initialAccuracyRingRadius = 5;
                 final float alteredAccuracyRingRadius = 10;
 
                 m_bluesphere = m_eegeoMap.getBlueSphere();
                 m_bluesphere.setEnabled(true);
-                m_bluesphere.setPosition(locationA);
+                m_bluesphere.setPosition(location);
                 m_bluesphere.setAccuracyRingEnabled(true);
                 m_bluesphere.setCurrentLocationAccuracy(initialAccuracyRingRadius);
 
