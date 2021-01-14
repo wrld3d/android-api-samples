@@ -72,6 +72,8 @@
     <string name="interact_with_heatmap_example_description">Display a heatmap on the map, with interactive controls</string>
     <string name="add_prop_indoors_example_label">Add a prop to an indoor map</string>
     <string name="add_prop_indoors_example_description">Display a prop inside an indoor map</string>
+    <string name="bluesphere_accuracy_ring_example_label">Blue sphere with accuracy ring</string>
+    <string name="bluesphere_accuracy_ring_example_description">Show an accuracy ring around blue sphere</string>
     <string name="bluesphere_change_location_example_label">Change the location of a blue sphere</string>
     <string name="bluesphere_change_location_example_description">Move the blue sphere to a different point on the map</string>
     <string name="bluesphere_change_bearing_example_label">Change the bearing of a blue sphere</string>
