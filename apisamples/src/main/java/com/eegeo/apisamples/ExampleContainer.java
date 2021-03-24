@@ -1,6 +1,6 @@
 package com.eegeo.apisamples;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ExampleContainer {
 

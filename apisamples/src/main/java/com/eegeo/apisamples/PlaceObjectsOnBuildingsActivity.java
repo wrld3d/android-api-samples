@@ -1,7 +1,7 @@
 package com.eegeo.apisamples;
 
 import android.os.Bundle;
-import android.support.annotation.UiThread;
+import androidx.annotation.UiThread;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;

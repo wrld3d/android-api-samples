@@ -1,9 +1,7 @@
 package com.eegeo.apisamples;
 
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.graphics.ColorUtils;
 import android.widget.RelativeLayout;
 
 import com.eegeo.indoors.IndoorMapView;

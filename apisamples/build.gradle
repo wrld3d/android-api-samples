@@ -43,8 +43,8 @@ android {
 
 }
 
-// latest release is https://bintray.com/wrld/maven/wrld-android-sdk/_latestVersion
-def sdkArtifactName = 'com.wrld:wrld-android-sdk:' + sdkVersion + '@aar'
+// latest release can be found at https://search.maven.org/artifact/com.wrld3d/wrld-android-sdk
+def sdkArtifactName = 'com.wrld3d:wrld-android-sdk:' + sdkVersion + '@aar'
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
