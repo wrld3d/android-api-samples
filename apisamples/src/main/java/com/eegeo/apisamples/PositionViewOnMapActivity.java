@@ -2,8 +2,8 @@ package com.eegeo.apisamples;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.UiThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.view.View;

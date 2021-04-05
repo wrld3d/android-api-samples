@@ -1,29 +1,18 @@
 package com.eegeo.apisamples;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.graphics.ColorUtils;
 import android.widget.Toast;
-
-import java.util.List;
-import java.util.ArrayList;
 
 import com.eegeo.mapapi.EegeoApi;
 import com.eegeo.mapapi.EegeoMap;
 import com.eegeo.mapapi.MapView;
-import com.eegeo.mapapi.map.OnMapReadyCallback;
-
 import com.eegeo.mapapi.geometry.LatLng;
+import com.eegeo.mapapi.map.OnMapReadyCallback;
 import com.eegeo.mapapi.services.routing.OnRoutingQueryCompletedListener;
-import com.eegeo.mapapi.services.routing.RoutingService;
 import com.eegeo.mapapi.services.routing.RoutingQuery;
 import com.eegeo.mapapi.services.routing.RoutingQueryOptions;
 import com.eegeo.mapapi.services.routing.RoutingQueryResponse;
-import com.eegeo.mapapi.services.routing.Route;
-import com.eegeo.mapapi.services.routing.RouteSection;
-import com.eegeo.mapapi.services.routing.RouteStep;
-import com.eegeo.mapapi.polylines.Polyline;
-import com.eegeo.mapapi.polylines.PolylineOptions;
+import com.eegeo.mapapi.services.routing.RoutingService;
 
 
 public class OutdoorRouteActivity extends WrldExampleActivity implements OnRoutingQueryCompletedListener {
