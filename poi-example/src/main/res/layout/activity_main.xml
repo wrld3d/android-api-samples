@@ -18,15 +18,22 @@
         eegeo:camera_target_latitude="40.702824"
         eegeo:camera_target_longitude="-74.015947"
         eegeo:camera_zoom="16"
-        />
+        eegeo:layout_constraintBottom_toBottomOf="parent"
+        eegeo:layout_constraintEnd_toEndOf="parent"
+        eegeo:layout_constraintStart_toStartOf="parent"
+        eegeo:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:id="@+id/ui_container"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentTop="true"
+        eegeo:layout_constraintBottom_toBottomOf="parent"
+        eegeo:layout_constraintEnd_toEndOf="parent"
+        eegeo:layout_constraintStart_toStartOf="parent"
+        eegeo:layout_constraintTop_toTopOf="parent">
 
     </RelativeLayout>
 
