@@ -18,7 +18,7 @@ Samples demonstrating how to use the [WRLD Android Java Api](https://docs.wrld3d
 4. Open Android Studio.
 5. Select "Open an existing Android Studio project" and select the top level android-api-samples folder.
 
-   If Android Studio is missing supporting libraries or components, you may be prompted to install these. Otherwise, Android Studio will download prerequisites automatically from JCenter.
+   If Android Studio is missing supporting libraries or components, you may be prompted to install these. Otherwise, Android Studio will download prerequisites automatically from Maven Central.
 
 You should now see three modules in the project:
 * [helloworld](https://github.com/wrld3d/android-api-samples/tree/master/helloworld)
