@@ -92,6 +92,8 @@
     <string name="picking_buildings_example_description">Highlight buildings by tapping on them</string>
     <string name="query_building_information_example_label">Query building information</string>
     <string name="query_building_information_example_description">Obtain information about a building at a location and place a marker above its centroid</string>
+    <string name="set_labels_enabled_example_label">Enable and disable labels</string>
+    <string name="set_labels_enabled_example_description">Enable and disable labels</string>
 
     <string name="search_example_label">Search for POIs</string>
     <string name="search_example_description">Use the POI service to find POIs on the map matching a certain query</string>
