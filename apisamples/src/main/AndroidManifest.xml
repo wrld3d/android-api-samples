@@ -559,6 +559,15 @@
                 android:value="com.eegeo.apisamples.MainActivity"/>
         </activity>
 
+        <activity
+            android:name="com.eegeo.apisamples.SetLabelsEnabledActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/set_labels_enabled_example_label">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eegeo.apisamples.MainActivity"/>
+        </activity>
+
     </application>
 
 </manifest>
